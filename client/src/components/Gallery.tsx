@@ -1,25 +1,63 @@
 import React, { useState, useMemo, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { X, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// --- SCROLLING GALLERY ITEM ---
-const ScrollingGalleryItem = ({ image, onClick }) => {
+// --- PREMIUM GALLERY ITEM WITH SMOOTH ANIMATIONS ---
+const PremiumGalleryItem = ({ image, index, onClick }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  // Staggered reveal with smooth easing
+  const containerVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: (index % 3) * 0.15,
+      },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { scale: 1.05, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  };
+
   return (
     <motion.div
+      ref={ref}
+      variants={containerVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      className="group relative w-full"
       onClick={onClick}
-      className="group relative cursor-pointer flex-shrink-0 w-80"
-      whileHover={{ scale: 1.05, y: -10 }}
-      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
-      <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-slate-700 shadow-lg">
-        {/* Image with smooth zoom */}
-        <motion.img
-          whileHover={{ scale: 1.08 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          src={image.src}
-          alt={image.title}
-          className="w-full h-full object-cover"
-        />
+      <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-slate-200 cursor-pointer">
+        {/* Image with smooth zoom on hover */}
+        <motion.div
+          variants={imageVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="w-full h-full overflow-hidden"
+        >
+          <motion.img
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            src={image.src}
+            alt={image.title}
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
 
         {/* Smooth overlay reveal */}
         <motion.div
@@ -53,12 +91,19 @@ const ScrollingGalleryItem = ({ image, onClick }) => {
         </motion.div>
       </div>
 
-      {/* Label below image */}
+      {/* Smooth label animation */}
       <motion.div
-        className="mt-4 flex justify-between items-baseline border-b border-white/10 pb-3"
+        initial={{ opacity: 0, y: 10 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+        transition={{
+          duration: 0.6,
+          ease: [0.25, 0.46, 0.45, 0.94],
+          delay: (index % 3) * 0.15 + 0.2,
+        }}
+        className="mt-4 flex justify-between items-baseline border-b border-black/5 pb-3"
       >
         <span className="text-xs font-mono text-slate-400">0{image.id}</span>
-        <span className="text-xs uppercase tracking-widest text-slate-200 font-medium">
+        <span className="text-xs uppercase tracking-widest text-slate-700 font-medium">
           {image.title}
         </span>
       </motion.div>
@@ -66,29 +111,7 @@ const ScrollingGalleryItem = ({ image, onClick }) => {
   );
 };
 
-// --- INFINITE SCROLL ROW ---
-const InfiniteScrollRow = ({ items, direction, rowIndex }) => {
-  const isRightScroll = direction === 'right';
-
-  return (
-    <motion.div
-      className="flex gap-8 overflow-hidden py-6"
-      animate={{ x: isRightScroll ? ['0%', '-100%'] : ['-100%', '0%'] }}
-      transition={{
-        duration: 80 + rowIndex * 12,
-        repeat: Infinity,
-        ease: 'linear',
-      }}
-    >
-      {/* Double items for seamless loop */}
-      {[...items, ...items].map((image, index) => (
-        <ScrollingGalleryItem key={`${image.id}-${index}`} image={image} onClick={() => {}} />
-      ))}
-    </motion.div>
-  );
-};
-
-const DarkAlternatingRowGallery = () => {
+const DribbbleStyleGallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [filter, setFilter] = useState('all');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -137,15 +160,6 @@ const DarkAlternatingRowGallery = () => {
     return filter === 'all' ? images : images.filter(img => img.category === filter);
   }, [filter, images]);
 
-  // Divide images into 4 rows
-  const itemsPerRow = Math.ceil(filteredImages.length / 4);
-  const rows = [
-    filteredImages.slice(0, itemsPerRow),
-    filteredImages.slice(itemsPerRow, itemsPerRow * 2),
-    filteredImages.slice(itemsPerRow * 2, itemsPerRow * 3),
-    filteredImages.slice(itemsPerRow * 3),
-  ];
-
   const handlePrevImage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + filteredImages.length) % filteredImages.length);
   };
@@ -154,370 +168,256 @@ const DarkAlternatingRowGallery = () => {
     setCurrentImageIndex((prev) => (prev + 1) % filteredImages.length);
   };
 
-  const handleRowItemClick = (image) => {
-    setSelectedImage(image);
-    setCurrentImageIndex(filteredImages.findIndex(img => img.id === image.id));
-  };
-
   return (
-    <div className="relative w-full min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white overflow-hidden">
-      {/* Premium Animated Background */}
-      <motion.div className="fixed inset-0 pointer-events-none z-0">
-        {/* Animated spotlights */}
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-600/20 to-transparent rounded-full blur-3xl"
-          animate={{
-            x: [0, 120, 0],
-            y: [0, -100, 0],
-            scale: [1, 1.4, 1],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/5 w-80 h-80 bg-gradient-to-tl from-rose-600/15 to-transparent rounded-full blur-3xl"
-          animate={{
-            x: [0, -120, 0],
-            y: [0, 100, 0],
-            scale: [1.3, 1, 1.3],
-          }}
-          transition={{ duration: 28, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        />
-      </motion.div>
-
-      {/* Gradient overlay */}
-      <div className="fixed inset-0 pointer-events-none z-0 opacity-40">
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-b from-amber-600/5 via-transparent to-rose-600/5"
-          animate={{ opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      </div>
-
-      {/* Vignette */}
-      <div
-        className="fixed inset-0 pointer-events-none z-0 opacity-60"
+    <div className="relative w-full min-h-screen bg-[#FBFBF9] text-[#1A1A1A]">
+      {/* Smooth background elements */}
+      <motion.div
+        className="fixed inset-0 pointer-events-none opacity-20"
         style={{
-          background: 'radial-gradient(ellipse 80% 80% at 50% 50%, transparent 0%, rgba(15, 23, 42, 0.9) 100%)',
+          background: 'radial-gradient(circle at 20% 50%, rgba(217, 119, 6, 0.1), transparent 50%)',
         }}
+        animate={{ 
+          backgroundPosition: ['0% 0%', '100% 100%', '0% 0%']
+        }}
+        transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      <div className="relative z-10">
-        {/* ============ PREMIUM HEADER ============ */}
-        <motion.header 
-          className="px-8 md:px-20 pt-32 pb-16 flex flex-col md:flex-row justify-between items-end gap-8 border-b border-white/10"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-        >
-          <div className="max-w-3xl">
-            <motion.span 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-xs font-mono tracking-[0.5em] text-amber-400 uppercase"
-            >
-              Spring Portfolio • 2026
-            </motion.span>
-            <motion.h1 
-              className="text-7xl md:text-9xl font-serif italic tracking-tighter mt-4 leading-[0.8] text-white"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-            >
-              Selected <br /> <span className="ml-[0.5em] text-slate-400">Works</span>
-            </motion.h1>
-          </div>
-          
-          <motion.div 
-            className="flex flex-col items-end gap-6"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+      {/* ============ EDITORIAL HEADER ============ */}
+      <motion.header 
+        className="relative z-10 px-8 md:px-20 pt-32 pb-16 flex flex-col md:flex-row justify-between items-end gap-8 border-b border-black/5"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
+        <div className="max-w-3xl">
+          <motion.span 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-xs font-mono tracking-[0.5em] text-amber-700 uppercase"
           >
-            <p className="text-right text-sm text-slate-300 max-w-[240px] leading-relaxed">
-              A curated collection of tactile crafts, baked arts, and resin expressions from the Kalasrijan archive in continuous motion.
-            </p>
-            
-            {/* Smooth Filter Buttons */}
-            <motion.div 
-              className="flex flex-wrap justify-end gap-2"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              {categories.map((cat, idx) => (
-                <motion.button
-                  key={cat}
-                  onClick={() => {
-                    setFilter(cat);
-                    setCurrentImageIndex(0);
-                  }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 + idx * 0.05, duration: 0.4 }}
-                  className={`text-[10px] uppercase tracking-widest px-4 py-2 rounded-lg transition-all ${
-                    filter === cat 
-                      ? 'bg-amber-600 text-white shadow-md shadow-amber-600/50' 
-                      : 'text-slate-300 hover:text-white hover:bg-white/10 border border-white/20'
-                  }`}
-                >
-                  {cat}
-                </motion.button>
-              ))}
-            </motion.div>
+            Spring Portfolio • 2026
+          </motion.span>
+          <motion.h1 
+            className="text-7xl md:text-9xl font-serif italic tracking-tighter mt-4 leading-[0.8]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            Selected <br /> <span className="ml-[0.5em] text-slate-300">Works</span>
+          </motion.h1>
+        </div>
+        
+        <motion.div 
+          className="flex flex-col items-end gap-6"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+        >
+          <p className="text-right text-sm text-slate-500 max-w-[240px] leading-relaxed">
+            A curated collection of tactile crafts, baked arts, and resin expressions from the Kalasrijan archive.
+          </p>
+          
+          {/* Smooth Filter Buttons */}
+          <motion.div 
+            className="flex flex-wrap justify-end gap-2"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          >
+            {categories.map((cat, idx) => (
+              <motion.button
+                key={cat}
+                onClick={() => {
+                  setFilter(cat);
+                  setCurrentImageIndex(0);
+                }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + idx * 0.05, duration: 0.4 }}
+                className={`text-[10px] uppercase tracking-widest px-4 py-2 rounded-lg transition-all ${
+                  filter === cat 
+                    ? 'bg-slate-900 text-white shadow-md' 
+                    : 'text-slate-400 hover:text-slate-800 hover:bg-slate-100'
+                }`}
+              >
+                {cat}
+              </motion.button>
+            ))}
           </motion.div>
-        </motion.header>
+        </motion.div>
+      </motion.header>
 
-        {/* ============ 4 ALTERNATING ROWS ============ */}
-        <main className="relative px-6 md:px-20 py-12">
-          {/* Row 1 - Scrolling RIGHT */}
-          <div className="mb-8">
+      {/* ============ SMOOTH MASONRY GALLERY ============ */}
+      <main className="relative z-10 px-8 md:px-20 py-20">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <AnimatePresence mode="wait">
+            {filteredImages.map((image, index) => (
+              <PremiumGalleryItem
+                key={image.id}
+                image={image}
+                index={index}
+                onClick={() => {
+                  setSelectedImage(image);
+                  setCurrentImageIndex(filteredImages.findIndex(img => img.id === image.id));
+                }}
+              />
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </main>
+
+      {/* ============ SMOOTH LIGHTBOX ============ */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="fixed inset-0 z-[100] bg-white flex flex-col"
+          >
+            {/* Top Bar */}
             <motion.div 
-              className="text-xs text-amber-400/60 font-mono uppercase tracking-widest mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
+              className="p-8 flex justify-between items-center border-b border-black/5"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
             >
-              Row 1 - Flowing Right →
-            </motion.div>
-            {rows[0] && rows[0].length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
+              <motion.span 
+                className="font-mono text-[10px] tracking-[0.3em] uppercase"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
               >
-                <InfiniteScrollRow 
-                  items={rows[0]} 
-                  direction="right" 
-                  rowIndex={0}
-                />
-              </motion.div>
-            )}
-          </div>
-
-          {/* Row 2 - Scrolling LEFT */}
-          <div className="mb-8">
-            <motion.div 
-              className="text-xs text-rose-400/60 font-mono uppercase tracking-widest mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.65 }}
-            >
-              ← Row 2 - Flowing Left
-            </motion.div>
-            {rows[1] && rows[1].length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.75 }}
+                {currentImageIndex + 1} / {filteredImages.length}
+              </motion.span>
+              <motion.button 
+                onClick={() => setSelectedImage(null)} 
+                className="group flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase"
+                whileHover={{ x: 5 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <InfiniteScrollRow 
-                  items={rows[1]} 
-                  direction="left" 
-                  rowIndex={1}
-                />
-              </motion.div>
-            )}
-          </div>
-
-          {/* Row 3 - Scrolling RIGHT */}
-          <div className="mb-8">
-            <motion.div 
-              className="text-xs text-amber-400/60 font-mono uppercase tracking-widest mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 }}
-            >
-              Row 3 - Flowing Right →
+                Close <motion.div whileHover={{ rotate: 90 }} transition={{ duration: 0.3 }}>
+                  <X size={16} />
+                </motion.div>
+              </motion.button>
             </motion.div>
-            {rows[2] && rows[2].length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
-              >
-                <InfiniteScrollRow 
-                  items={rows[2]} 
-                  direction="right" 
-                  rowIndex={2}
-                />
-              </motion.div>
-            )}
-          </div>
 
-          {/* Row 4 - Scrolling LEFT */}
-          <div>
-            <motion.div 
-              className="text-xs text-rose-400/60 font-mono uppercase tracking-widest mb-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.75 }}
-            >
-              ← Row 4 - Flowing Left
-            </motion.div>
-            {rows[3] && rows[3].length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.85 }}
-              >
-                <InfiniteScrollRow 
-                  items={rows[3]} 
-                  direction="left" 
-                  rowIndex={3}
-                />
-              </motion.div>
-            )}
-          </div>
-        </main>
-
-        {/* ============ PREMIUM LIGHTBOX (UNCHANGED) ============ */}
-        <AnimatePresence>
-          {selectedImage && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="fixed inset-0 z-[100] bg-white flex flex-col"
-            >
-              {/* Top Bar */}
+            {/* Content Area */}
+            <div className="flex-1 flex flex-col lg:flex-row p-8 lg:p-20 gap-12 overflow-hidden">
               <motion.div 
-                className="p-8 flex justify-between items-center border-b border-black/5"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
+                className="flex-1 relative flex items-center justify-center"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.15, duration: 0.5 }}
               >
-                <motion.span 
-                  className="font-mono text-[10px] tracking-[0.3em] uppercase text-slate-900"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  {currentImageIndex + 1} / {filteredImages.length}
-                </motion.span>
-                <motion.button 
-                  onClick={() => setSelectedImage(null)} 
-                  className="group flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-slate-900"
-                  whileHover={{ x: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Close <motion.div whileHover={{ rotate: 90 }} transition={{ duration: 0.3 }}>
-                    <X size={16} />
-                  </motion.div>
-                </motion.button>
-              </motion.div>
-
-              {/* Content Area */}
-              <div className="flex-1 flex flex-col lg:flex-row p-8 lg:p-20 gap-12 overflow-hidden">
-                <motion.div 
-                  className="flex-1 relative flex items-center justify-center"
+                <motion.img
+                  key={currentImageIndex}
+                  layoutId={selectedImage.id}
+                  src={filteredImages[currentImageIndex].src}
+                  className="max-h-full max-w-full object-contain shadow-2xl"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.15, duration: 0.5 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.5 }}
+                />
+
+                {/* Smooth Nav Arrows */}
+                <motion.button
+                  onClick={handlePrevImage}
+                  whileHover={{ scale: 1.1, x: -4 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-4 hover:bg-slate-100 rounded-full transition-all"
                 >
-                  <motion.img
-                    key={currentImageIndex}
-                    layoutId={selectedImage.id}
-                    src={filteredImages[currentImageIndex].src}
-                    className="max-h-full max-w-full object-contain shadow-2xl"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.5 }}
-                  />
+                  <ChevronLeft size={40} strokeWidth={1} />
+                </motion.button>
 
-                  {/* Smooth Nav Arrows */}
-                  <motion.button
-                    onClick={handlePrevImage}
-                    whileHover={{ scale: 1.1, x: -4 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 p-4 hover:bg-slate-100 rounded-full transition-all"
-                  >
-                    <ChevronLeft size={40} strokeWidth={1} className="text-slate-900" />
-                  </motion.button>
+                <motion.button
+                  onClick={handleNextImage}
+                  whileHover={{ scale: 1.1, x: 4 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-4 hover:bg-slate-100 rounded-full transition-all"
+                >
+                  <ChevronRight size={40} strokeWidth={1} />
+                </motion.button>
+              </motion.div>
 
-                  <motion.button
-                    onClick={handleNextImage}
-                    whileHover={{ scale: 1.1, x: 4 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-4 hover:bg-slate-100 rounded-full transition-all"
+              {/* Sidebar Info with smooth animations */}
+              <motion.div
+                className="w-full lg:w-80 flex flex-col justify-between py-12"
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.25 }}
+                >
+                  <motion.h2 
+                    className="text-5xl font-serif italic mb-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
                   >
-                    <ChevronRight size={40} strokeWidth={1} className="text-slate-900" />
-                  </motion.button>
+                    {filteredImages[currentImageIndex].title}
+                  </motion.h2>
+                  <motion.p 
+                    className="text-amber-800 text-xs font-mono uppercase tracking-[0.4em] mb-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.35 }}
+                  >
+                    {filteredImages[currentImageIndex].category}
+                  </motion.p>
+                  <motion.p 
+                    className="text-slate-500 text-sm leading-relaxed"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    This work represents a unique exploration of textures and organic materials, handcrafted within our studio environment.
+                  </motion.p>
                 </motion.div>
 
-                {/* Sidebar Info with smooth animations */}
                 <motion.div
-                  className="w-full lg:w-80 flex flex-col justify-between py-12"
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2, duration: 0.5 }}
+                  className="pt-12 border-t border-black/10"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.45 }}
                 >
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.25 }}
+                  <motion.div 
+                    className="flex justify-between items-center group cursor-pointer"
+                    whileHover={{ x: 5 }}
                   >
-                    <motion.h2 
-                      className="text-5xl font-serif italic mb-4 text-slate-900"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      {filteredImages[currentImageIndex].title}
-                    </motion.h2>
-                    <motion.p 
-                      className="text-amber-800 text-xs font-mono uppercase tracking-[0.4em] mb-8"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.35 }}
-                    >
-                      {filteredImages[currentImageIndex].category}
-                    </motion.p>
-                    <motion.p 
-                      className="text-slate-500 text-sm leading-relaxed"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.4 }}
-                    >
-                      This work represents a unique exploration of textures and organic materials, handcrafted within our studio environment.
-                    </motion.p>
-                  </motion.div>
-
-                  <motion.div
-                    className="pt-12 border-t border-black/10"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.45 }}
-                  >
-                    <motion.div 
-                      className="flex justify-between items-center group cursor-pointer"
-                      whileHover={{ x: 5 }}
-                    >
-                      <span className="text-[10px] font-mono tracking-widest uppercase text-slate-900">Inquire about work</span>
-                      <motion.div whileHover={{ x: 3 }} transition={{ duration: 0.3 }}>
-                        <ArrowRight size={16} className="text-slate-900" />
-                      </motion.div>
+                    <span className="text-[10px] font-mono tracking-widest uppercase">Inquire about work</span>
+                    <motion.div whileHover={{ x: 3 }} transition={{ duration: 0.3 }}>
+                      <ArrowRight size={16} />
                     </motion.div>
                   </motion.div>
                 </motion.div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400;1,600&family=Inter:wght@300;400;500&display=swap');
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         .font-mono { font-family: 'Inter', sans-serif; font-size: 0.75rem; }
-        body { background-color: #030712; }
+        body { background-color: #FBFBF9; }
       `}</style>
     </div>
   );
 };
 
-export default DarkAlternatingRowGallery;
+export default DribbbleStyleGallery;
