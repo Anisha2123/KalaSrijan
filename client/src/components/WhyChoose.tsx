@@ -1,396 +1,138 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Star, Heart, Zap, Users, Award, TrendingUp } from 'lucide-react';
+import { useEffect, useRef, useState } from "react";
 
-const WhyChooseSumanJain = () => {
-  const [hoveredCard, setHoveredCard] = useState(null);
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
+const REASONS = [
+  { num:"01", icon:"✦", title:"Years of Expertise", sub:"Mastery earned through decades", body:"Suman Jain has spent years mastering diverse art forms — from painting and stitching to clay, resin, and cultural crafts. Her depth of knowledge is unmatched and always growing.", stat:"15+", statLabel:"Art Forms Taught", accent:"#CD2C58" },
+  { num:"02", icon:"◈", title:"Personalized Attention", sub:"Every student, every style", body:"No two learners are alike. Suman tailors her guidance to each individual — adapting pace, technique, and encouragement so every student finds their own creative voice.", stat:"25", statLabel:"Sessions Per Course", accent:"#E06B80" },
+  { num:"03", icon:"❋", title:"5000+ Happy Students", sub:"Trust built one class at a time", body:"Over 5,000 happy customers reflect the trust and love people place in Kalasrijan. Her unique, hard-to-copy designs and warm teaching style have made her truly one of a kind.", stat:"5K+", statLabel:"Happy Learners", accent:"#CD2C58" },
+  { num:"04", icon:"⬡", title:"Practical Real-World Skills", sub:"Art you can use every day", body:"From decorating your home to making gifts, cooking, card decoration, and fabric painting — Kalasrijan teaches skills that enrich real everyday life.", stat:"100%", statLabel:"Hands-on Learning", accent:"#E06B80" },
+  { num:"05", icon:"✿", title:"Inspiring Personality", sub:"Confidence that is contagious", body:"Even after years of experience, Suman remains active, passionate, and confident. Her positive energy transforms the act of learning into a genuine joy.", stat:"∞", statLabel:"Passion & Energy", accent:"#CD2C58" },
+  { num:"06", icon:"◉", title:"One-of-a-Kind Creativity", sub:"Designs that can't be copied", body:"Suman's creative instinct produces work that is utterly original. She is appreciated for ideas and a special way of being creative — her designs are genuinely unique.", stat:"①", statLabel:"Unique Style", accent:"#E06B80" },
+];
 
-  // Testimonials data
-  const testimonials = [
-    {
-      name: 'Priya Sharma',
-      role: 'Student',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
-      text: 'Suman Jain transformed my creative journey. Her teaching methods are unique and inspiring.',
-      rating: 5
-    },
-    {
-      name: 'Aisha Patel',
-      role: 'Artist',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
-      text: 'The expertise and passion she brings to every session is unmatched. Truly grateful.',
-      rating: 5
-    },
-    {
-      name: 'Neha Verma',
-      role: 'Craft Enthusiast',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop',
-      text: 'Best decision ever. Suman\'s creativity and dedication inspire me every day.',
-      rating: 5
-    },
-  ];
+const MARQUEE = ["5000+ Happy Students","15+ Art Forms","Years of Expertise","Personalized Attention","Practical Skills","One-of-a-Kind Creativity","Inspiring Personality","Trusted by Thousands"];
 
-  // Why choose cards data
-  const whyChooseCards = [
-    {
-      icon: '📚',
-      title: 'Decades of Experience',
-      description: 'Years of mastery in diverse art forms, from traditional to contemporary crafts',
-      stats: '25+ Years',
-      color: 'from-blue-50 to-blue-100'
-    },
-    {
-      icon: '❤️',
-      title: 'Passion for Teaching',
-      description: 'Dedicated to nurturing creativity and helping students discover their potential',
-      stats: '5000+ Happy Students',
-      color: 'from-rose-50 to-rose-100'
-    },
-    {
-      icon: '✨',
-      title: 'Unique Creative Vision',
-      description: 'One-of-a-kind designs and innovative approaches that stand out',
-      stats: 'Award Winner',
-      color: 'from-yellow-50 to-yellow-100'
-    },
-    {
-      icon: '🎯',
-      title: 'Trusted & Appreciated',
-      description: 'Recognized for excellence, innovation, and positive impact on students',
-      stats: '100% Trust Rating',
-      color: 'from-green-50 to-green-100'
-    },
-    {
-      icon: '⚡',
-      title: 'Dynamic Personality',
-      description: 'Remains confident, active, and passionate after decades of experience',
-      stats: 'Always Inspiring',
-      color: 'from-purple-50 to-purple-100'
-    },
-    {
-      icon: '🌟',
-      title: 'Comprehensive Skills',
-      description: 'Expert in painting, cooking, home decor, card making, and much more',
-      stats: '12+ Crafts',
-      color: 'from-orange-50 to-orange-100'
-    },
-  ];
+function useInView(t=0.06){ const ref=useRef(null); const [v,setV]=useState(false); useEffect(()=>{ const el=ref.current; if(!el)return; const o=new IntersectionObserver(([e])=>{if(e.isIntersecting)setV(true)},{threshold:t}); o.observe(el); return()=>o.disconnect(); },[]); return{ref,inView:v}; }
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
+function CountUp({target}) {
+  const [d,setD]=useState("0"); const {ref,inView}=useInView(0.3);
+  useEffect(()=>{ if(!inView)return; const n=parseInt(target.replace(/\D/g,""),10); if(isNaN(n)){setD(target);return;} let c=0; const step=Math.ceil(n/50); const t=setInterval(()=>{ c+=step; if(c>=n){setD(target);clearInterval(t);}else setD(c+(target.includes("+")?"+":target.includes("%")?"%":"")); },28); return()=>clearInterval(t); },[inView,target]);
+  return <span ref={ref}>{d}</span>;
+}
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.23, 1, 0.82, 1] },
-    },
-  };
-
-  const floatVariants = {
-    animate: {
-      y: [0, -20, 0],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: 'easeInOut',
-      },
-    },
-  };
-
+function Card({r,idx}) {
+  const {ref,inView}=useInView(0.05); const [hov,setHov]=useState(false);
   return (
-    <div className="relative w-full bg-gradient-to-br from-white via-stone-50 to-amber-50">
-      {/* ============ HERO SECTION ============ */}
-      <section className="relative py-10 md:py-22 px-6 md:px-12 lg:px-20 overflow-hidden">
-        {/* Animated background elements */}
-        <motion.div
-          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-amber-200/30 to-orange-200/20 rounded-full blur-3xl"
-          animate={{ x: [0, 50, 0], y: [0, -50, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-amber-100/20 to-orange-100/10 rounded-full blur-3xl"
-          animate={{ x: [0, -50, 0], y: [0, 50, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        />
-
-        <div className="relative z-10 max-w-7xl mx-auto">
-          {/* Header */}
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <motion.h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-slate-950 mb-4">
-              Why Choose
-              <motion.span
-                className="block bg-gradient-to-r from-amber-700 via-amber-600 to-orange-600 bg-clip-text text-transparent font-normal"
-                animate={{ backgroundPosition: ['0%', '100%', '0%'] }}
-                transition={{ duration: 5, repeat: Infinity }}
-              >
-                Suman Jain?
-              </motion.span>
-            </motion.h2>
-
-            <motion.div
-              className="w-24 h-1 bg-gradient-to-r from-amber-500 to-transparent mx-auto mt-6"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              style={{ originX: 0.5 }}
-            />
-
-            <motion.p
-              className="text-lg md:text-xl text-slate-700 mt-8 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              A combination of experience, dedication, creativity, and trust.
-            </motion.p>
-          </motion.div>
-
-          {/* Main Hero Image & Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-            {/* Left - Image */}
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <motion.div
-                className="absolute -inset-4 bg-gradient-to-br from-amber-300/20 to-orange-300/20 rounded-3xl blur-2xl"
-                animate={{ scale: [1, 1.1, 1], rotate: [0, 5, 0] }}
-                transition={{ duration: 6, repeat: Infinity }}
-              />
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop"
-                alt="Suman Jain"
-                className="relative z-10 w-full rounded-3xl shadow-2xl object-cover aspect-square"
-              />
-
-              {/* Floating badges around image */}
-              {[
-                { icon: '⭐', label: '5000+\nStudents', pos: 'top-10 -right-8' },
-                { icon: '🏆', label: 'Award\nWinner', pos: '-bottom-8 -left-8' },
-                { icon: '❤️', label: '100%\nTrust', pos: '-bottom-8 right-10' },
-              ].map((badge, i) => (
-                <motion.div
-                  key={i}
-                  className={`absolute ${badge.pos} z-20`}
-                  animate={{ y: [0, -15, 0] }}
-                  transition={{ delay: i * 0.5, duration: 4, repeat: Infinity }}
-                >
-                  <motion.div
-                    className="bg-white rounded-full shadow-lg p-4 text-center border-2 border-amber-200/50 backdrop-blur-xl"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <div className="text-3xl mb-1">{badge.icon}</div>
-                    <div className="text-xs font-light text-slate-700 whitespace-pre-line leading-tight">
-                      {badge.label}
-                    </div>
-                  </motion.div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Right - Stats & Text */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-100px' }}
-            >
-              <motion.h3 variants={itemVariants} className="text-3xl md:text-4xl font-light text-slate-950 mb-6">
-                The Master Artisan Behind Kalasrijan
-              </motion.h3>
-
-              <motion.p variants={itemVariants} className="text-slate-700 leading-relaxed mb-8 text-lg">
-                Suman Jain has spent decades mastering diverse art forms and developing a unique creative philosophy. What sets her apart is not just her expertise, but her unwavering commitment to nurturing the next generation of artists.
-              </motion.p>
-
-              {/* Stats Grid */}
-              <motion.div variants={itemVariants} className="grid grid-cols-2 gap-6 mb-8">
-                {[
-                  { number: '25+', label: 'Years of Experience' },
-                  { number: '5000+', label: 'Happy Students' },
-                  { number: '12+', label: 'Art Forms' },
-                  { number: '100%', label: 'Trust Rate' },
-                ].map((stat, i) => (
-                  <motion.div
-                    key={i}
-                    className="p-6 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border border-amber-200/40"
-                    whileHover={{ y: -5, borderColor: 'rgba(217, 119, 6, 0.6)' }}
-                  >
-                    <motion.div
-                      className="text-3xl font-light text-amber-700"
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ delay: i * 0.2, duration: 2, repeat: Infinity }}
-                    >
-                      {stat.number}
-                    </motion.div>
-                    <div className="text-sm text-slate-600 mt-2">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </motion.div>
-
-              <motion.button
-                variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-medium uppercase tracking-widest overflow-hidden relative group"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-white"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '100%' }}
-                  transition={{ duration: 0.5 }}
-                />
-                <span className="relative z-10">Learn More</span>
-              </motion.button>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============ WHY CHOOSE GRID ============ */}
-    
-
-      {/* ============ EXPERTISE SHOWCASE ============ */}
-      <section className="relative py-10 md:py-32 px-6 md:px-12 lg:px-20 bg-gradient-to-br from-amber-50/30 to-white">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-light text-slate-950 mb-4">
-              Comprehensive Expertise
-            </h2>
-            <motion.div
-              className="w-24 h-1 bg-gradient-to-r from-amber-500 to-transparent mx-auto"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              style={{ originX: 0.5 }}
-            />
-          </motion.div>
-
-          {/* Expertise circles */}
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-          >
-            {[
-              { icon: '🎨', label: 'Painting' },
-              { icon: '🖼️', label: 'Illustration' },
-              { icon: '🧵', label: 'Textile Arts' },
-              { icon: '👗', label: 'Sewing' },
-              { icon: '👨‍🍳', label: 'Culinary' },
-              { icon: '🏺', label: 'Clay Work' },
-              { icon: '🎭', label: 'Lippan Art' },
-              { icon: '📄', label: 'Paper Crafts' },
-              { icon: '🏠', label: 'Home Decor' },
-              { icon: '🎀', label: 'Card Making' },
-              { icon: '💝', label: 'Gift Wrapping' },
-              { icon: '✨', label: 'And More...' },
-            ].map((skill, i) => (
-              <motion.div
-                key={i}
-                variants={itemVariants}
-                whileHover={{ scale: 1.15, rotate: 5 }}
-                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white border-2 border-amber-200/30 hover:border-amber-400/60 transition-all cursor-pointer group"
-              >
-                <motion.div
-                  className="text-4xl mb-3 group-hover:scale-125 transition-transform"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ delay: i * 0.1, duration: 4, repeat: Infinity }}
-                >
-                  {skill.icon}
-                </motion.div>
-                <span className="text-sm font-medium text-slate-700 group-hover:text-amber-700 transition-colors">
-                  {skill.label}
-                </span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ============ TESTIMONIALS ============ */}
-     
-
-      {/* ============ FINAL CTA ============ */}
-      <section className="relative py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-gradient-to-r from-amber-50 to-orange-50">
-        <motion.div
-          className="max-w-3xl mx-auto text-center"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl md:text-5xl font-light text-slate-950 mb-6">
-            Experience the Kalasrijan Difference
-          </h2>
-          <p className="text-lg text-slate-700 mb-8 leading-relaxed">
-            Join thousands of creative individuals who have transformed their artistic journey with Suman Jain. Your creative potential awaits.
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05, y: -5 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-12 py-5 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-medium uppercase tracking-widest text-lg overflow-hidden relative group"
-          >
-            <motion.div
-              className="absolute inset-0 bg-white"
-              initial={{ x: '-100%' }}
-              whileHover={{ x: '100%' }}
-              transition={{ duration: 0.5 }}
-            />
-            <span className="relative z-10">Start Your Journey</span>
-          </motion.button>
-        </motion.div>
-      </section>
-
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
-
-        * {
-          font-family: 'Outfit', sans-serif;
-        }
-
-        h1, h2, h3 {
-          font-family: 'Crimson Text', serif;
-        }
-
-        html {
-          scroll-behavior: smooth;
-        }
-      `}</style>
+    <div ref={ref} onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
+      style={{position:"relative",background:hov?"rgba(255,255,255,0.065)":"rgba(255,255,255,0.038)",border:`1px solid ${hov?"rgba(205,44,88,0.35)":"rgba(255,198,157,0.11)"}`,borderRadius:22,padding:"30px 26px 26px",overflow:"hidden",cursor:"default",
+        opacity:inView?1:0,transform:inView?(hov?"translateY(-6px)":"translateY(0)"):"translateY(30px)",
+        boxShadow:hov?"0 24px 64px rgba(0,0,0,0.32),0 4px 20px rgba(205,44,88,0.12)":"none",
+        transition:`opacity 0.8s ease ${((idx%3)*0.09+Math.floor(idx/3)*0.12).toFixed(2)}s, transform 0.28s ease, border-color 0.28s, background 0.28s, box-shadow 0.28s`}}>
+      {/* Top accent line */}
+      <div style={{position:"absolute",top:0,left:0,right:0,height:2,background:`linear-gradient(90deg,${r.accent},transparent)`,transformOrigin:"left",transform:hov?"scaleX(1)":"scaleX(0.35)",transition:"transform 0.4s ease"}}/>
+      {/* Hover shimmer */}
+      <div style={{position:"absolute",inset:0,background:`radial-gradient(ellipse at 50% 0%,${r.accent}0c 0%,transparent 70%)`,opacity:hov?1:0,transition:"opacity 0.4s",pointerEvents:"none"}}/>
+      {/* Head */}
+      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:18}}>
+        <div style={{width:52,height:52,borderRadius:16,border:`1px solid ${r.accent}28`,background:"rgba(255,255,255,0.04)",color:r.accent,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1.4rem",transition:"transform 0.3s",transform:hov?"scale(1.1) rotate(-5deg)":"scale(1)"}}>{r.icon}</div>
+        <span style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"2rem",fontWeight:600,color:`${r.accent}50`,lineHeight:1}}>{r.num}</span>
+      </div>
+      <h3 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.42rem",fontWeight:400,color:"#fff",lineHeight:1.15,marginBottom:4}}>{r.title}</h3>
+      <p style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.68rem",letterSpacing:"0.12em",textTransform:"uppercase",color:"rgba(255,198,157,0.42)",fontWeight:500,marginBottom:15}}>{r.sub}</p>
+      <div style={{height:1,background:`linear-gradient(90deg,${r.accent}40,transparent)`,marginBottom:15}}/>
+      <p style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.85rem",color:"rgba(255,230,212,0.52)",lineHeight:1.82,fontWeight:300,marginBottom:22}}>{r.body}</p>
+      <div style={{display:"inline-flex",alignItems:"baseline",gap:8,padding:"9px 14px",background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,198,157,0.10)",borderRadius:12}}>
+        <span style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.45rem",fontWeight:600,color:r.accent,lineHeight:1}}><CountUp target={r.stat}/></span>
+        <span style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.63rem",letterSpacing:"0.10em",textTransform:"uppercase",color:"rgba(255,198,157,0.38)",fontWeight:400}}>{r.statLabel}</span>
+      </div>
     </div>
   );
-};
+}
 
-export default WhyChooseSumanJain;
+export default function WhyChooseKalasrijan() {
+  const {ref:hr,inView:hi}=useInView(0.04);
+  const {ref:cr,inView:ci}=useInView(0.06);
+
+  return <div>
+    <style>{`
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+      *{box-sizing:border-box;margin:0;padding:0}
+      @keyframes wcBlob{from{transform:translate(0,0) scale(1)}to{transform:translate(16px,12px) scale(1.04)}}
+      @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+      @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+      .wc-stb:hover{background:rgba(205,44,88,0.09)!important}
+      .wc-cta-a:hover{background:rgba(255,198,157,0.10)!important;border-color:#FFC69D!important;transform:translateY(-2px)!important}
+    `}</style>
+
+    <section style={{fontFamily:"'DM Sans',sans-serif",position:"relative",overflow:"hidden",background:"#2a1018"}}>
+      {/* Grain */}
+      <div style={{position:"absolute",inset:0,zIndex:0,pointerEvents:"none",opacity:0.023,backgroundImage:"url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",backgroundSize:"200px"}}/>
+      {/* Blobs */}
+      <div style={{position:"absolute",width:680,height:680,borderRadius:"50%",background:"radial-gradient(circle,rgba(205,44,88,0.10) 0%,transparent 65%)",top:-200,right:-200,animation:"wcBlob 18s ease-in-out infinite alternate",zIndex:0,pointerEvents:"none"}}/>
+      <div style={{position:"absolute",width:500,height:500,borderRadius:"50%",background:"radial-gradient(circle,rgba(255,198,157,0.07) 0%,transparent 65%)",bottom:-120,left:-120,animation:"wcBlob 14s ease-in-out infinite alternate",zIndex:0,pointerEvents:"none"}}/>
+      <div style={{position:"absolute",width:340,height:340,borderRadius:"50%",background:"radial-gradient(circle,rgba(224,107,128,0.08) 0%,transparent 65%)",top:"42%",left:"44%",animation:"wcBlob 11s ease-in-out 3s infinite alternate",zIndex:0,pointerEvents:"none"}}/>
+      {/* Corner marks */}
+      <div style={{position:"absolute",top:-44,left:-22,fontFamily:"'Cormorant Garamond',serif",fontSize:"17rem",fontWeight:600,color:"rgba(205,44,88,0.04)",lineHeight:1,zIndex:0,pointerEvents:"none",userSelect:"none"}}>"</div>
+      <div style={{position:"absolute",bottom:-64,right:-12,fontFamily:"'Cormorant Garamond',serif",fontSize:"17rem",fontWeight:600,color:"rgba(205,44,88,0.04)",lineHeight:1,zIndex:0,pointerEvents:"none",userSelect:"none",transform:"rotate(180deg)"}}>"</div>
+
+      {/* Marquee */}
+      <div style={{overflow:"hidden",borderTop:"1px solid rgba(255,198,157,0.09)",borderBottom:"1px solid rgba(255,198,157,0.09)",padding:"13px 0",background:"rgba(205,44,88,0.05)",position:"relative",zIndex:1}}>
+        <div style={{display:"flex",width:"max-content",animation:"mq 24s linear infinite"}}>
+          {[...MARQUEE,...MARQUEE].map((item,i)=>(
+            <span key={i} style={{display:"inline-flex",alignItems:"center",gap:14,padding:"0 30px",fontSize:"0.70rem",letterSpacing:"0.18em",textTransform:"uppercase",color:"rgba(255,198,157,0.50)",fontWeight:500,whiteSpace:"nowrap"}}>
+              <span style={{width:4,height:4,borderRadius:"50%",background:"#E06B80",flexShrink:0,display:"inline-block"}}/>
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Inner */}
+      <div ref={hr} style={{maxWidth:1180,margin:"0 auto",padding:"0 36px",position:"relative",zIndex:1}}>
+        {/* Header */}
+        {hi && <div style={{textAlign:"center",padding:"84px 0 64px",animation:"fadeUp 0.9s ease both"}}>
+          <div style={{display:"inline-flex",alignItems:"center",gap:12,fontSize:11,letterSpacing:"0.20em",textTransform:"uppercase",color:"#FFC69D",fontWeight:500,marginBottom:20}}>
+            <div style={{width:38,height:1,background:"linear-gradient(90deg,#FFC69D,transparent)"}}/>
+            Why Choose Kalasrijan
+            <div style={{width:38,height:1,background:"linear-gradient(270deg,#FFC69D,transparent)"}}/>
+          </div>
+          <h2 style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(2.7rem,5.2vw,5.2rem)",fontWeight:300,lineHeight:1.06,color:"#fff",marginBottom:18}}>
+            Experience, dedication,<br/>creativity — and <em style={{fontStyle:"italic",color:"#FFC69D"}}>trust</em>
+          </h2>
+          <p style={{fontFamily:"'DM Sans',sans-serif",fontSize:"1rem",color:"rgba(255,230,212,0.52)",fontWeight:300,lineHeight:1.78,maxWidth:510,margin:"0 auto"}}>
+            Choosing Kalasrijan means learning from someone who embodies all four — and brings genuine joy to every class.
+          </p>
+        </div>}
+
+        {/* Stats row */}
+        {hi && <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:1,background:"rgba(255,198,157,0.09)",border:"1px solid rgba(255,198,157,0.09)",borderRadius:20,overflow:"hidden",marginBottom:64,animation:"fadeUp 0.9s ease 0.15s both"}}>
+          {[{v:"5000+",l:"Happy Students"},{v:"15+",l:"Art Forms Taught"},{v:"100%",l:"Hands-on Learning"},{v:"1",l:"Truly Unique Style"}].map((s,i)=>(
+            <div key={i} className="wc-stb" style={{padding:"26px 22px",background:"rgba(255,255,255,0.03)",textAlign:"center",cursor:"default",transition:"background 0.25s"}}>
+              <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(2rem,3.2vw,3rem)",fontWeight:600,color:"#FFC69D",lineHeight:1,marginBottom:7}}><CountUp target={s.v}/></div>
+              <div style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.68rem",letterSpacing:"0.12em",textTransform:"uppercase",color:"rgba(255,198,157,0.42)",fontWeight:400}}>{s.l}</div>
+            </div>
+          ))}
+        </div>}
+
+        {/* Cards */}
+        <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:20,paddingBottom:80}}>
+          {REASONS.map((r,i)=><Card key={r.num} r={r} idx={i}/>)}
+        </div>
+      </div>
+
+      {/* CTA strip */}
+      <div ref={cr} style={{borderTop:"1px solid rgba(255,198,157,0.09)",padding:"68px 36px",display:"flex",alignItems:"center",justifyContent:"space-between",gap:40,flexWrap:"wrap",position:"relative",zIndex:1,maxWidth:1180,margin:"0 auto",
+        opacity:ci?1:0,transform:ci?"translateY(0)":"translateY(22px)",transition:"opacity 0.9s ease,transform 0.9s ease"}}>
+        <div style={{maxWidth:560}}>
+          <p style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(1.15rem,2vw,1.75rem)",fontWeight:300,fontStyle:"italic",color:"rgba(255,230,212,0.72)",lineHeight:1.58,marginBottom:8}}>
+            "Choosing Suman Jain means learning from someone who is the combination of <em style={{color:"#FFC69D",fontStyle:"normal",fontWeight:400}}>experience, dedication, creativity, and trust.</em>"
+          </p>
+          <p style={{fontFamily:"'DM Sans',sans-serif",fontSize:"0.70rem",letterSpacing:"0.12em",textTransform:"uppercase",color:"rgba(255,198,157,0.32)"}}>— The Kalasrijan Promise</p>
+        </div>
+        <a href="#" className="wc-cta-a" style={{display:"inline-flex",alignItems:"center",gap:12,border:"1.5px solid rgba(255,198,157,0.33)",color:"#FFC69D",padding:"15px 34px",borderRadius:100,background:"transparent",cursor:"pointer",fontFamily:"'DM Sans',sans-serif",fontSize:"0.88rem",fontWeight:500,letterSpacing:"0.05em",textDecoration:"none",whiteSpace:"nowrap",transition:"all 0.25s",flexShrink:0}}>
+          Start Learning Today <span style={{transition:"transform 0.22s"}}>→</span>
+        </a>
+      </div>
+
+    </section>
+  </div>;
+}
