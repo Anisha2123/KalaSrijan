@@ -119,11 +119,11 @@ const DribbbleStyleGallery = () => {
   // YOUR DATA
   const images = [
     { id: 1, src: 'Gallery/art/1.jpg', title: 'Artistic Masterpiece', category: 'painting' },
-    { id: 2, src: 'Gallery/art/2.jpg', title: 'Creative Vision', category: 'painting' },
+    // { id: 2, src: 'Gallery/art/2.jpg', title: 'Creative Vision', category: 'painting' },
     { id: 3, src: 'Gallery/art/2.png', title: 'Modern Expression', category: 'painting' },
     { id: 4, src: 'Gallery/art/3.png', title: 'Artistic Design', category: 'painting' },
     { id: 5, src: 'Gallery/art/4.png', title: 'Creative Journey', category: 'painting' },
-    { id: 6, src: 'Gallery/art/Screenshot 2026-03-10 154252.png', title: 'Art Showcase', category: 'painting' },
+    // { id: 6, src: 'Gallery/art/5.png', title: 'Art Showcase', category: 'painting' },
     { id: 7, src: 'Gallery/bake/1.png', title: 'Culinary Art', category: 'baking' },
     { id: 8, src: 'Gallery/bake/2.png', title: 'Baked Masterpiece', category: 'baking' },
     { id: 9, src: 'Gallery/bake/3.png', title: 'Sweet Creation', category: 'baking' },
