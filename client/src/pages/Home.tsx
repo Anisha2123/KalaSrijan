@@ -11,6 +11,7 @@ import ServicesSection from '../components/Services'
 import FeaturedJourney from '../components/FeaturedJourney'
 import TrainingClasses from './TrainingClasses'
 import ContactUs from './ContactUs'
+import { TrainingTeaserCinematic, TrainingTeaserEditorial, TrainingTeaserMosaic } from '../components/TrainingTeaser'
 
 const Home = () => {
   return (
@@ -18,7 +19,10 @@ const Home = () => {
         <Hero/>
         <AboutUs/>
         <ServicesSection />
-        <TrainingClasses />
+        <TrainingTeaserCinematic />
+        <TrainingTeaserEditorial />
+        <TrainingTeaserMosaic />
+        {/* <TrainingClasses /> */}
         <FeaturedJourney />
         <WhyChooseSumanJain />
         <ModernGallery/>

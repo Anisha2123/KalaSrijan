@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /* ─────────────────────────────────────────
-   TIMELINE MILESTONES
+   DATA
 ───────────────────────────────────────── */
 const MILESTONES = [
   {
@@ -36,8 +36,15 @@ const MILESTONES = [
   },
 ];
 
+const CHIPS = [
+  { val: "5000+", label: "Happy Learners" },
+  { val: "2019",  label: "IFB Chef" },
+  { val: "Free",  label: "First Classes" },
+  { val: "M.Sc.", label: "Botany Degree" },
+];
+
 /* ─────────────────────────────────────────
-   HOOK — Intersection Observer
+   HOOK
 ───────────────────────────────────────── */
 function useInView(threshold = 0.12) {
   const ref = useRef<HTMLDivElement>(null);
@@ -56,22 +63,24 @@ function useInView(threshold = 0.12) {
 }
 
 /* ─────────────────────────────────────────
-   MILESTONE CARD
+   MILESTONE DOT CARD
 ───────────────────────────────────────── */
 function MilestoneCard({
-  m, idx, active, onClick,
+  m, idx, active, total, onClick,
 }: {
   m: typeof MILESTONES[0];
   idx: number;
   active: boolean;
+  total: number;
   onClick: () => void;
 }) {
   const { ref, inView } = useInView(0.08);
-
   return (
     <div
       ref={ref}
-      className={`fjm-card ${inView ? "fjm-visible" : ""} ${active ? "fjm-card-active" : ""}`}
+      className="fjm-card"
+      data-inview={inView}
+      data-active={active}
       style={{ "--d": `${idx * 0.13}s` } as React.CSSProperties}
       onClick={onClick}
       tabIndex={0}
@@ -79,20 +88,20 @@ function MilestoneCard({
       role="button"
       aria-pressed={active}
     >
-      {/* Connector line (except last) */}
-      {idx < MILESTONES.length - 1 && (
+      {/* Connector */}
+      {idx < total - 1 && (
         <div className="fjm-connector">
-          <div className={`fjm-connector-fill ${active ? "fjm-connector-active" : ""}`} />
+          <div className="fjm-connector-fill" data-active={active} />
         </div>
       )}
 
       {/* Dot */}
-      <div className={`fjm-dot ${active ? "fjm-dot-active" : ""}`}>
+      <div className="fjm-dot" data-active={active}>
         <span className="fjm-dot-icon">{m.icon}</span>
         <div className="fjm-dot-ring" />
       </div>
 
-      {/* Label below dot */}
+      {/* Label */}
       <div className="fjm-card-label">
         <span className="fjm-card-year">{m.year}</span>
         <span className="fjm-card-name">{m.label}</span>
@@ -105,29 +114,32 @@ function MilestoneCard({
    MAIN
 ───────────────────────────────────────── */
 export default function FeaturedJourney() {
-  const [active, setActive] = useState(0);
+  const [active, setActive]     = useState(0);
   const [imgLoaded, setImgLoaded] = useState(false);
-  const { ref: secRef, inView: secIn } = useInView(0.05);
-  const { ref: quoteRef, inView: quoteIn } = useInView(0.1);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const { ref: secRef,   inView: secIn   } = useInView(0.05);
+  const { ref: quoteRef, inView: quoteIn } = useInView(0.10);
   const { ref: panelRef, inView: panelIn } = useInView(0.08);
 
-  // Auto-advance
   useEffect(() => {
-    const t = setInterval(() => {
-      setActive((a) => (a + 1) % MILESTONES.length);
-    }, 4000);
+    if (isPaused) return;
+    const t = setInterval(() => setActive(a => (a + 1) % MILESTONES.length), 4000);
     return () => clearInterval(t);
-  }, []);
-
-  const cur = MILESTONES[active];
+  }, [isPaused]);
 
   const handleSelect = (i: number) => {
     setActive(i);
     setImgLoaded(false);
+    setIsPaused(true);
+    setTimeout(() => setIsPaused(false), 8000);
   };
+
+  const cur = MILESTONES[active];
 
   return (
     <>
+      {/* ─── GLOBAL STYLES ─── */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap');
 
@@ -141,8 +153,12 @@ export default function FeaturedJourney() {
           --pale:  #fff8f4;
         }
 
-        .fj-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* ─── Reset scoped ─── */
+        .fj-wrap *, .fj-wrap *::before, .fj-wrap *::after {
+          box-sizing: border-box; margin: 0; padding: 0;
+        }
 
+        /* ─── Section ─── */
         .fj-section {
           background: var(--ink);
           font-family: 'DM Sans', sans-serif;
@@ -151,7 +167,7 @@ export default function FeaturedJourney() {
           padding: 100px 0 90px;
         }
 
-        /* ── Background texture / noise ── */
+        /* ─── Backgrounds ─── */
         .fj-noise {
           position: absolute; inset: 0; z-index: 0; pointer-events: none;
           background-image:
@@ -179,9 +195,9 @@ export default function FeaturedJourney() {
           bottom: -80px; right: -80px;
           animation-delay: -7s;
         }
-        @keyframes fjArc { from{transform:translate(0,0)} to{transform:translate(25px,18px)} }
+        @keyframes fjArc { from { transform: translate(0,0); } to { transform: translate(25px, 18px); } }
 
-        /* ── Inner ── */
+        /* ─── Inner ─── */
         .fj-inner {
           max-width: 1200px;
           margin: 0 auto;
@@ -189,7 +205,7 @@ export default function FeaturedJourney() {
           position: relative; z-index: 1;
         }
 
-        /* ── Eyebrow ── */
+        /* ─── Eyebrow ─── */
         .fj-eyebrow {
           display: flex; align-items: center; gap: 14px;
           margin-bottom: 60px;
@@ -200,16 +216,16 @@ export default function FeaturedJourney() {
         .fj-eyebrow-line {
           height: 1px; width: 48px;
           background: linear-gradient(90deg, var(--sand), transparent);
+          flex-shrink: 0;
         }
-        .fj-eyebrow-line-r {
-          background: linear-gradient(270deg, var(--sand), transparent);
-        }
+        .fj-eyebrow-line-r { background: linear-gradient(270deg, var(--sand), transparent); }
         .fj-eyebrow-text {
           font-size: 11px; letter-spacing: 0.20em;
           text-transform: uppercase; color: var(--sand); font-weight: 500;
+          white-space: nowrap;
         }
 
-        /* ── Main grid ── */
+        /* ─── Desktop grid (≥1024px) — PRESERVED ─── */
         .fj-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -218,7 +234,7 @@ export default function FeaturedJourney() {
           margin-bottom: 72px;
         }
 
-        /* ── Left: Text ── */
+        /* ─── Left: text ─── */
         .fj-left {
           opacity: 0; transform: translateX(-28px);
           transition: opacity 1s ease 0.1s, transform 1s ease 0.1s;
@@ -235,7 +251,7 @@ export default function FeaturedJourney() {
 
         .fj-lede {
           font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+          font-size: clamp(1.05rem, 1.6vw, 1.3rem);
           color: rgba(255,230,212,0.75);
           font-style: italic; font-weight: 300;
           line-height: 1.75; border-left: 2px solid var(--rose);
@@ -247,10 +263,8 @@ export default function FeaturedJourney() {
           line-height: 1.9; font-weight: 300; margin-bottom: 38px;
         }
 
-        /* Stats chips */
-        .fj-chips {
-          display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 38px;
-        }
+        /* ─── Chips ─── */
+        .fj-chips { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 38px; }
         .fj-chip {
           display: flex; flex-direction: column;
           background: rgba(255,255,255,0.05);
@@ -260,10 +274,12 @@ export default function FeaturedJourney() {
           transition: background 0.25s, border-color 0.25s, transform 0.25s;
           cursor: default;
         }
-        .fj-chip:hover {
-          background: rgba(205,44,88,0.12);
-          border-color: rgba(205,44,88,0.40);
-          transform: translateY(-3px);
+        @media (hover: hover) {
+          .fj-chip:hover {
+            background: rgba(205,44,88,0.12);
+            border-color: rgba(205,44,88,0.40);
+            transform: translateY(-3px);
+          }
         }
         .fj-chip-val {
           font-family: 'Cormorant Garamond', serif;
@@ -276,7 +292,7 @@ export default function FeaturedJourney() {
           margin-top: 4px;
         }
 
-        /* CTA */
+        /* ─── CTA ─── */
         .fj-cta {
           display: inline-flex; align-items: center; gap: 12px;
           border: 1.5px solid rgba(255,198,157,0.35);
@@ -289,16 +305,20 @@ export default function FeaturedJourney() {
           letter-spacing: 0.05em;
           text-decoration: none;
           transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.22s;
+          -webkit-tap-highlight-color: transparent;
+          touch-action: manipulation;
         }
-        .fj-cta:hover {
-          background: rgba(255,198,157,0.10);
-          border-color: var(--sand);
-          transform: translateY(-2px);
+        @media (hover: hover) {
+          .fj-cta:hover {
+            background: rgba(255,198,157,0.10);
+            border-color: var(--sand);
+            transform: translateY(-2px);
+          }
+          .fj-cta:hover .fj-cta-arrow { transform: translateX(5px); }
         }
         .fj-cta-arrow { transition: transform 0.22s; }
-        .fj-cta:hover .fj-cta-arrow { transform: translateX(5px); }
 
-        /* ── Right: Image panel ── */
+        /* ─── Right: image ─── */
         .fj-right {
           opacity: 0; transform: translateX(28px);
           transition: opacity 1s ease 0.25s, transform 1s ease 0.25s;
@@ -306,17 +326,14 @@ export default function FeaturedJourney() {
         }
         .fj-right.fj-in { opacity: 1; transform: translateX(0); }
 
-        .fj-img-stage {
-          position: relative;
-          width: 100%;
-        }
+        .fj-img-stage { position: relative; width: 100%; }
         .fj-img-deco {
           position: absolute;
           top: 20px; right: -20px;
           width: 100%; height: 100%;
           border: 1px solid rgba(255,198,157,0.14);
           border-radius: 6px 28px 6px 28px;
-          z-index: 0;
+          z-index: 0; pointer-events: none;
         }
         .fj-img-box {
           position: relative; z-index: 1;
@@ -332,17 +349,13 @@ export default function FeaturedJourney() {
           transition: opacity 0.55s ease, transform 0.7s ease;
           display: block;
         }
-        .fj-img.fj-img-loading { opacity: 0; transform: scale(1.03); }
-        .fj-img.fj-img-loaded  { opacity: 1; transform: scale(1); }
-
-        /* Overlay gradient */
+        .fj-img-loading { opacity: 0; transform: scale(1.03); }
+        .fj-img-loaded  { opacity: 1; transform: scale(1); }
         .fj-img-gradient {
           position: absolute; inset: 0;
           background: linear-gradient(to top, rgba(42,16,24,0.75) 0%, transparent 55%);
           z-index: 1;
         }
-
-        /* Active milestone info inside image */
         .fj-img-caption {
           position: absolute; bottom: 0; left: 0; right: 0;
           z-index: 2; padding: 28px 24px;
@@ -351,7 +364,6 @@ export default function FeaturedJourney() {
           font-size: 0.65rem; letter-spacing: 0.18em;
           text-transform: uppercase; color: var(--sand);
           font-weight: 500; margin-bottom: 5px;
-          font-family: 'DM Sans', sans-serif;
         }
         .fj-img-caption-title {
           font-family: 'Cormorant Garamond', serif;
@@ -361,11 +373,10 @@ export default function FeaturedJourney() {
         .fj-img-caption-blurb {
           font-size: 0.80rem; color: rgba(255,230,212,0.70);
           line-height: 1.65; font-weight: 300;
-          font-family: 'DM Sans', sans-serif;
           max-width: 320px;
         }
 
-        /* Floating badge */
+        /* Badge */
         .fj-img-badge {
           position: absolute;
           top: 20px; left: -20px; z-index: 2;
@@ -387,20 +398,17 @@ export default function FeaturedJourney() {
           margin-top: 2px; text-align: center;
         }
 
-        /* ── Timeline dots row ── */
+        /* ─── Timeline row ─── */
         .fj-timeline {
-          display: flex;
-          align-items: flex-start;
-          justify-content: center;
-          gap: 0;
-          position: relative;
-          margin-bottom: 0;
+          display: flex; align-items: flex-start;
+          justify-content: center; gap: 0;
+          position: relative; margin-bottom: 0;
           opacity: 0; transform: translateY(20px);
           transition: opacity 0.9s ease 0.3s, transform 0.9s ease 0.3s;
         }
         .fj-timeline.fj-in { opacity: 1; transform: translateY(0); }
 
-        /* Card (dot + label) */
+        /* ─── Milestone card ─── */
         .fjm-card {
           flex: 1;
           display: flex; flex-direction: column; align-items: center;
@@ -409,10 +417,11 @@ export default function FeaturedJourney() {
           opacity: 0; transform: translateY(16px);
           transition: opacity 0.7s ease var(--d), transform 0.7s ease var(--d);
           outline: none;
+          -webkit-tap-highlight-color: transparent;
+          touch-action: manipulation;
         }
-        .fjm-card.fjm-visible { opacity: 1; transform: translateY(0); }
+        .fjm-card[data-inview="true"] { opacity: 1; transform: translateY(0); }
 
-        /* Horizontal connector line */
         .fjm-connector {
           position: absolute;
           top: 20px;
@@ -427,9 +436,8 @@ export default function FeaturedJourney() {
           background: linear-gradient(90deg, var(--rose), var(--sand));
           transition: width 0.6s ease;
         }
-        .fjm-connector-fill.fjm-connector-active { width: 100%; }
+        .fjm-connector-fill[data-active="true"] { width: 100%; }
 
-        /* Dot */
         .fjm-dot {
           width: 42px; height: 42px;
           border-radius: 50%;
@@ -439,9 +447,10 @@ export default function FeaturedJourney() {
           position: relative; z-index: 1;
           transition: background 0.35s, border-color 0.35s, transform 0.35s, box-shadow 0.35s;
           margin-bottom: 12px;
+          flex-shrink: 0;
         }
-        .fjm-dot:hover { transform: scale(1.12); }
-        .fjm-dot-active {
+        @media (hover: hover) { .fjm-dot:hover { transform: scale(1.12); } }
+        .fjm-dot[data-active="true"] {
           background: var(--coral) !important;
           border-color: var(--coral) !important;
           box-shadow: 0 0 0 6px rgba(205,44,88,0.20), 0 6px 22px rgba(205,44,88,0.40) !important;
@@ -449,12 +458,11 @@ export default function FeaturedJourney() {
         }
         .fjm-dot-icon { font-size: 1.05rem; }
         .fjm-dot-ring {
-          position: absolute; inset: -6px;
-          border-radius: 50%;
+          position: absolute; inset: -6px; border-radius: 50%;
           border: 1px solid rgba(205,44,88,0);
           transition: border-color 0.35s, transform 0.35s;
         }
-        .fjm-dot-active .fjm-dot-ring {
+        .fjm-dot[data-active="true"] .fjm-dot-ring {
           border-color: rgba(205,44,88,0.35);
           animation: dotPulse 2.5s ease infinite;
         }
@@ -465,34 +473,31 @@ export default function FeaturedJourney() {
 
         .fjm-card-label {
           display: flex; flex-direction: column; align-items: center; gap: 3px;
-          text-align: center;
-          padding: 0 6px;
+          text-align: center; padding: 0 6px;
         }
         .fjm-card-year {
           font-size: 0.62rem; letter-spacing: 0.14em;
           text-transform: uppercase;
           color: rgba(255,198,157,0.50); font-weight: 500;
-          font-family: 'DM Sans', sans-serif;
           transition: color 0.3s;
         }
-        .fjm-card-active .fjm-card-year { color: var(--sand); }
+        .fjm-card[data-active="true"] .fjm-card-year { color: var(--sand); }
         .fjm-card-name {
           font-family: 'Cormorant Garamond', serif;
           font-size: 0.95rem; font-weight: 400;
           color: rgba(255,230,212,0.45); line-height: 1.2;
           transition: color 0.3s;
         }
-        .fjm-card-active .fjm-card-name { color: #fff; }
+        .fjm-card[data-active="true"] .fjm-card-name { color: #fff; }
 
-        /* ── Quote band ── */
+        /* ─── Quote band ─── */
         .fj-quote-band {
           margin-top: 72px;
           padding: 44px 52px;
           background: rgba(255,255,255,0.03);
           border: 1px solid rgba(255,198,157,0.10);
           border-radius: 24px;
-          position: relative;
-          overflow: hidden;
+          position: relative; overflow: hidden;
           opacity: 0; transform: translateY(24px);
           transition: opacity 0.9s ease, transform 0.9s ease;
         }
@@ -518,29 +523,196 @@ export default function FeaturedJourney() {
           margin-top: 18px;
           font-size: 0.78rem; letter-spacing: 0.12em;
           text-transform: uppercase; color: rgba(255,198,157,0.40);
-          font-family: 'DM Sans', sans-serif;
           position: relative; z-index: 1;
         }
 
-        /* ── Responsive ── */
-        @media (max-width: 900px) {
+        /* ══════════════════════════════════════
+           TABLET  768px – 1023px
+        ══════════════════════════════════════ */
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .fj-section { padding: 80px 0 72px; }
+          .fj-inner { padding: 0 32px; }
+
+          /* Stack: image on top, text below */
           .fj-grid {
-            grid-template-columns: 1fr; gap: 44px;
+            grid-template-columns: 1fr;
+            gap: 0;
+            margin-bottom: 56px;
           }
-          .fj-right { transform: none !important; order: -1; }
-          .fj-img-box { aspect-ratio: 16/10; }
-          .fj-img-badge { left: -8px; }
-        }
-        @media (max-width: 640px) {
-          .fj-section { padding: 72px 0 64px; }
-          .fj-inner { padding: 0 20px; }
-          .fj-heading { font-size: 2.4rem; }
-          .fj-quote-band { padding: 28px 24px; margin-top: 48px; }
-          .fjm-card-name { font-size: 0.80rem; }
+
+          /* Image — half-height landscape, full width */
+          .fj-right {
+            order: -1;
+            transform: none !important;
+            margin-bottom: 44px;
+          }
+          .fj-img-box {
+            aspect-ratio: 16 / 8;
+            border-radius: 20px;
+          }
+          .fj-img-deco {
+            top: 14px; right: -14px;
+            border-radius: 4px 20px 4px 20px;
+          }
+          .fj-img-badge { left: -10px; }
+
+          /* Text */
+          .fj-left { transform: none !important; }
+          .fj-heading { font-size: clamp(2.4rem, 5vw, 3.6rem); margin-bottom: 16px; }
+          .fj-lede { font-size: 1.1rem; margin-bottom: 22px; }
+          .fj-body { margin-bottom: 28px; }
+
+          /* 4-col chips on tablet */
           .fj-chips { gap: 10px; }
+          .fj-chip { padding: 10px 14px; border-radius: 12px; }
+          .fj-chip-val { font-size: 1.5rem; }
+
+          /* Timeline: show full row */
+          .fjm-card-name { font-size: 0.88rem; }
+          .fj-eyebrow { margin-bottom: 44px; }
+
+          /* Quote */
+          .fj-quote-band { margin-top: 52px; padding: 36px 40px; }
+        }
+
+        /* ══════════════════════════════════════
+           MOBILE  ≤767px
+        ══════════════════════════════════════ */
+        @media (max-width: 767px) {
+          .fj-section { padding: 60px 0 56px; }
+          .fj-inner { padding: 0 18px; }
+
+          /* Eyebrow */
+          .fj-eyebrow { margin-bottom: 32px; }
+          .fj-eyebrow-line { width: 28px; }
+
+          /* Stack layout */
+          .fj-grid {
+            grid-template-columns: 1fr;
+            gap: 0;
+            margin-bottom: 40px;
+          }
+
+          /* Image first, full bleed feel */
+          .fj-right {
+            order: -1;
+            transform: none !important;
+            margin-bottom: 36px;
+          }
+          .fj-img-box {
+            aspect-ratio: 4 / 3;
+            border-radius: 16px;
+          }
+          .fj-img-deco { display: none; }
+          .fj-img-badge {
+            left: 12px; top: 12px;
+            padding: 8px 12px;
+            border-radius: 12px;
+            animation: none; /* no float on mobile — avoids jank */
+          }
+          .fj-img-badge-num { font-size: 1.3rem; }
+          .fj-img-caption { padding: 20px 18px; }
+          .fj-img-caption-title { font-size: 1.2rem; }
+          .fj-img-caption-blurb { display: none; } /* shown in card body instead */
+
+          /* Text */
+          .fj-left { transform: none !important; }
+          .fj-heading {
+            font-size: clamp(2rem, 8.5vw, 2.8rem);
+            margin-bottom: 14px;
+            line-height: 1.08;
+          }
+          .fj-lede {
+            font-size: 1rem;
+            margin-bottom: 18px;
+            padding-left: 14px;
+          }
+          .fj-body {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            margin-bottom: 24px;
+          }
+
+          /* Chips — 2x2 grid on mobile */
+          .fj-chips {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 28px;
+          }
+          .fj-chip { padding: 12px 14px; border-radius: 12px; }
+          .fj-chip-val { font-size: 1.5rem; }
+          .fj-chip-label { font-size: 0.65rem; }
+
+          /* CTA — full width pill */
+          .fj-cta {
+            width: 100%;
+            justify-content: center;
+            padding: 16px 24px;
+            font-size: 0.875rem;
+            border-radius: 14px;
+          }
+
+          /* Timeline — compact pill strip on mobile */
+          .fj-timeline {
+            gap: 0;
+            overflow-x: auto;
+            justify-content: flex-start;
+            padding-bottom: 4px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+          }
+          .fj-timeline::-webkit-scrollbar { display: none; }
+
+          .fjm-card {
+            min-width: 76px;
+            flex: 0 0 auto;
+            padding: 0 4px;
+          }
+          .fjm-dot {
+            width: 38px; height: 38px;
+            margin-bottom: 8px;
+          }
+          .fjm-dot-icon { font-size: 0.95rem; }
+          .fjm-connector {
+            left: calc(50% + 19px);
+            right: calc(-50% + 19px);
+          }
+          .fjm-card-year { font-size: 0.55rem; letter-spacing: 0.10em; }
+          .fjm-card-name { font-size: 0.72rem; }
+
+          /* Active milestone blurb — shown as card under timeline on mobile */
+          .fj-mobile-blurb {
+            display: block;
+            margin-top: 20px;
+            padding: 16px 18px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,198,157,0.12);
+            border-radius: 14px;
+            font-size: 0.83rem;
+            color: rgba(255,230,212,0.65);
+            line-height: 1.7;
+            font-weight: 300;
+          }
+
+          /* Quote */
+          .fj-quote-band {
+            margin-top: 36px;
+            padding: 24px 20px;
+            border-radius: 16px;
+          }
+          .fj-quote-band::before { font-size: 7rem; top: -6px; left: 16px; }
+          .fj-quote-text { font-size: 1rem; line-height: 1.75; }
+          .fj-quote-attr { font-size: 0.70rem; margin-top: 14px; }
+        }
+
+        /* Hide blurb card on tablet/desktop */
+        @media (min-width: 768px) {
+          .fj-mobile-blurb { display: none; }
         }
       `}</style>
 
+      {/* ─── MARKUP ─── */}
       <section className="fj-wrap fj-section">
         <div className="fj-noise" />
         <div className="fj-grain" />
@@ -556,7 +728,7 @@ export default function FeaturedJourney() {
             <div className="fj-eyebrow-line fj-eyebrow-line-r" />
           </div>
 
-          {/* Grid */}
+          {/* Main grid */}
           <div className="fj-grid">
 
             {/* LEFT: Text */}
@@ -576,12 +748,7 @@ export default function FeaturedJourney() {
 
               {/* Stats chips */}
               <div className="fj-chips">
-                {[
-                  { val: "5000+", label: "Happy Learners" },
-                  { val: "2019", label: "IFB Chef" },
-                  { val: "Free", label: "First Classes" },
-                  { val: "M.Sc.", label: "Botany Degree" },
-                ].map((c, i) => (
+                {CHIPS.map((c, i) => (
                   <div key={i} className="fj-chip">
                     <span className="fj-chip-val">{c.val}</span>
                     <span className="fj-chip-label">{c.label}</span>
@@ -630,9 +797,18 @@ export default function FeaturedJourney() {
                 m={m}
                 idx={i}
                 active={active === i}
+                total={MILESTONES.length}
                 onClick={() => handleSelect(i)}
               />
             ))}
+          </div>
+
+          {/* Mobile-only: active milestone blurb */}
+          <div className="fj-mobile-blurb">
+            <span style={{ color: "var(--sand)", marginRight: 6, fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}>
+              {cur.year} —
+            </span>
+            {cur.blurb}
           </div>
 
           {/* Quote band */}

@@ -1,574 +1,652 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, Zap, Heart, Brain, Trophy, BookOpen, Users, Sparkles } from 'lucide-react';
+"use client";
 
-const JourneyOfSumanJain = () => {
-  const [activePhase, setActivePhase] = useState(0);
-  const [hoveredMilestone, setHoveredMilestone] = useState(null);
+import { useEffect, useRef, useState } from "react";
 
-  // Journey phases data
-  const journeyPhases = [
-    {
-      id: 1,
-      year: 'The Beginning',
-      title: 'Free Soft Toy Classes',
-      description: 'Started her creative journey by teaching soft toy-making classes in temples completely free. This humble beginning planted the seeds of passion and dedication that would define her career.',
-      highlights: ['Free Classes', 'Temple Community', 'Soft Toy Making', 'Building Network'],
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=600&fit=crop',
-      icon: '🧸',
-      color: 'from-pink-50 to-rose-50',
-      borderColor: 'border-pink-200/40'
-    },
-    {
-      id: 2,
-      year: '2019',
-      title: 'Turning Point at IFB',
-      description: 'Worked as a professional chef at IFB, a major turning point in her career. This experience opened new doors, broadened her perspective, and gave her valuable insights into culinary arts and professional excellence.',
-      highlights: ['Professional Chef', 'IFB Experience', 'Career Growth', 'New Skills'],
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop',
-      icon: '👨‍🍳',
-      color: 'from-amber-50 to-orange-50',
-      borderColor: 'border-amber-200/40'
-    },
-    {
-      id: 3,
-      year: 'Today',
-      title: '5000+ Happy Students',
-      description: 'From humble beginnings to serving over 5000 happy customers. Her dedication and creative vision have built a strong community of learners. Kalasrijan stands as a testament to her passion and commitment to nurturing creativity.',
-      highlights: ['5000+ Students', 'Multiple Crafts', 'Growing Community', 'Legacy Building'],
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=600&fit=crop',
-      icon: '🌟',
-      color: 'from-yellow-50 to-amber-50',
-      borderColor: 'border-yellow-200/40'
-    },
-  ];
+/* ─────────────────────────────────────────
+   TIMELINE MILESTONES
+───────────────────────────────────────── */
+const MILESTONES = [
+  {
+    year: "The Beginning",
+    icon: "🧸",
+    label: "Soft Toy Classes",
+    blurb: "Free workshops in temples, sharing skills with the community — purely out of love.",
+    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=480&auto=format&fit=crop&q=80",
+  },
+  {
+    year: "Growing Roots",
+    icon: "🌱",
+    label: "A Network of 5000+",
+    blurb: "Word spread. Dedication earned trust. A growing family of learners and creators formed.",
+    img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=480&auto=format&fit=crop&q=80",
+  },
+  {
+    year: "2019",
+    icon: "🍽️",
+    label: "Chef at IFB",
+    blurb: "A pivotal chapter — professional kitchens, new horizons, and a life transformed.",
+    img: "https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=480&auto=format&fit=crop&q=80",
+  },
+  {
+    year: "Today",
+    icon: "✨",
+    label: "Kalasrijan Lives",
+    blurb: "Active, inspired, and unstoppable — M.Sc. Botany, Diploma of Pharmacy, and a heart full of craft.",
+    img: "https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=480&auto=format&fit=crop&q=80",
+  },
+];
 
-  // Milestones data
-  const milestones = [
-    {
-      year: 'Early Days',
-      title: 'Temple Classes Begin',
-      description: 'Started free soft toy-making sessions in local temples',
-      achievement: 'First Students',
-      emoji: '🏛️'
-    },
-    {
-      year: 'Growth Phase',
-      title: 'Network Building',
-      description: 'Expanded classes and gained appreciation from community',
-      achievement: '500+ Students',
-      emoji: '🤝'
-    },
-    {
-      year: '2019',
-      title: 'Professional Growth',
-      description: 'Worked as Chef at IFB - Career Turning Point',
-      achievement: 'Expert Chef',
-      emoji: '👨‍🍳'
-    },
-    {
-      year: 'Expansion',
-      title: 'Diverse Skills',
-      description: 'Expanded into painting, cooking, home decor, and more',
-      achievement: '12+ Crafts',
-      emoji: '🎨'
-    },
-    {
-      year: 'Present',
-      title: 'Kalasrijan Legacy',
-      description: 'Established Kalasrijan as a premier creative platform',
-      achievement: '5000+ Happy',
-      emoji: '✨'
-    },
-  ];
+/* ─────────────────────────────────────────
+   HOOK — Intersection Observer
+───────────────────────────────────────── */
+function useInView(threshold = 0.12) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setInView(true); },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return { ref, inView };
+}
 
-  // Qualifications data
-  const qualifications = [
-    {
-      degree: 'M.Sc. in Botany',
-      description: 'Scientific knowledge of nature and plants',
-      icon: '🌿',
-      year: 'Academic Excellence'
-    },
-    {
-      degree: 'Diploma in Pharmacy',
-      description: 'Professional healthcare qualification',
-      icon: '⚕️',
-      year: 'Professional Certification'
-    },
-    {
-      degree: 'Master Artisan',
-      description: 'Expertise in 12+ art and craft forms',
-      icon: '🎭',
-      year: 'Practical Mastery'
-    },
-  ];
+/* ─────────────────────────────────────────
+   MILESTONE CARD
+───────────────────────────────────────── */
+function MilestoneCard({
+  m, idx, active, onClick,
+}: {
+  m: typeof MILESTONES[0];
+  idx: number;
+  active: boolean;
+  onClick: () => void;
+}) {
+  const { ref, inView } = useInView(0.08);
 
-  // Stats data
-  const stats = [
-    { icon: '📚', number: '25+', label: 'Years of Experience' },
-    { icon: '🎓', number: '2', label: 'Professional Degrees' },
-    { icon: '🎨', number: '12+', label: 'Art Forms Mastered' },
-    { icon: '👥', number: '5000+', label: 'Happy Students' },
-  ];
+  return (
+    <div
+      ref={ref}
+      className={`fjm-card ${inView ? "fjm-visible" : ""} ${active ? "fjm-card-active" : ""}`}
+      style={{ "--d": `${idx * 0.13}s` } as React.CSSProperties}
+      onClick={onClick}
+      tabIndex={0}
+      onKeyDown={(e) => e.key === "Enter" && onClick()}
+      role="button"
+      aria-pressed={active}
+    >
+      {/* Connector line (except last) */}
+      {idx < MILESTONES.length - 1 && (
+        <div className="fjm-connector">
+          <div className={`fjm-connector-fill ${active ? "fjm-connector-active" : ""}`} />
+        </div>
+      )}
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
+      {/* Dot */}
+      <div className={`fjm-dot ${active ? "fjm-dot-active" : ""}`}>
+        <span className="fjm-dot-icon">{m.icon}</span>
+        <div className="fjm-dot-ring" />
+      </div>
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: [0.23, 1, 0.82, 1] },
-    },
-  };
+      {/* Label below dot */}
+      <div className="fjm-card-label">
+        <span className="fjm-card-year">{m.year}</span>
+        <span className="fjm-card-name">{m.label}</span>
+      </div>
+    </div>
+  );
+}
 
-  const slideVariants = {
-    initial: { opacity: 0, x: 100 },
-    animate: { 
-      opacity: 1, 
-      x: 0,
-      transition: { duration: 0.6, ease: [0.23, 1, 0.82, 1] }
-    },
-    exit: { 
-      opacity: 0, 
-      x: -100,
-      transition: { duration: 0.4 }
-    },
+/* ─────────────────────────────────────────
+   MAIN
+───────────────────────────────────────── */
+export default function FeaturedJourney() {
+  const [active, setActive] = useState(0);
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const { ref: secRef, inView: secIn } = useInView(0.05);
+  const { ref: quoteRef, inView: quoteIn } = useInView(0.1);
+  const { ref: panelRef, inView: panelIn } = useInView(0.08);
+
+  // Auto-advance
+  useEffect(() => {
+    const t = setInterval(() => {
+      setActive((a) => (a + 1) % MILESTONES.length);
+    }, 4000);
+    return () => clearInterval(t);
+  }, []);
+
+  const cur = MILESTONES[active];
+
+  const handleSelect = (i: number) => {
+    setActive(i);
+    setImgLoaded(false);
   };
 
   return (
-    <div className="relative w-full bg-gradient-to-br from-white via-stone-50 to-amber-50/50">
-      {/* ============ HERO SECTION ============ */}
-      <section className="relative py-20 md:py-32 px-6 md:px-12 lg:px-20 overflow-hidden">
-        {/* Animated background orbs */}
-        <motion.div
-          className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-amber-200/25 to-orange-200/15 rounded-full blur-3xl"
-          animate={{ x: [0, 80, 0], y: [0, -60, 0], scale: [1, 1.2, 1] }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-amber-100/20 to-orange-100/10 rounded-full blur-3xl"
-          animate={{ x: [0, -60, 0], y: [0, 60, 0] }}
-          transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        />
-
-        <div className="relative z-10 max-w-6xl mx-auto">
-          {/* Header */}
-          <motion.div
-            className="text-center mb-16"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-          >
-            <motion.h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-slate-950 mb-4">
-              The Creative
-              <motion.span
-                className="block bg-gradient-to-r from-amber-700 via-amber-600 to-orange-600 bg-clip-text text-transparent font-normal"
-                animate={{ backgroundPosition: ['0%', '100%', '0%'] }}
-                transition={{ duration: 5, repeat: Infinity }}
-              >
-                Journey of Suman Jain
-              </motion.span>
-            </motion.h2>
-
-            <motion.div
-              variants={itemVariants}
-              className="w-24 h-1 bg-gradient-to-r from-amber-500 to-transparent mx-auto mt-6"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              style={{ originX: 0.5 }}
-            />
-
-            <motion.p
-              variants={itemVariants}
-              className="text-lg md:text-xl text-slate-700 mt-8 max-w-3xl mx-auto leading-relaxed"
-            >
-              From humble beginnings teaching free classes in temples to serving 5000+ happy students. A remarkable story of dedication, creativity, and passion.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ============ TIMELINE PHASES ============ */}
-      <section className="relative py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-white">
-        <div className="max-w-6xl mx-auto">
-          {/* Phase Selector */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-          >
-            {journeyPhases.map((phase, i) => (
-              <motion.button
-                key={phase.id}
-                variants={itemVariants}
-                onClick={() => setActivePhase(i)}
-                whileHover={{ scale: 1.02, y: -5 }}
-                whileTap={{ scale: 0.98 }}
-                className={`relative p-6 rounded-2xl text-left transition-all border-2 overflow-hidden group ${
-                  activePhase === i
-                    ? `bg-gradient-to-br ${phase.color} ${phase.borderColor} border-amber-500/60`
-                    : `bg-white ${phase.borderColor} border-transparent hover:border-amber-200/60`
-                }`}
-              >
-                {/* Animated background on active */}
-                {activePhase === i && (
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"
-                    animate={{ opacity: [0.3, 0.6, 0.3] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
-                )}
-
-                <div className="relative z-10">
-                  <motion.div
-                    className="text-4xl mb-3"
-                    animate={activePhase === i ? { rotate: [0, 10, 0], scale: [1, 1.2, 1] } : {}}
-                    transition={{ duration: 0.6 }}
-                  >
-                    {phase.icon}
-                  </motion.div>
-                  <p className="text-sm uppercase tracking-widest text-amber-700 font-light mb-2">
-                    {phase.year}
-                  </p>
-                  <h3 className="text-xl font-light text-slate-950 mb-2">
-                    {phase.title}
-                  </h3>
-                  <p className="text-sm text-slate-600 line-clamp-2">
-                    {phase.description}
-                  </p>
-                </div>
-
-                {/* Active indicator */}
-                {activePhase === i && (
-                  <motion.div
-                    className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-amber-500 to-orange-500"
-                    layoutId="activePhase"
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
-              </motion.button>
-            ))}
-          </motion.div>
-
-          {/* Active Phase Content */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activePhase}
-              variants={slideVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
-            >
-              {/* Left - Image */}
-              <motion.div
-                className="relative h-96 md:h-[500px]"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-              >
-                {/* Animated glow */}
-                <motion.div
-                  className="absolute -inset-6 bg-gradient-to-br from-amber-300/30 to-orange-300/20 rounded-3xl blur-2xl"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                />
-
-                <motion.div
-                  className={`relative h-full rounded-3xl overflow-hidden border-4 ${journeyPhases[activePhase].borderColor} shadow-2xl`}
-                  animate={{ borderColor: ['rgba(217, 119, 6, 0.4)', 'rgba(217, 119, 6, 0.6)', 'rgba(217, 119, 6, 0.4)'] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                >
-                  <img
-                    src={journeyPhases[activePhase].image}
-                    alt={journeyPhases[activePhase].title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent" />
-                </motion.div>
-              </motion.div>
-
-              {/* Right - Content */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-              >
-                <motion.p
-                  className="text-sm uppercase tracking-widest text-amber-700 font-light mb-4"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  {journeyPhases[activePhase].year}
-                </motion.p>
-
-                <motion.h3
-                  className="text-3xl md:text-4xl font-light text-slate-950 mb-4"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  {journeyPhases[activePhase].title}
-                </motion.h3>
-
-                <motion.p
-                  className="text-lg text-slate-700 leading-relaxed mb-8"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  {journeyPhases[activePhase].description}
-                </motion.p>
-
-                {/* Highlights */}
-                <motion.div
-                  className="grid grid-cols-2 gap-4 mb-8"
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  {journeyPhases[activePhase].highlights.map((highlight, i) => (
-                    <motion.div
-                      key={i}
-                      variants={itemVariants}
-                      className="p-4 bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg border border-amber-200/40"
-                      whileHover={{ y: -5, borderColor: 'rgba(217, 119, 6, 0.6)' }}
-                    >
-                      <p className="text-sm font-medium text-amber-700">✨ {highlight}</p>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* ============ MILESTONES TIMELINE ============ */}
-      <section className="relative py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-gradient-to-br from-amber-50/30 to-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-light text-slate-950 mb-4">
-              Key Milestones
-            </h2>
-            <motion.div
-              className="w-24 h-1 bg-gradient-to-r from-amber-500 to-transparent mx-auto"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              style={{ originX: 0.5 }}
-            />
-          </motion.div>
-
-          {/* Vertical Timeline */}
-          <div className="relative">
-            {/* Timeline line */}
-            <motion.div
-              className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-amber-500 to-orange-500 hidden md:block"
-              initial={{ height: 0 }}
-              whileInView={{ height: '100%' }}
-              transition={{ duration: 1.5 }}
-              viewport={{ once: true }}
-              style={{ top: 0, bottom: 0 }}
-            />
-
-            {/* Timeline items */}
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-100px' }}
-            >
-              {milestones.map((milestone, i) => (
-                <motion.div
-                  key={i}
-                  variants={itemVariants}
-                  onMouseEnter={() => setHoveredMilestone(i)}
-                  onMouseLeave={() => setHoveredMilestone(null)}
-                  className={`relative md:p-8 ${i % 2 === 0 ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'}`}
-                >
-                  {/* Timeline dot */}
-                  <motion.div
-                    className="absolute left-1/2 transform -translate-x-1/2 hidden md:flex items-center justify-center w-6 h-6 bg-white border-4 border-amber-500 rounded-full z-10"
-                    style={{ top: '2rem' }}
-                    animate={hoveredMilestone === i ? { scale: 1.5 } : { scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="w-2 h-2 bg-amber-500 rounded-full" />
-                  </motion.div>
-
-                  {/* Card */}
-                  <motion.div
-                    className="p-6 bg-white rounded-2xl border border-amber-200/40 hover:border-amber-400/60 transition-all"
-                    whileHover={{ y: -5, boxShadow: '0 20px 40px rgba(217, 119, 6, 0.15)' }}
-                  >
-                    <motion.div
-                      className="text-3xl mb-3"
-                      animate={hoveredMilestone === i ? { rotate: [0, 10, -10, 0], scale: 1.2 } : {}}
-                      transition={{ duration: 0.6 }}
-                    >
-                      {milestone.emoji}
-                    </motion.div>
-
-                    <p className="text-sm uppercase tracking-widest text-amber-700 font-light mb-2">
-                      {milestone.year}
-                    </p>
-                    <h4 className="text-xl font-light text-slate-950 mb-2">
-                      {milestone.title}
-                    </h4>
-                    <p className="text-sm text-slate-600 mb-4">
-                      {milestone.description}
-                    </p>
-
-                    {/* Achievement badge */}
-                    <motion.div
-                      className="inline-block px-3 py-1 bg-amber-50 border border-amber-200/60 rounded-full"
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      <span className="text-xs font-medium text-amber-700">
-                        {milestone.achievement}
-                      </span>
-                    </motion.div>
-                  </motion.div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============ QUALIFICATIONS ============ */}
-    
-
-      {/* ============ STATS ============ */}
-      <section className="relative py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-gradient-to-r from-amber-50 to-orange-50">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-          >
-            {stats.map((stat, i) => (
-              <motion.div
-                key={i}
-                variants={itemVariants}
-                className="text-center p-8 rounded-2xl bg-white border border-amber-200/40 hover:border-amber-400/60 transition-all group"
-                whileHover={{ y: -10 }}
-              >
-                <motion.div
-                  className="text-4xl mb-4 group-hover:scale-125 transition-transform"
-                  animate={{ rotate: [0, 10, 0] }}
-                  transition={{ delay: i * 0.2, duration: 3, repeat: Infinity }}
-                >
-                  {stat.icon}
-                </motion.div>
-                <motion.p
-                  className="text-3xl font-light text-amber-700 mb-2"
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ delay: i * 0.2, duration: 2, repeat: Infinity }}
-                >
-                  {stat.number}
-                </motion.p>
-                <p className="text-sm text-slate-600">{stat.label}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ============ FINAL CTA ============ */}
-      <section className="relative py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-white">
-        <motion.div
-          className="max-w-3xl mx-auto text-center"
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl md:text-5xl font-light text-slate-950 mb-6">
-            Be Part of This Creative Journey
-          </h2>
-          <p className="text-lg text-slate-700 mb-8 leading-relaxed">
-            Join thousands of students who have learned from Suman Jain's expertise and passion. Start your creative transformation today.
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.05, y: -5 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-12 py-5 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-medium uppercase tracking-widest text-lg overflow-hidden relative group"
-          >
-            <motion.div
-              className="absolute inset-0 bg-white"
-              initial={{ x: '-100%' }}
-              whileHover={{ x: '100%' }}
-              transition={{ duration: 0.5 }}
-            />
-            <span className="relative z-10">Start Your Creative Journey</span>
-          </motion.button>
-        </motion.div>
-      </section>
-
+    <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap');
 
-        * {
-          font-family: 'Outfit', sans-serif;
+        :root {
+          --coral: #CD2C58;
+          --rose:  #E06B80;
+          --sand:  #FFC69D;
+          --blush: #FFE6D4;
+          --ink:   #2a1018;
+          --muted: #7a4a55;
+          --pale:  #fff8f4;
         }
 
-        h1, h2, h3 {
-          font-family: 'Crimson Text', serif;
+        .fj-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        .fj-section {
+          background: var(--ink);
+          font-family: 'DM Sans', sans-serif;
+          position: relative;
+          overflow: hidden;
+          padding: 100px 0 90px;
         }
 
-        html {
-          scroll-behavior: smooth;
+        /* ── Background texture / noise ── */
+        .fj-noise {
+          position: absolute; inset: 0; z-index: 0; pointer-events: none;
+          background-image:
+            radial-gradient(ellipse 80% 60% at 70% 20%, rgba(205,44,88,0.12) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 40% at 10% 80%, rgba(255,198,157,0.08) 0%, transparent 60%);
+        }
+        .fj-grain {
+          position: absolute; inset: 0; z-index: 0; pointer-events: none;
+          opacity: 0.025;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+          background-size: 180px;
+        }
+        .fj-arc {
+          position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
+          animation: fjArc 14s ease-in-out infinite alternate;
+        }
+        .fj-arc-1 {
+          width: 500px; height: 500px;
+          background: radial-gradient(circle, rgba(224,107,128,0.08) 0%, transparent 70%);
+          top: -100px; left: -100px;
+        }
+        .fj-arc-2 {
+          width: 400px; height: 400px;
+          background: radial-gradient(circle, rgba(255,198,157,0.07) 0%, transparent 70%);
+          bottom: -80px; right: -80px;
+          animation-delay: -7s;
+        }
+        @keyframes fjArc { from{transform:translate(0,0)} to{transform:translate(25px,18px)} }
+
+        /* ── Inner ── */
+        .fj-inner {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 40px;
+          position: relative; z-index: 1;
         }
 
-        ::-webkit-scrollbar {
-          width: 8px;
+        /* ── Eyebrow ── */
+        .fj-eyebrow {
+          display: flex; align-items: center; gap: 14px;
+          margin-bottom: 60px;
+          opacity: 0; transform: translateY(18px);
+          transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fj-eyebrow.fj-in { opacity: 1; transform: translateY(0); }
+        .fj-eyebrow-line {
+          height: 1px; width: 48px;
+          background: linear-gradient(90deg, var(--sand), transparent);
+        }
+        .fj-eyebrow-line-r {
+          background: linear-gradient(270deg, var(--sand), transparent);
+        }
+        .fj-eyebrow-text {
+          font-size: 11px; letter-spacing: 0.20em;
+          text-transform: uppercase; color: var(--sand); font-weight: 500;
         }
 
-        ::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.5);
+        /* ── Main grid ── */
+        .fj-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 72px;
+          align-items: start;
+          margin-bottom: 72px;
         }
 
-        ::-webkit-scrollbar-thumb {
-          background: rgb(217, 119, 6);
-          border-radius: 4px;
+        /* ── Left: Text ── */
+        .fj-left {
+          opacity: 0; transform: translateX(-28px);
+          transition: opacity 1s ease 0.1s, transform 1s ease 0.1s;
+        }
+        .fj-left.fj-in { opacity: 1; transform: translateX(0); }
+
+        .fj-heading {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(2.6rem, 4.5vw, 5rem);
+          font-weight: 300; line-height: 1.06;
+          color: #fff; margin-bottom: 18px;
+        }
+        .fj-heading em { font-style: italic; color: var(--sand); }
+
+        .fj-lede {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+          color: rgba(255,230,212,0.75);
+          font-style: italic; font-weight: 300;
+          line-height: 1.75; border-left: 2px solid var(--rose);
+          padding-left: 20px; margin-bottom: 28px;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-          background: rgb(180, 83, 9);
+        .fj-body {
+          font-size: 0.93rem; color: rgba(255,230,212,0.60);
+          line-height: 1.9; font-weight: 300; margin-bottom: 38px;
+        }
+
+        /* Stats chips */
+        .fj-chips {
+          display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 38px;
+        }
+        .fj-chip {
+          display: flex; flex-direction: column;
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,198,157,0.18);
+          border-radius: 14px; padding: 12px 18px;
+          backdrop-filter: blur(8px);
+          transition: background 0.25s, border-color 0.25s, transform 0.25s;
+          cursor: default;
+        }
+        .fj-chip:hover {
+          background: rgba(205,44,88,0.12);
+          border-color: rgba(205,44,88,0.40);
+          transform: translateY(-3px);
+        }
+        .fj-chip-val {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.7rem; font-weight: 600;
+          color: var(--sand); line-height: 1;
+        }
+        .fj-chip-label {
+          font-size: 0.68rem; letter-spacing: 0.12em;
+          text-transform: uppercase; color: rgba(255,198,157,0.55);
+          margin-top: 4px;
+        }
+
+        /* CTA */
+        .fj-cta {
+          display: inline-flex; align-items: center; gap: 12px;
+          border: 1.5px solid rgba(255,198,157,0.35);
+          color: var(--sand);
+          padding: 14px 32px; border-radius: 100px;
+          background: transparent;
+          cursor: pointer;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.875rem; font-weight: 500;
+          letter-spacing: 0.05em;
+          text-decoration: none;
+          transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.22s;
+        }
+        .fj-cta:hover {
+          background: rgba(255,198,157,0.10);
+          border-color: var(--sand);
+          transform: translateY(-2px);
+        }
+        .fj-cta-arrow { transition: transform 0.22s; }
+        .fj-cta:hover .fj-cta-arrow { transform: translateX(5px); }
+
+        /* ── Right: Image panel ── */
+        .fj-right {
+          opacity: 0; transform: translateX(28px);
+          transition: opacity 1s ease 0.25s, transform 1s ease 0.25s;
+          position: relative;
+        }
+        .fj-right.fj-in { opacity: 1; transform: translateX(0); }
+
+        .fj-img-stage {
+          position: relative;
+          width: 100%;
+        }
+        .fj-img-deco {
+          position: absolute;
+          top: 20px; right: -20px;
+          width: 100%; height: 100%;
+          border: 1px solid rgba(255,198,157,0.14);
+          border-radius: 6px 28px 6px 28px;
+          z-index: 0;
+        }
+        .fj-img-box {
+          position: relative; z-index: 1;
+          width: 100%;
+          aspect-ratio: 3/4;
+          border-radius: 28px 6px 28px 6px;
+          overflow: hidden;
+          box-shadow: 0 40px 100px rgba(0,0,0,0.50), 0 8px 30px rgba(205,44,88,0.22);
+        }
+        .fj-img {
+          width: 100%; height: 100%;
+          object-fit: cover;
+          transition: opacity 0.55s ease, transform 0.7s ease;
+          display: block;
+        }
+        .fj-img.fj-img-loading { opacity: 0; transform: scale(1.03); }
+        .fj-img.fj-img-loaded  { opacity: 1; transform: scale(1); }
+
+        /* Overlay gradient */
+        .fj-img-gradient {
+          position: absolute; inset: 0;
+          background: linear-gradient(to top, rgba(42,16,24,0.75) 0%, transparent 55%);
+          z-index: 1;
+        }
+
+        /* Active milestone info inside image */
+        .fj-img-caption {
+          position: absolute; bottom: 0; left: 0; right: 0;
+          z-index: 2; padding: 28px 24px;
+        }
+        .fj-img-caption-year {
+          font-size: 0.65rem; letter-spacing: 0.18em;
+          text-transform: uppercase; color: var(--sand);
+          font-weight: 500; margin-bottom: 5px;
+          font-family: 'DM Sans', sans-serif;
+        }
+        .fj-img-caption-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.5rem; font-weight: 400;
+          color: #fff; line-height: 1.2; margin-bottom: 6px;
+        }
+        .fj-img-caption-blurb {
+          font-size: 0.80rem; color: rgba(255,230,212,0.70);
+          line-height: 1.65; font-weight: 300;
+          font-family: 'DM Sans', sans-serif;
+          max-width: 320px;
+        }
+
+        /* Floating badge */
+        .fj-img-badge {
+          position: absolute;
+          top: 20px; left: -20px; z-index: 2;
+          background: var(--coral);
+          border-radius: 16px; padding: 12px 16px;
+          box-shadow: 0 8px 30px rgba(205,44,88,0.40);
+          display: flex; flex-direction: column; align-items: center;
+          animation: fjBadge 5s ease-in-out infinite;
+        }
+        @keyframes fjBadge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+        .fj-img-badge-num {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.6rem; font-weight: 600;
+          color: #fff; line-height: 1;
+        }
+        .fj-img-badge-text {
+          font-size: 0.60rem; letter-spacing: 0.10em;
+          text-transform: uppercase; color: rgba(255,255,255,0.75);
+          margin-top: 2px; text-align: center;
+        }
+
+        /* ── Timeline dots row ── */
+        .fj-timeline {
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          gap: 0;
+          position: relative;
+          margin-bottom: 0;
+          opacity: 0; transform: translateY(20px);
+          transition: opacity 0.9s ease 0.3s, transform 0.9s ease 0.3s;
+        }
+        .fj-timeline.fj-in { opacity: 1; transform: translateY(0); }
+
+        /* Card (dot + label) */
+        .fjm-card {
+          flex: 1;
+          display: flex; flex-direction: column; align-items: center;
+          position: relative;
+          cursor: pointer;
+          opacity: 0; transform: translateY(16px);
+          transition: opacity 0.7s ease var(--d), transform 0.7s ease var(--d);
+          outline: none;
+        }
+        .fjm-card.fjm-visible { opacity: 1; transform: translateY(0); }
+
+        /* Horizontal connector line */
+        .fjm-connector {
+          position: absolute;
+          top: 20px;
+          left: calc(50% + 22px);
+          right: calc(-50% + 22px);
+          height: 1px;
+          background: rgba(255,198,157,0.15);
+          overflow: hidden;
+        }
+        .fjm-connector-fill {
+          height: 100%; width: 0%;
+          background: linear-gradient(90deg, var(--rose), var(--sand));
+          transition: width 0.6s ease;
+        }
+        .fjm-connector-fill.fjm-connector-active { width: 100%; }
+
+        /* Dot */
+        .fjm-dot {
+          width: 42px; height: 42px;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.06);
+          border: 1.5px solid rgba(255,198,157,0.22);
+          display: flex; align-items: center; justify-content: center;
+          position: relative; z-index: 1;
+          transition: background 0.35s, border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+          margin-bottom: 12px;
+        }
+        .fjm-dot:hover { transform: scale(1.12); }
+        .fjm-dot-active {
+          background: var(--coral) !important;
+          border-color: var(--coral) !important;
+          box-shadow: 0 0 0 6px rgba(205,44,88,0.20), 0 6px 22px rgba(205,44,88,0.40) !important;
+          transform: scale(1.15) !important;
+        }
+        .fjm-dot-icon { font-size: 1.05rem; }
+        .fjm-dot-ring {
+          position: absolute; inset: -6px;
+          border-radius: 50%;
+          border: 1px solid rgba(205,44,88,0);
+          transition: border-color 0.35s, transform 0.35s;
+        }
+        .fjm-dot-active .fjm-dot-ring {
+          border-color: rgba(205,44,88,0.35);
+          animation: dotPulse 2.5s ease infinite;
+        }
+        @keyframes dotPulse {
+          0%,100% { transform: scale(1); opacity: 0.6; }
+          50%      { transform: scale(1.25); opacity: 0; }
+        }
+
+        .fjm-card-label {
+          display: flex; flex-direction: column; align-items: center; gap: 3px;
+          text-align: center;
+          padding: 0 6px;
+        }
+        .fjm-card-year {
+          font-size: 0.62rem; letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: rgba(255,198,157,0.50); font-weight: 500;
+          font-family: 'DM Sans', sans-serif;
+          transition: color 0.3s;
+        }
+        .fjm-card-active .fjm-card-year { color: var(--sand); }
+        .fjm-card-name {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 0.95rem; font-weight: 400;
+          color: rgba(255,230,212,0.45); line-height: 1.2;
+          transition: color 0.3s;
+        }
+        .fjm-card-active .fjm-card-name { color: #fff; }
+
+        /* ── Quote band ── */
+        .fj-quote-band {
+          margin-top: 72px;
+          padding: 44px 52px;
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,198,157,0.10);
+          border-radius: 24px;
+          position: relative;
+          overflow: hidden;
+          opacity: 0; transform: translateY(24px);
+          transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+        .fj-quote-band.fj-in { opacity: 1; transform: translateY(0); }
+        .fj-quote-band::before {
+          content: '"';
+          position: absolute; top: -10px; left: 28px;
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 10rem; font-weight: 600;
+          color: rgba(205,44,88,0.08); line-height: 1;
+          pointer-events: none;
+        }
+        .fj-quote-text {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(1.1rem, 2vw, 1.5rem);
+          font-style: italic; font-weight: 300;
+          color: rgba(255,230,212,0.80);
+          line-height: 1.7; max-width: 760px;
+          position: relative; z-index: 1;
+        }
+        .fj-quote-text em { color: var(--sand); font-style: normal; font-weight: 400; }
+        .fj-quote-attr {
+          margin-top: 18px;
+          font-size: 0.78rem; letter-spacing: 0.12em;
+          text-transform: uppercase; color: rgba(255,198,157,0.40);
+          font-family: 'DM Sans', sans-serif;
+          position: relative; z-index: 1;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+          .fj-grid {
+            grid-template-columns: 1fr; gap: 44px;
+          }
+          .fj-right { transform: none !important; order: -1; }
+          .fj-img-box { aspect-ratio: 16/10; }
+          .fj-img-badge { left: -8px; }
+        }
+        @media (max-width: 640px) {
+          .fj-section { padding: 72px 0 64px; }
+          .fj-inner { padding: 0 20px; }
+          .fj-heading { font-size: 2.4rem; }
+          .fj-quote-band { padding: 28px 24px; margin-top: 48px; }
+          .fjm-card-name { font-size: 0.80rem; }
+          .fj-chips { gap: 10px; }
         }
       `}</style>
-    </div>
-  );
-};
 
-export default JourneyOfSumanJain;
+      <section className="fj-wrap fj-section">
+        <div className="fj-noise" />
+        <div className="fj-grain" />
+        <div className="fj-arc fj-arc-1" />
+        <div className="fj-arc fj-arc-2" />
+
+        <div className="fj-inner">
+
+          {/* Eyebrow */}
+          <div ref={secRef} className={`fj-eyebrow ${secIn ? "fj-in" : ""}`}>
+            <div className="fj-eyebrow-line" />
+            <span className="fj-eyebrow-text">Featured Journey</span>
+            <div className="fj-eyebrow-line fj-eyebrow-line-r" />
+          </div>
+
+          {/* Grid */}
+          <div className="fj-grid">
+
+            {/* LEFT: Text */}
+            <div className={`fj-left ${secIn ? "fj-in" : ""}`}>
+              <h2 className="fj-heading">
+                A story woven<br />
+                in <em>craft & courage</em>
+              </h2>
+
+              <p className="fj-lede">
+                From free classes in temples to 5,000+ inspired learners — Suman Jain's journey is one of quiet persistence, bold creativity, and unshakeable heart.
+              </p>
+
+              <p className="fj-body">
+                Suman started by teaching soft toy-making to her community — no fees, no expectations, just a desire to give. Over time, her warmth built a network that grew beyond anything she imagined. In 2019, a chapter as a professional chef at IFB opened new doors and reshaped her perspective. Today, armed with an M.Sc. in Botany and a Diploma of Pharmacy, she channels science and soul into every class, every craft, every student she touches.
+              </p>
+
+              {/* Stats chips */}
+              <div className="fj-chips">
+                {[
+                  { val: "5000+", label: "Happy Learners" },
+                  { val: "2019", label: "IFB Chef" },
+                  { val: "Free", label: "First Classes" },
+                  { val: "M.Sc.", label: "Botany Degree" },
+                ].map((c, i) => (
+                  <div key={i} className="fj-chip">
+                    <span className="fj-chip-val">{c.val}</span>
+                    <span className="fj-chip-label">{c.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <a href="#" className="fj-cta">
+                Read the Full Journey
+                <span className="fj-cta-arrow">→</span>
+              </a>
+            </div>
+
+            {/* RIGHT: Image */}
+            <div ref={panelRef} className={`fj-right ${panelIn ? "fj-in" : ""}`}>
+              <div className="fj-img-stage">
+                <div className="fj-img-deco" />
+                <div className="fj-img-box">
+                  <img
+                    key={cur.img}
+                    src={cur.img}
+                    alt={cur.label}
+                    className={`fj-img ${imgLoaded ? "fj-img-loaded" : "fj-img-loading"}`}
+                    onLoad={() => setImgLoaded(true)}
+                  />
+                  <div className="fj-img-gradient" />
+                  <div className="fj-img-caption">
+                    <div className="fj-img-caption-year">{cur.year}</div>
+                    <div className="fj-img-caption-title">{cur.label}</div>
+                    <div className="fj-img-caption-blurb">{cur.blurb}</div>
+                  </div>
+                </div>
+                <div className="fj-img-badge">
+                  <div className="fj-img-badge-num">5K+</div>
+                  <div className="fj-img-badge-text">Lives<br />Touched</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Timeline dots */}
+          <div className={`fj-timeline ${secIn ? "fj-in" : ""}`}>
+            {MILESTONES.map((m, i) => (
+              <MilestoneCard
+                key={i}
+                m={m}
+                idx={i}
+                active={active === i}
+                onClick={() => handleSelect(i)}
+              />
+            ))}
+          </div>
+
+          {/* Quote band */}
+          <div ref={quoteRef} className={`fj-quote-band ${quoteIn ? "fj-in" : ""}`}>
+            <p className="fj-quote-text">
+              "Her creative mindset and strong dedication continue to inspire —
+              because <em>Kalasrijan</em> was never just a school.
+              It was always a community where passion meets practice."
+            </p>
+            <p className="fj-quote-attr">— The Kalasrijan Story</p>
+          </div>
+
+        </div>
+      </section>
+    </>
+  );
+}
