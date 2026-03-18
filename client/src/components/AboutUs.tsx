@@ -55,7 +55,7 @@ export default function MeetTheMaker() {
   const { ref: secRef, inView } = useInView(0.05);
 
   return (
-    <div ref={secRef}>
+    <div ref={secRef} id = "meet-the-maker">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap');
 

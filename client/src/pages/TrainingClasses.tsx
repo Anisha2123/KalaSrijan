@@ -10,6 +10,7 @@ const CATEGORIES = ["All", "Painting", "Craft", "Stitching", "Cultural", "Wellne
 const COURSES = [
   {
     id: 1,
+    idSlug: "painting",
     title: "Painting Classes",
     subtitle: "8 styles from Oil to Freehand",
     category: "Painting",
@@ -20,7 +21,7 @@ const COURSES = [
     icon: "🎨",
     tag: "Most Popular",
     tagColor: "#CD2C58",
-    img: "/classes/image.png",
+    img: "/classes/painting.png",
     desc: "Step-by-step painting across 8 styles — oil, fabric, kajal, watercolor, acrylic, texture, block & freehand. For every age and skill level.",
     curriculum: [
       { step: "Oil Painting on Canvas", detail: "Rich layering, color blending & shading on canvas." },
@@ -35,6 +36,7 @@ const COURSES = [
   },
   {
     id: 2,
+    idSlug: "stitching",
     title: "Stitching Courses",
     subtitle: "Diploma in Garment Making",
     category: "Stitching",
@@ -45,7 +47,7 @@ const COURSES = [
     icon: "🧵",
     tag: "Diploma",
     tagColor: "#E06B80",
-    img: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&auto=format&fit=crop&q=80",
+    img: "/classes/stiching.png",
     desc: "Three focused diplomas — Kids' Garments, Young Girl Garments, and Ladies' Garments — from measurements and patterns to professional finishing.",
     curriculum: [
       { step: "Diploma in Kids' Garments", detail: "Design & stitch children's clothing with precise measurements." },
@@ -55,6 +57,7 @@ const COURSES = [
   },
   {
     id: 3,
+    idSlug: "clay",
     title: "Clay Modeling Craft",
     subtitle: "Decorative sculpture & 3D art",
     category: "Craft",
@@ -65,7 +68,7 @@ const COURSES = [
     icon: "🏺",
     tag: "Hands-on",
     tagColor: "#CD2C58",
-    img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&auto=format&fit=crop&q=80",
+    img: "/classes/clay.png",
     desc: "Create beautiful decorative items and artistic pieces using clay. Enhances hand coordination, patience, and artistic imagination.",
     curriculum: [
       { step: "Clay Basics & Tools", detail: "Introduction to clay types, tools, and preparation." },
@@ -77,6 +80,7 @@ const COURSES = [
   },
   {
     id: 4,
+    idSlug: "paper",
     title: "Paper Craft Classes",
     subtitle: "Bags, Origami, 3D Art & Flowers",
     category: "Craft",
@@ -87,7 +91,7 @@ const COURSES = [
     icon: "📄",
     tag: "4 Modules",
     tagColor: "#E06B80",
-    img: "https://images.unsplash.com/photo-1616628188859-7a11abb6fcc9?w=600&auto=format&fit=crop&q=80",
+    img: "/classes/paper_craft.png",
     desc: "Four 7-day modules covering paper bag making, 3D origami statues, 3D art effects, and beautiful flower making using colorful papers.",
     curriculum: [
       { step: "Bag Making", detail: "Stylish handmade paper bags — cuts, folds & handles." },
@@ -98,6 +102,7 @@ const COURSES = [
   },
   {
     id: 5,
+    idSlug: "calligraphy",
     title: "Calligraphy Courses",
     subtitle: "Hindi & English · 30 fonts",
     category: "Drawing",
@@ -108,7 +113,7 @@ const COURSES = [
     icon: "✍️",
     tag: "30 Fonts",
     tagColor: "#CD2C58",
-    img: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&auto=format&fit=crop&q=80",
+    img: "/classes/caligraphy.png",
     desc: "Learn 30 different calligraphy fonts in Hindi and English — strokes, lettering styles, and creative writing from basic to professional level.",
     curriculum: [
       { step: "Stroke Fundamentals", detail: "Basic pen holds, pressure, and stroke direction." },
@@ -120,6 +125,7 @@ const COURSES = [
   },
   {
     id: 6,
+    idSlug: "soap",
     title: "Herbal Soap Making",
     subtitle: "Natural skincare from scratch",
     category: "Wellness",
@@ -130,7 +136,7 @@ const COURSES = [
     icon: "🌿",
     tag: "Natural",
     tagColor: "#7a9b5a",
-    img: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&auto=format&fit=crop&q=80",
+    img: "/classes/herbal_soap.png",
     desc: "Learn to make natural soaps using herbal ingredients. Ideal for those interested in handmade products and natural skincare.",
     curriculum: [
       { step: "Ingredients & Safety", detail: "Herbal oils, lye handling, and safety protocols." },
@@ -140,6 +146,7 @@ const COURSES = [
   },
   {
     id: 7,
+    idSlug: "resin",
     title: "Resin Art",
     subtitle: "Epoxy art · Coasters & Wall Art",
     category: "Craft",
@@ -150,7 +157,7 @@ const COURSES = [
     icon: "💎",
     tag: "Trending",
     tagColor: "#CD2C58",
-    img: "https://images.unsplash.com/photo-1615454782932-80dc42b03d39?w=600&auto=format&fit=crop&q=80",
+    img: "/classes/resin_art.png",
     desc: "Create glossy, beautiful decorative pieces using epoxy resin — coasters, trays, wall art, name plates and more.",
     curriculum: [
       { step: "Resin Basics & Safety", detail: "Epoxy types, mixing ratios, and PPE essentials." },
@@ -161,6 +168,7 @@ const COURSES = [
   },
   {
     id: 8,
+    idSlug: "candle",
     title: "Candle Making",
     subtitle: "Scented candles · All colours",
     category: "Wellness",
@@ -171,7 +179,7 @@ const COURSES = [
     icon: "🕯️",
     tag: "Aromatic",
     tagColor: "#E06B80",
-    img: "https://images.unsplash.com/photo-1603906402565-9c4fb4f33fb1?w=600&auto=format&fit=crop&q=80",
+    img: "/classes/candle_making.jpeg",
     desc: "Learn to make beautifully scented candles in different colours, shapes, and sizes. Perfect for gifting and home décor.",
     curriculum: [
       { step: "Wax Types & Wicks", detail: "Soy, paraffin, beeswax and wick selection." },
@@ -181,6 +189,7 @@ const COURSES = [
   },
   {
     id: 9,
+    idSlug: "rangoli",
     title: "Portable Rangoli",
     subtitle: "Basic to Advanced · Indian Art",
     category: "Cultural",
@@ -191,7 +200,7 @@ const COURSES = [
     icon: "🌸",
     tag: "Cultural",
     tagColor: "#E06B80",
-    img: "https://images.unsplash.com/photo-1605908580297-f3e1c53c33e6?w=600&auto=format&fit=crop&q=80",
+    img: "/classes/portable_rangoli.png",
     desc: "Learn Rangoli from basic outlines to advanced patterns — symmetry, color blending, and traditional Indian designs for all occasions.",
     curriculum: [
       { step: "Basic Outline Drawing", detail: "Grid, dots, and free-hand outline techniques." },
@@ -202,6 +211,7 @@ const COURSES = [
   },
   {
     id: 10,
+    idSlug: "lippan",
     title: "Lippan Art Workshop",
     subtitle: "Mud & Mirror · Gujarat Heritage",
     category: "Cultural",
@@ -212,7 +222,7 @@ const COURSES = [
     icon: "🪞",
     tag: "Heritage",
     tagColor: "#CD2C58",
-    img: "https://images.unsplash.com/photo-1603570388395-5e3e01cfbe4e?w=600&auto=format&fit=crop&q=80",
+    img: "/classes/lippon_art.png",
     desc: "Discover Kutch Gujarat's ancient Lippan art — mud and mirror mosaic wall art with stunning geometric patterns and mirror inlays.",
     curriculum: [
       { step: "Introduction to Lippan", detail: "History of Kutch art and material overview." },
@@ -224,6 +234,7 @@ const COURSES = [
   },
   {
     id: 11,
+    idSlug: "drawing",
     title: "Let's Draw & Paint",
     subtitle: "Designer Package · 12 Levels",
     category: "Drawing",
@@ -234,7 +245,7 @@ const COURSES = [
     icon: "✏️",
     tag: "Flagship",
     tagColor: "#CD2C58",
-    img: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&auto=format&fit=crop&q=80",
+    img: "/classes/hand_painting.png",
     desc: "Suman's flagship 12-level program — from basic sketching to portfolio development. A complete artistic education for all skill levels.",
     curriculum: [
       { step: "Sketching Techniques", detail: "Lines, shapes, proportions, and basic forms." },
@@ -293,6 +304,7 @@ function CourseCard({ c, idx }: { c: typeof COURSES[0]; idx: number }) {
   return (
     <div
       ref={ref}
+      id={c.idSlug}
       className={`tc-card ${inView ? "tc-card-in" : ""}`}
       style={{ "--d": `${(idx % 3) * 0.08}s` } as React.CSSProperties}
     >
@@ -711,7 +723,7 @@ export default function TrainingClasses() {
         }
       `}</style>
 
-      <section className="tc-wrap tc-section">
+      <section className="tc-wrap tc-section" id = "training-classes">
         <div className="tc-blob tc-blob-1" />
         <div className="tc-blob tc-blob-2" />
 

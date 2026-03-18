@@ -6,29 +6,38 @@ import { useEffect, useRef, useState } from "react";
    DATA
 ───────────────────────────────────── */
 const QUICK_LINKS = [
-  { label: "Home",        href: "#home" },
-  { label: "About Suman", href: "#about" },
-  { label: "Classes",     href: "#classes" },
-  { label: "Services",    href: "#services" },
-  { label: "Gallery",     href: "#gallery" },
-  { label: "Contact",     href: "#contact" },
+  { label: "Home",        href: "/" },
+  { label: "About Suman", href: "/about-us" },
+  { label: "Classes",     href: "/training-classes" },
+  { label: "Services",    href: "/services" },
+  { label: "Gallery",     href: "/gallery" },
+  { label: "Contact",     href: "/contact" },
 ];
 
 const CLASS_LINKS = [
-  { label: "Painting (8 styles)",  href: "#classes" },
-  { label: "Stitching Diplomas",   href: "#classes" },
-  { label: "Clay & Paper Craft",   href: "#classes" },
-  { label: "Resin & Candle Art",   href: "#classes" },
-  { label: "Calligraphy",          href: "#classes" },
-  { label: "Rangoli & Lippan Art", href: "#classes" },
+  { label: "Painting (8 styles)",   href: "/training-classes/#painting" },
+  { label: "Stitching Diplomas",    href: "/training-classes/#stitching" },
+  { label: "Let's Draw & Paint",    href: "/training-classes/#drawing" },
+
+  { label: "Calligraphy",           href: "/training-classes/#calligraphy" },
+
+  { label: "Clay Modeling",         href: "/training-classes/#clay" },
+  { label: "Paper Craft",           href: "/training-classes/#paper" },
+
+  { label: "Resin Art",             href: "/training-classes/#resin" },
+  { label: "Candle Making",         href: "/training-classes/#candle" },
+  { label: "Soap Making",           href: "/training-classes/#soap" },
+
+  { label: "Rangoli",               href: "/training-classes/#rangoli" },
+  { label: "Lippan Art",            href: "/training-classes/#lippan" },
 ];
 
 const SERVICE_LINKS = [
-  { label: "Hand Painting",     href: "#services" },
-  { label: "Thermacol Art",     href: "#services" },
-  { label: "Fancy Dress Design",href: "#services" },
-  { label: "School Projects",   href: "#services" },
-  { label: "Wedding Hampers",   href: "#services" },
+  { label: "Hand Painting",      href: "/services/#hand-painting" },
+  { label: "Thermacol Art",      href: "/services/#thermacol-art" },
+  { label: "Fancy Dress Design", href: "/services/#fancy-dress" },
+  { label: "School Projects",    href: "/services/#school-projects" },
+  { label: "Wedding Hampers",    href: "/services/#wedding-hampers" },
 ];
 
 const SOCIALS = [

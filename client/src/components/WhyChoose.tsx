@@ -120,7 +120,7 @@ export default function WhyChooseKalasrijan() {
   const { ref: cr, inView: ci } = useInView(0.06);
 
   return (
-    <div>
+    <div id="why-choose">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 

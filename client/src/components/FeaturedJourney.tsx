@@ -713,7 +713,7 @@ export default function FeaturedJourney() {
       `}</style>
 
       {/* ─── MARKUP ─── */}
-      <section className="fj-wrap fj-section">
+      <section className="fj-wrap fj-section" id="journey">
         <div className="fj-noise" />
         <div className="fj-grain" />
         <div className="fj-arc fj-arc-1" />

@@ -22,8 +22,8 @@ function App() {
         <Route path="/services" element={<ServicesSection />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/gallery" element={<PhotoGallery />} />
-        <Route path="/training&classes" element={<TrainingClasses />} />
-        <Route path="/aboutus" element={<AboutUsPage />} />
+        <Route path="/training-classes" element={<TrainingClasses />} />
+        <Route path="/about-us" element={<AboutUsPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 const SERVICES = [
   {
-    id: 1, idSlug: "handpainting", num: "01", title: "Hand Painting", subtitle: "Wearable Canvas Art", icon: "🎨", tag: "Wearable Art", tagColor: "#CD2C58",
+    id: 1, idSlug: "hand-painting", num: "01", title: "Hand Painting", subtitle: "Wearable Canvas Art", icon: "🎨", tag: "Wearable Art", tagColor: "#CD2C58",
     img: "/classes/image.png",
     desc: "Each piece is hand-crafted with meticulous outline work, vivid pigments, and Suman's signature touch of elegance — turning your garment into a wearable masterpiece.",
     services: [{ name: "Hand Painting on Saree", price: "₹1,500" }, { name: "Hand Painting on Suits", price: "₹1,500" }],
@@ -10,7 +10,7 @@ const SERVICES = [
     accent: "linear-gradient(145deg,#FFC69D,#E06B80)",
   },
   {
-    id: 2, idSlug: "fancydress", num: "02", title: "Thermacol Art", subtitle: "Sculptural Event Décor", icon: "🏛️", tag: "Event Decor", tagColor: "#E06B80",
+    id: 2, idSlug: "thermacol-art", num: "02", title: "Thermacol Art", subtitle: "Sculptural Event Décor", icon: "🏛️", tag: "Event Decor", tagColor: "#E06B80",
     img: "https://images.unsplash.com/photo-1519741497674-611481863552?w=700&auto=format&fit=crop",
     desc: "Lightweight yet breathtaking — Suman shapes Thermacol into grand statues, monuments, display props, and wedding packing trays that make every occasion unforgettable.",
     services: [{ name: "Wedding Packing Trays", price: "Custom" }, { name: "Statues & Monuments", price: "Custom" }, { name: "Temporary Displays", price: "Custom" }],
@@ -18,7 +18,7 @@ const SERVICES = [
     accent: "linear-gradient(145deg,#FFE6D4,#FFC69D)",
   },
   {
-    id: 3, idSlug: "weddinghampers", num: "03", title: "Fancy Dress", subtitle: "Costume Design End-to-End", icon: "✂️", tag: "Costumes", tagColor: "#CD2C58",
+    id: 3, idSlug: "fancy-dress", num: "03", title: "Fancy Dress", subtitle: "Costume Design End-to-End", icon: "✂️", tag: "Costumes", tagColor: "#CD2C58",
     img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&auto=format&fit=crop",
     desc: "From concept to catwalk — complete costume creation with matching props, themed colours, and every last detail handled for you. Every child deserves to shine on stage.",
     services: [{ name: "Theme Costume + Props", price: "₹1,000–₹5,000" }],
@@ -26,7 +26,7 @@ const SERVICES = [
     accent: "linear-gradient(145deg,#FFC69D,#CD2C58)",
   },
   {
-    id: 4, idSlug: "schoolprojects", num: "04", title: "School Projects", subtitle: "Models, STEM & B.Ed", icon: "🔬", tag: "Education", tagColor: "#E06B80",
+    id: 4, idSlug: "school-projects", num: "04", title: "School Projects", subtitle: "Models, STEM & B.Ed", icon: "🔬", tag: "Education", tagColor: "#E06B80",
     img: "https://images.unsplash.com/photo-1532094349884-543559822d54?w=700&auto=format&fit=crop",
     desc: "Working models, robotic projects, B.Ed assignments, STEM exhibition displays, storytelling models — every concept brought to life with clarity and craft.",
     services: [
@@ -40,15 +40,15 @@ const SERVICES = [
     accent: "linear-gradient(145deg,#FFE6D4,#E06B80)",
   },
   {
-    id: 5, idSlug: "rangoli&more", num: "05", title: "Wedding Hampers", subtitle: "Packing & Platters", icon: "🎁", tag: "Occasions", tagColor: "#CD2C58",
+    id: 5, idSlug: "wedding-hampers", num: "05", title: "Wedding Hampers", subtitle: "Packing & Platters", icon: "🎁", tag: "Occasions", tagColor: "#CD2C58",
     img: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=700&auto=format&fit=crop",
-    desc: "Beautifully curated p latters and hampers for life's most cherished occasions — from Haldi ceremonies to gifting trays that leave every guest in awe.",
+    desc: "Beautifully curated  platters and hampers for life's most cherished occasions — from Haldi ceremonies to gifting trays that leave every guest in awe.",
     services: [{ name: "Decorative Platters", price: "Custom" }, { name: "Haldi Platter", price: "Custom" }],
     highlight: "Made to order",
     accent: "linear-gradient(145deg,#FFC69D,#E06B80)",
   },
   {
-    id: 6, idSlug: "handpainting", num: "06", title: "Card Decoration", subtitle: "Themed Invitation Art", icon: "💌", tag: "Invitations", tagColor: "#E06B80",
+    id: 6, idSlug: "card-decoration", num: "06", title: "Card Decoration", subtitle: "Themed Invitation Art", icon: "💌", tag: "Invitations", tagColor: "#E06B80",
     img: "https://images.unsplash.com/photo-1510074377623-8cf13fb86c08?w=700&auto=format&fit=crop",
     desc: "Customized card decorations for weddings and special events. Every design is carefully crafted to align with your specific theme and occasion style.",
     services: [
@@ -60,7 +60,7 @@ const SERVICES = [
     accent: "linear-gradient(145deg,#FFE6D4,#FFC69D)",
   },
   {
-    id: 7, idSlug: "handpainting", num: "07", title: "Custom Event Décor", subtitle: "Tailored Theme Elements", icon: "✨", tag: "Customized", tagColor: "#CD2C58",
+    id: 7, idSlug: "custom-event-decor", num: "07", title: "Custom Event Décor", subtitle: "Tailored Theme Elements", icon: "✨", tag: "Customized", tagColor: "#CD2C58",
     img: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&auto=format&fit=crop",
     desc: "Bespoke decoration items designed specifically for your event's requirements. Suman creates unique pieces that perfectly fit your chosen theme.",
     services: [{ name: "Theme-based Decor Items", price: "₹1,000" }],

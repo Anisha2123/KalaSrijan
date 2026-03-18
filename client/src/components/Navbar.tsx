@@ -11,40 +11,58 @@ const NAV_LINKS = [
     href: "/",
     sub: null,
   },
+ {
+  label: "Classes",
+  href: "/training-classes",
+  sub: [
+    // 🎨 Core Popular
+    { label: "Painting",        href: "/training-classes/#painting", desc: "8 styles · ₹3K–₹5K" },
+    { label: "Stitching",       href: "/training-classes/#stitching", desc: "3 diploma courses" },
+    { label: "Let's Draw",      href: "/training-classes/#drawing", desc: "12-level flagship program" },
+
+    // ✍️ Creative Skills
+    { label: "Calligraphy",     href: "/training-classes/#calligraphy", desc: "30 fonts · Hindi & English" },
+
+    // 🧵 Craft & DIY
+    { label: "Clay Modeling",   href: "/training-classes/#clay", desc: "3D decorative art" },
+    { label: "Paper Craft",     href: "/training-classes/#paper", desc: "Bags · Origami · Flowers" },
+    { label: "Resin Art",       href: "/training-classes/#resin", desc: "Trending epoxy art" },
+
+    // 🌿 Lifestyle / Workshop
+    { label: "Candle Making",   href: "/training-classes/#candle", desc: "Scented candles" },
+    { label: "Soap Making",     href: "/training-classes/#soap", desc: "Natural skincare" },
+
+    // 🎭 Cultural Arts
+    { label: "Rangoli",         href: "/training-classes/#rangoli", desc: "Traditional designs" },
+    { label: "Lippan Art",      href: "/training-classes/#lippan", desc: "Mud & mirror art" },
+  ],
+},
   {
-    label: "About",
-    href: "/#about",
-    sub: [
-      { label: "Meet Suman Jain", href: "/#about", desc: "The story behind Kalasrijan" },
-      { label: "Why Choose Us",   href: "/#whychoose",   desc: "Experience · Trust · Creativity" },
-      { label: "Our Journey",     href: "/#journey", desc: "15+ years of art & craft" },
-    ],
-  },
-  {
-    label: "Classes",
-    href: "/training&classes",
-    sub: [
-      { label: "Painting",       href: "/classes/#Painting", desc: "8 styles · ₹3K–₹5K" },
-      { label: "Stitching",      href: "/classes/#Stitching", desc: "3 diploma courses" },
-      { label: "Clay & Paper",   href: "/classes/#clay&paper", desc: "Modeling & craft modules" },
-      { label: "Resin & Candle", href: "/classes/#resin&candle", desc: "2-day workshops" },
-      { label: "Rangoli & More", href: "/classes/#rangoli&more", desc: "Cultural art forms" },
-    ],
-  },
-  {
-    label: "Services",
-    href: "/services",
-    sub: [
-      { label: "Hand Painting",    href: "/services/#handpainting", desc: "Custom art on any surface" },
-      { label: "Fancy Dress",      href: "/services/#fancydress", desc: "Design & costume craft" },
-      { label: "Wedding Hampers",  href: "/services/#weddinghampers", desc: "Bespoke gift packaging" },
-      { label: "School Projects",  href: "/services/#schoolprojects", desc: "From ₹300" },
-    ],
-  },
+  label: "Services",
+  href: "/services",
+  sub: [
+    { label: "Hand Painting",     href: "/services/#hand-painting", desc: "Custom art on any surface" },
+    { label: "Thermacol Art",     href: "/services/#thermacol-art", desc: "Event décor & sculptures" },
+    { label: "Fancy Dress",       href: "/services/#fancy-dress", desc: "Costume design & props" },
+    { label: "School Projects",   href: "/services/#school-projects", desc: "Models & STEM work" },
+    { label: "Wedding Hampers",   href: "/services/#wedding-hampers", desc: "Bespoke gift packaging" },
+    { label: "Card Decoration",   href: "/services/#card-decoration", desc: "Custom invitation art" },
+    { label: "Custom Event Décor",href: "/services/#custom-event-decor", desc: "Theme-based decor items" },
+  ],
+},
   {
     label: "Gallery",
     href: "/gallery",
     sub: null,
+  },
+  {
+    label: "About",
+    href: "/about-us",
+    sub: [
+      { label: "Meet Suman Jain", href: "/about-us/#meet-the-maker", desc: "The story behind Kalasrijan" },
+      { label: "Why Choose Us",   href: "/about-us/#why-choose",   desc: "Experience · Trust · Creativity" },
+      { label: "Our Journey",     href: "/about-us/#journey", desc: "15+ years of art & craft" },
+    ],
   },
   {
     label: "Contact",
@@ -74,7 +92,7 @@ function ScrollProgress() {
       width: `${prog}%`, height: 2,
       background: "linear-gradient(90deg, #CD2C58, #FFC69D, #E06B80)",
       transition: "width 0.1s linear",
-      zIndex: 10,
+      zIndex: 100,
     }} />
   );
 }
@@ -88,7 +106,7 @@ export default function Navbar() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
-  const [mounted, setMounted] = useState(false);
+  // const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -490,7 +508,7 @@ export default function Navbar() {
         <div className="nb-inner">
 
           {/* LOGO */}
-          <a href="#home" className="nb-logo" aria-label="Kalasrijan home">
+          <a href="/" className="nb-logo" aria-label="Kalasrijan home">
             <div className="nb-logo-mark">क</div>
             <div className="nb-logo-text">
               <span className="nb-logo-name">Kalasrijan</span>
@@ -547,7 +565,7 @@ export default function Navbar() {
           </ul>
 
           {/* CTA */}
-          <a href="#contact" className="nb-cta">
+          <a href="/contact" className="nb-cta">
             Join a Class
             <span className="nb-cta-arrow">→</span>
           </a>
