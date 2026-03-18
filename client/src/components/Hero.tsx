@@ -428,7 +428,7 @@ export default function KalasrijanHero() {
         @media (max-width: 860px) {
           .kala-container {
             grid-template-columns: 1fr;
-            padding: 60px 24px 80px;
+            padding: 30px 24px 80px;
             gap: 48px;
             text-align: center;
           }

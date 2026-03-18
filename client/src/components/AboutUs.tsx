@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const STATS = [
-  { value: "5000+", label: "Happy Students" },
-  { value: "15+", label: "Art Forms" },
-  { value: "Free", label: "Temple Classes" },
-  { value: "2019", label: "IFB Chef Year" },
+  { value: "25000+", label: "Happy Students" },
+  { value: "200+", label: "Art Forms" },
+  { value: "Free", label: "Summer Camps" },
+  { value: "2014", label: "IFB Chef Year" },
 ];
 const TIMELINE = [
   { year: "Early Days", icon: "🧸", title: "Soft Toy Classes", desc: "Started her journey teaching soft toy-making, conducting free classes in temples to share skills with the community." },
@@ -122,13 +122,13 @@ export default function MeetTheMaker() {
                 </div>
 
                 {/* Credentials */}
-                <div style={{marginTop:38,display:"flex",flexDirection:"column",gap:9}}>
+                {/* <div style={{marginTop:38,display:"flex",flexDirection:"column",gap:9}}>
                   {CREDENTIALS.map((c,i)=>(
                     <div key={i} className="mtm-cred-item" style={{display:"flex",alignItems:"center",gap:12,background:"rgba(255,255,255,0.70)",backdropFilter:"blur(8px)",border:"1px solid rgba(224,107,128,0.18)",borderRadius:12,padding:"10px 16px",fontSize:"0.82rem",color:"#7a4a55",fontFamily:"'DM Sans',sans-serif",animationDelay:`${0.6+i*0.1}s`}}>
                       <span style={{fontSize:"1rem"}}>{c.icon}</span><span>{c.text}</span>
                     </div>
                   ))}
-                </div>
+                </div> */}
               </div>
             )}
 

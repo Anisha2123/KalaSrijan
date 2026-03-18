@@ -20,7 +20,7 @@ const COURSES = [
     icon: "🎨",
     tag: "Most Popular",
     tagColor: "#CD2C58",
-    img: "https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?w=600&auto=format&fit=crop&q=80",
+    img: "/classes/image.png",
     desc: "Step-by-step painting across 8 styles — oil, fabric, kajal, watercolor, acrylic, texture, block & freehand. For every age and skill level.",
     curriculum: [
       { step: "Oil Painting on Canvas", detail: "Rich layering, color blending & shading on canvas." },
