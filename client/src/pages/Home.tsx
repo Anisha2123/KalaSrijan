@@ -11,21 +11,27 @@ import ServicesSection from '../components/Services'
 import FeaturedJourney from '../components/FeaturedJourney'
 import TrainingClasses from './TrainingClasses'
 import ContactUs from './ContactUs'
-import { TrainingTeaserCinematic, TrainingTeaserEditorial, TrainingTeaserMosaic } from '../components/TrainingTeaser'
+import TrainingTeaserEditorial from '../components/TrainingTeaser'
+// import { TrainingTeaserCinematic, TrainingTeaserEditorial, TrainingTeaserMosaic } from '../components/TrainingTeaser'
+// import GalleryTeaser from '../components/GalleryTeaser'
 
 const Home = () => {
   return (
     <div>
         <Hero/>
-        <AboutUs/>
+        
         <ServicesSection />
-        <TrainingTeaserCinematic />
         <TrainingTeaserEditorial />
-        <TrainingTeaserMosaic />
+        {/* <TrainingTeaserCinematic /> */}
+        {/* <TrainingTeaserEditorial /> */}
+        {/* <TrainingTeaserMosaic /> */}
         {/* <TrainingClasses /> */}
-        <FeaturedJourney />
-        <WhyChooseSumanJain />
         <ModernGallery/>
+        <AboutUs/>
+        {/* <FeaturedJourney /> */}
+        <WhyChooseSumanJain />
+        {/* <GalleryTeaser /> */}
+        
         <ContactUs />
     </div>
   )
