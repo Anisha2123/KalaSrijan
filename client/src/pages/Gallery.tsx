@@ -478,12 +478,12 @@ export default function PhotoGallery() {
         </div>
 
         {/* ── MOVING STRIPS ── */}
-        <div className="pg-strip-wrap" style={{ padding: '48px 0', background: '#fff8f4', display: 'flex', flexDirection: 'column', gap: 14, position: 'relative', zIndex: 1 }}>
+        {/* <div className="pg-strip-wrap" style={{ padding: '48px 0', background: '#fff8f4', display: 'flex', flexDirection: 'column', gap: 14, position: 'relative', zIndex: 1 }}>
           <ScrollStrip imgs={strip1} reverse={false} onOpen={openLb} />
           <div className="pg-strip-hide">
             <ScrollStrip imgs={strip2} reverse={true} onOpen={openLb} />
           </div>
-        </div>
+        </div> */}
 
         {/* ── DIVIDER ── */}
         <div className="pg-divider" style={{ display: 'flex', alignItems: 'center', gap: 20, maxWidth: 1260, margin: '0 auto', padding: '0 36px 44px', position: 'relative', zIndex: 1 }}>

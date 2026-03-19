@@ -329,7 +329,7 @@ export default function KalasrijanHero() {
         }
         .kala-monogram {
           font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(5rem, 10vw, 9rem);
+          font-size: clamp(3rem, 10vw, 7rem);
           font-weight: 300;
           color: rgba(255,255,255,0.90);
           line-height: 1;
@@ -539,9 +539,9 @@ export default function KalasrijanHero() {
               }}
             >
               <div className="kala-frame-inner">
-                {/* <div className="kala-monogram">कलासृजन</div> */}
-                <div className="kala-monogram">कला</div>
-                <div className="kala-frame-label">KALASRIJAN</div>
+                <div className="kala-monogram">कलासृजन</div>
+                {/* <div className="kala-monogram">कला</div> */}
+                <div className="kala-frame-label">SUMAN JAIN</div>
               </div>
             </div>
 
