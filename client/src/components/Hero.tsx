@@ -426,6 +426,7 @@ export default function KalasrijanHero() {
 
         /* Responsive */
         @media (max-width: 860px) {
+
           .kala-container {
             grid-template-columns: 1fr;
             padding: 30px 24px 80px;
@@ -446,6 +447,8 @@ export default function KalasrijanHero() {
           .kala-heading { font-size: 2.4rem; }
           .kala-card { display: none; }
           .kala-dots { display: none; }
+          .kala-craft-word{
+          font-size: 2rem }
         }
       `}</style>
 
