@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import SmartImage from "../utils/SmartImage";
 
 const SERVICES = [
   {
     id: 1, idSlug: "hand-painting", num: "01", title: "Hand Painting", subtitle: "Wearable Canvas Art", icon: "🎨", tag: "Wearable Art", tagColor: "#CD2C58",
-    img: "/classes/image.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916625/image_rejikn.png",
     desc: "Each piece is hand-crafted with meticulous outline work, vivid pigments, and Suman's signature touch of elegance — turning your garment into a wearable masterpiece.",
     services: [{ name: "Hand Painting on Saree", price: "₹1,500" }, { name: "Hand Painting on Suits", price: "₹1,500" }],
     highlight: "₹1,500 / piece",
@@ -11,7 +12,7 @@ const SERVICES = [
   },
   {
     id: 2, idSlug: "thermacol-art", num: "02", title: "Thermacol Art", subtitle: "Sculptural Event Décor", icon: "🏛️", tag: "Event Decor", tagColor: "#E06B80",
-    img: "/services/thermocal art services.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916631/thermacol_art_tgh6et.png",
     desc: "Lightweight yet breathtaking — Suman shapes Thermacol into grand statues, monuments, display props, and wedding packing trays that make every occasion unforgettable.",
     services: [{ name: "Wedding Packing Trays", price: "Custom" }, { name: "Statues & Monuments", price: "Custom" }, { name: "Temporary Displays", price: "Custom" }],
     highlight: "From ₹1,000",
@@ -19,7 +20,7 @@ const SERVICES = [
   },
   {
     id: 3, idSlug: "fancy-dress", num: "03", title: "Fancy Dress", subtitle: "Costume Design End-to-End", icon: "✂️", tag: "Costumes", tagColor: "#CD2C58",
-    img: "/services/Fancy dress competion.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920275/35894ddc-a1f6-4e5b-b706-1098964ed757.png",
     desc: "From concept to catwalk — complete costume creation with matching props, themed colours, and every last detail handled for you. Every child deserves to shine on stage.",
     services: [{ name: "Theme Costume + Props", price: "₹1,000–₹5,000" }],
     highlight: "₹1,000 – ₹5,000",
@@ -27,7 +28,7 @@ const SERVICES = [
   },
   {
     id: 4, idSlug: "school-projects", num: "04", title: "School Projects", subtitle: "Models, STEM & B.Ed", icon: "🔬", tag: "Education", tagColor: "#E06B80",
-    img: "/services/image.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920224/a52e6c62-720d-4a68-9c71-f96e3d44307b.png",
     desc: "Working models, robotic projects, B.Ed assignments, STEM exhibition displays, storytelling models — every concept brought to life with clarity and craft.",
     services: [
       { name: "Working / Demo Models", price: "₹300–₹500" },
@@ -41,7 +42,7 @@ const SERVICES = [
   },
   {
     id: 5, idSlug: "wedding-hampers", num: "05", title: "Wedding Hampers", subtitle: "Packing & Platters", icon: "🎁", tag: "Occasions", tagColor: "#CD2C58",
-    img: "/services/weeding decorcation and hamper.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916647/weeding_decorcation_and_hamper_orgaqa.png",
     desc: "Beautifully curated  platters and hampers for life's most cherished occasions — from Haldi ceremonies to gifting trays that leave every guest in awe.",
     services: [{ name: "Decorative Platters", price: "Custom" }, { name: "Haldi Platter", price: "Custom" }],
     highlight: "Made to order",
@@ -49,7 +50,7 @@ const SERVICES = [
   },
   {
     id: 6, idSlug: "card-decoration", num: "06", title: "Card Decoration", subtitle: "Themed Invitation Art", icon: "💌", tag: "Invitations", tagColor: "#E06B80",
-    img: "/services/Card Decoration.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916647/Card_Decoration_ermpnu.png",
     desc: "Customized card decorations for weddings and special events. Every design is carefully crafted to align with your specific theme and occasion style.",
     services: [
       { name: "Wedding Card Decoration", price: "₹500" },
@@ -61,7 +62,7 @@ const SERVICES = [
   },
   {
     id: 7, idSlug: "custom-event-decor", num: "07", title: "Custom Event Décor", subtitle: "Tailored Theme Elements", icon: "✨", tag: "Customized", tagColor: "#CD2C58",
-    img: "/services/image.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920841/61a7d48c-f7b5-43e0-b7e4-37cb5fb9a67c.png",
     desc: "Bespoke decoration items designed specifically for your event's requirements. Suman creates unique pieces that perfectly fit your chosen theme.",
     services: [{ name: "Theme-based Decor Items", price: "₹1,000" }],
     highlight: "From ₹1,000",
@@ -98,7 +99,8 @@ function Card({ s, idx }) {
       <div style={{ position:"relative", order: even ? 1 : 2, zIndex:1 }}>
         <div style={{ position:"absolute", top:14, left:14, width:"100%", height:"100%", border:"1.5px solid rgba(205,44,88,0.18)", borderRadius: even ? "24px 6px 24px 6px" : "6px 24px 6px 24px", transition:"transform 0.4s", transform: hov ? "translate(5px,5px)" : "none", zIndex:0 }}/>
         <div style={{ position:"relative", zIndex:1, width:"100%", aspectRatio:"4/3", borderRadius: even ? "6px 24px 6px 24px" : "24px 6px 24px 6px", overflow:"hidden", boxShadow:"0 28px 72px rgba(205,44,88,0.18),0 6px 20px rgba(224,107,128,0.12)" }}>
-          <img src={s.img} alt={s.title} style={{ width:"100%", height:"100%", objectFit:"cover", transition:"transform 0.7s ease", transform: hov ? "scale(1.06)" : "scale(1)", display:"block" }} />
+          <SmartImage src={s.img} alt={s.title} loading="lazy"
+  decoding="async" style={{ width:"100%", height:"100%", objectFit:"cover", transition:"transform 0.7s ease", transform: hov ? "scale(1.06)" : "scale(1)", display:"block" }} />
           <div style={{ position:"absolute", inset:0, background:s.accent, opacity: hov ? 0.12 : 0.28, mixBlendMode:"multiply", transition:"opacity 0.4s" }}/>
           <div style={{ position:"absolute", bottom:14, left:14, width:44, height:44, background:"rgba(255,255,255,0.90)", backdropFilter:"blur(8px)", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.25rem", boxShadow:"0 4px 16px rgba(205,44,88,0.14)" }}>{s.icon}</div>
         </div>

@@ -282,7 +282,7 @@ export default function MeetTheMaker() {
                       <div className="mtm-photo-frame-deco" style={{position:"absolute",top:18,left:18,width:"100%",height:"100%",border:"2px solid rgba(205,44,88,0.20)",borderRadius:"8px 28px 8px 28px",zIndex:0}}/>
                       {/* Photo */}
                       <div className="mtm-photo-aspect" style={{position:"relative",zIndex:1,width:"100%",borderRadius:"28px 8px 28px 8px",background:"linear-gradient(155deg,#FFC69D 0%,#E06B80 55%,#CD2C58 100%)",overflow:"hidden",boxShadow:"0 32px 80px rgba(205,44,88,0.22),0 8px 24px rgba(224,107,128,0.14)",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10}}>
-                        {/* Replace with <img src="..." alt="Suman Jain" style={{width:"100%",height:"100%",objectFit:"cover"}}/> */}
+                        {/* Replace with <SmartImage src="..." alt="Suman Jain" style={{width:"100%",height:"100%",objectFit:"cover"}}/> */}
                         <div style={{fontFamily:"'Cormorant Garamond',serif",fontWeight:300,color:"rgba(255,255,255,0.90)",lineHeight:1,textShadow:"0 4px 20px rgba(205,44,88,0.22)"}}>सुमन</div>
                         <div style={{fontSize:"0.68rem",letterSpacing:"0.22em",textTransform:"uppercase",color:"rgba(255,255,255,0.65)",fontFamily:"'DM Sans',sans-serif"}}>Suman Jain</div>
                       </div>

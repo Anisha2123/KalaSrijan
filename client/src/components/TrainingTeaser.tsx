@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import SmartImage from "../utils/SmartImage";
 
 /* ─────────────────────────────────────────────────────────
    DATA
 ───────────────────────────────────────────────────────── */
 const COURSES = [
   {
-    id: 11, num: "01",
+    id: 11,
+    num: "01",
     title: "Let's Draw & Paint",
     subtitle: "Designer Package · 12 Levels",
     category: "Drawing",
@@ -15,72 +17,82 @@ const COURSES = [
     tag: "Flagship",
     tagColor: "#CD2C58",
     icon: "✏️",
-    img: "/classes/painting.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916624/hand_painting_ybvnlb.png",
     accent: "#CD2C58",
     duration: "12 levels × 25 sessions",
   },
+
   {
-    id: 1, num: "02",
+    id: 1,
+    num: "02",
     title: "Painting Classes",
     subtitle: "8 styles from Oil to Freehand",
     category: "Painting",
     feeShort: "From ₹3,000",
     tag: "Most Popular",
-    tagColor: "#E06B80",
+    tagColor: "#CD2C58",
     icon: "🎨",
-    img: "/classes/hand_painting.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916624/painting_dtkwer.png",
     accent: "#E06B80",
     duration: "25 classes · 1–6 months",
   },
+
   {
-    id: 2, num: "03",
+    id: 2,
+    num: "03",
     title: "Stitching Courses",
     subtitle: "Diploma in Garment Making",
     category: "Stitching",
     feeShort: "₹15,000",
     tag: "Diploma",
-    tagColor: "#CD2C58",
+    tagColor: "#E06B80",
     icon: "🧵",
-    img: "/classes/stiching.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916631/stiching_k7vehn.png",
     accent: "#CD2C58",
     duration: "60 classes per diploma",
   },
+
   {
-    id: 7, num: "04",
+    id: 7,
+    num: "04",
     title: "Resin Art",
-    subtitle: "Epoxy · Coasters & Wall Art",
+    subtitle: "Epoxy art · Coasters & Wall Art",
     category: "Craft",
     feeShort: "₹1,500",
     tag: "Trending",
-    tagColor: "#E06B80",
+    tagColor: "#CD2C58",
     icon: "💎",
-    img: "/classes/resin_art.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916630/resin_art_f3zh20.png",
     accent: "#E06B80",
     duration: "2 days",
   },
+
   {
-    id: 10, num: "05",
-    title: "Lippan Art",
+    id: 10,
+    num: "05",
+    title: "Lippan Art Workshop",
     subtitle: "Mud & Mirror · Gujarat Heritage",
     category: "Cultural",
     feeShort: "₹2,000",
     tag: "Heritage",
-    tagColor: "#CD2C58",
+    tagColor: "#E06B80",
     icon: "🪞",
-    img: "/classes/lippon_art.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916625/lippon_art_wcfzrw.png",
     accent: "#CD2C58",
     duration: "2–3 days",
   },
+
   {
-    id: 5, num: "06",
+    id: 5,
+    num: "06",
     title: "Calligraphy Courses",
     subtitle: "Hindi & English · 30 fonts",
     category: "Drawing",
     feeShort: "From ₹3,000",
     tag: "30 Fonts",
-    tagColor: "#E06B80",
+    tagColor: "#CD2C58",
     icon: "✍️",
-    img: "/classes/caligraphy.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916624/caligraphy_pcjmgs.png",
     accent: "#E06B80",
     duration: "Flexible",
   },
@@ -111,7 +123,8 @@ function DesktopCard({ c }: { c: typeof COURSES[0] }) {
   return (
     <div className="la-card">
       <div className="la-card-img-zone">
-        <img src={c.img} alt={c.title} className="la-card-img" loading="lazy" />
+        <SmartImage src={c.img} alt={c.title} className="la-card-img"
+  />
         <div className="la-card-grad" />
         <div className="la-card-num" aria-hidden="true">{c.num}</div>
         <div className="la-card-tag" style={{ background: c.tagColor }}>{c.tag}</div>
@@ -138,7 +151,8 @@ function MobileCard({ c }: { c: typeof COURSES[0] }) {
   return (
     <div className="lam-card">
       <div className="lam-thumb">
-        <img src={c.img} alt={c.title} className="lam-img" loading="lazy" />
+        <SmartImage src={c.img} alt={c.title} className="lam-img" loading="lazy"
+  decoding="async"/>
         <div className="lam-grad" />
         <div className="lam-tag" style={{ background: c.tagColor }}>{c.tag}</div>
         <span className="lam-icon">{c.icon}</span>

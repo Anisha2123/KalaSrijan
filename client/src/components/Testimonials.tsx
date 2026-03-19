@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import SmartImage from "../utils/SmartImage";
 
 const TestimonialsSection = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -297,10 +298,12 @@ const TestimonialsSection = () => {
                     animate={{ borderColor: ['rgba(217, 119, 6, 0.4)', 'rgba(217, 119, 6, 0.6)', 'rgba(217, 119, 6, 0.4)'] }}
                     transition={{ duration: 4, repeat: Infinity }}
                   >
-                    <img
+                    <SmartImage
                       src={testimonials[activeTestimonial].image}
                       alt={testimonials[activeTestimonial].name}
                       className="w-full h-full object-cover"
+                      loading="lazy"
+  decoding="async"
                     />
 
                     {/* Overlay gradient */}

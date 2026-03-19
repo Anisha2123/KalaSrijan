@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import SmartImage from "../utils/SmartImage";
 
 /* ─────────────────────────────────────
    DATA
@@ -21,7 +22,7 @@ const COURSES = [
     icon: "🎨",
     tag: "Most Popular",
     tagColor: "#CD2C58",
-    img: "/classes/painting.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916624/painting_dtkwer.png",
     desc: "Step-by-step painting across 8 styles — oil, fabric, kajal, watercolor, acrylic, texture, block & freehand. For every age and skill level.",
     curriculum: [
       { step: "Oil Painting on Canvas", detail: "Rich layering, color blending & shading on canvas." },
@@ -47,7 +48,7 @@ const COURSES = [
     icon: "🧵",
     tag: "Diploma",
     tagColor: "#E06B80",
-    img: "/classes/stiching.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916631/stiching_k7vehn.png",
     desc: "Three focused diplomas — Kids' Garments, Young Girl Garments, and Ladies' Garments — from measurements and patterns to professional finishing.",
     curriculum: [
       { step: "Diploma in Kids' Garments", detail: "Design & stitch children's clothing with precise measurements." },
@@ -68,7 +69,7 @@ const COURSES = [
     icon: "🏺",
     tag: "Hands-on",
     tagColor: "#CD2C58",
-    img: "/classes/clay.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916624/clay_abqanx.png",
     desc: "Create beautiful decorative items and artistic pieces using clay. Enhances hand coordination, patience, and artistic imagination.",
     curriculum: [
       { step: "Clay Basics & Tools", detail: "Introduction to clay types, tools, and preparation." },
@@ -91,7 +92,7 @@ const COURSES = [
     icon: "📄",
     tag: "4 Modules",
     tagColor: "#E06B80",
-    img: "/classes/paper_craft.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916626/paper_craft_gh2vmz.png",
     desc: "Four 7-day modules covering paper bag making, 3D origami statues, 3D art effects, and beautiful flower making using colorful papers.",
     curriculum: [
       { step: "Bag Making", detail: "Stylish handmade paper bags — cuts, folds & handles." },
@@ -113,7 +114,7 @@ const COURSES = [
     icon: "✍️",
     tag: "30 Fonts",
     tagColor: "#CD2C58",
-    img: "/classes/caligraphy.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916624/caligraphy_pcjmgs.png",
     desc: "Learn 30 different calligraphy fonts in Hindi and English — strokes, lettering styles, and creative writing from basic to professional level.",
     curriculum: [
       { step: "Stroke Fundamentals", detail: "Basic pen holds, pressure, and stroke direction." },
@@ -136,7 +137,7 @@ const COURSES = [
     icon: "🌿",
     tag: "Natural",
     tagColor: "#7a9b5a",
-    img: "/classes/herbal_soap.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916625/herbal_soap_yabv5d.png",
     desc: "Learn to make natural soaps using herbal ingredients. Ideal for those interested in handmade products and natural skincare.",
     curriculum: [
       { step: "Ingredients & Safety", detail: "Herbal oils, lye handling, and safety protocols." },
@@ -157,7 +158,7 @@ const COURSES = [
     icon: "💎",
     tag: "Trending",
     tagColor: "#CD2C58",
-    img: "/classes/resin_art.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916630/resin_art_f3zh20.png",
     desc: "Create glossy, beautiful decorative pieces using epoxy resin — coasters, trays, wall art, name plates and more.",
     curriculum: [
       { step: "Resin Basics & Safety", detail: "Epoxy types, mixing ratios, and PPE essentials." },
@@ -179,7 +180,7 @@ const COURSES = [
     icon: "🕯️",
     tag: "Aromatic",
     tagColor: "#E06B80",
-    img: "/classes/candle_making.jpeg",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916622/candle_making_kwavgn.jpg",
     desc: "Learn to make beautifully scented candles in different colours, shapes, and sizes. Perfect for gifting and home décor.",
     curriculum: [
       { step: "Wax Types & Wicks", detail: "Soy, paraffin, beeswax and wick selection." },
@@ -200,7 +201,7 @@ const COURSES = [
     icon: "🌸",
     tag: "Cultural",
     tagColor: "#E06B80",
-    img: "/classes/portable_rangoli.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916630/portable_rangoli_l12awu.png",
     desc: "Learn Rangoli from basic outlines to advanced patterns — symmetry, color blending, and traditional Indian designs for all occasions.",
     curriculum: [
       { step: "Basic Outline Drawing", detail: "Grid, dots, and free-hand outline techniques." },
@@ -222,7 +223,7 @@ const COURSES = [
     icon: "🪞",
     tag: "Heritage",
     tagColor: "#CD2C58",
-    img: "/classes/lippon_art.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916625/lippon_art_wcfzrw.png",
     desc: "Discover Kutch Gujarat's ancient Lippan art — mud and mirror mosaic wall art with stunning geometric patterns and mirror inlays.",
     curriculum: [
       { step: "Introduction to Lippan", detail: "History of Kutch art and material overview." },
@@ -245,7 +246,7 @@ const COURSES = [
     icon: "✏️",
     tag: "Flagship",
     tagColor: "#CD2C58",
-    img: "/classes/hand_painting.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916624/hand_painting_ybvnlb.png",
     desc: "Suman's flagship 12-level program — from basic sketching to portfolio development. A complete artistic education for all skill levels.",
     curriculum: [
       { step: "Sketching Techniques", detail: "Lines, shapes, proportions, and basic forms." },
@@ -310,7 +311,8 @@ function CourseCard({ c, idx }: { c: typeof COURSES[0]; idx: number }) {
     >
       {/* Image area */}
       <div className="tc-card-img-wrap">
-        <img src={c.img} alt={c.title} className="tc-card-img" loading="lazy" />
+        <SmartImage src={c.img} loading="lazy"
+  decoding="async" alt={c.title} className="tc-card-img" loading="lazy" />
         <div className="tc-card-img-overlay" />
         {/* Tag */}
         <div className="tc-card-tag" style={{ background: c.tagColor }}>

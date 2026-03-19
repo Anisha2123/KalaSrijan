@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import SmartImage from "../utils/SmartImage";
 
 /* ─────────────────────────────────────
    DATA
@@ -10,7 +11,7 @@ const FEATURED = [
     id: 1, num: "01", title: "Hand Painting",
     subtitle: "Wearable Canvas Art", icon: "🎨",
     highlight: "₹1,500 / piece",
-    img: "/classes/image.png",
+        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916625/image_rejikn.png",
     tagColor: "#CD2C58",
     size: "tall",
     desc: "Each garment becomes a masterpiece — vivid pigments, signature outlines, pure artistry.",
@@ -19,7 +20,8 @@ const FEATURED = [
     id: 2, num: "02", title: "Thermacol Art",
     subtitle: "Sculptural Event Décor", icon: "🏛️",
     highlight: "From ₹1,000",
-    img: "/services/thermocal art services.png",
+        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916631/thermacol_art_tgh6et.png",
+
     tagColor: "#E06B80",
     size: "short",
     desc: "Grand statues, monuments & wedding trays shaped in lightweight Thermacol.",
@@ -28,7 +30,8 @@ const FEATURED = [
     id: 3, num: "03", title: "Fancy Dress",
     subtitle: "Costume Design End-to-End", icon: "✂️",
     highlight: "₹1,000 – ₹5,000",
-    img: "/services/Fancy dress competion.png",
+        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920275/35894ddc-a1f6-4e5b-b706-1098964ed757.png",
+
     tagColor: "#CD2C58",
     size: "short",
     desc: "Complete costume creation with matching props for every little star.",
@@ -37,7 +40,8 @@ const FEATURED = [
     id: 4, num: "04", title: "School Projects",
     subtitle: "Models, STEM & B.Ed", icon: "🔬",
     highlight: "From ₹300",
-    img: "/services/Card Decoration.png",
+        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920224/a52e6c62-720d-4a68-9c71-f96e3d44307b.png",
+
     tagColor: "#E06B80",
     size: "tall",
     desc: "Working models, robotic projects, STEM displays — every concept brought to life.",
@@ -46,7 +50,8 @@ const FEATURED = [
     id: 5, num: "05", title: "Wedding Hampers",
     subtitle: "Packing & Platters", icon: "🎁",
     highlight: "Made to order",
-    img: "/services/weeding decorcation and hamper.png",
+        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916647/weeding_decorcation_and_hamper_orgaqa.png",
+
     tagColor: "#CD2C58",
     size: "wide",
     desc: "Curated platters and hampers for Haldi, gifting & every cherished occasion.",
@@ -55,7 +60,8 @@ const FEATURED = [
     id: 6, num: "06", title: "Card Decoration",
     subtitle: "Themed Invitation Art", icon: "💌",
     highlight: "₹500 / card",
-    img: "/services/Card Decoration.png",
+        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916647/Card_Decoration_ermpnu.png",
+
     tagColor: "#E06B80",
     size: "small",
     desc: "Customized wedding & event card decorations aligned to your theme.",
@@ -64,7 +70,8 @@ const FEATURED = [
     id: 7, num: "07", title: "Custom Event Décor",
     subtitle: "Tailored Theme Elements", icon: "✨",
     highlight: "From ₹1,000",
-    img: "/services/Card Decoration.png",
+        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920841/61a7d48c-f7b5-43e0-b7e4-37cb5fb9a67c.png",
+
     tagColor: "#CD2C58",
     size: "small",
     desc: "Bespoke décor pieces designed specifically for your event's theme.",
@@ -147,16 +154,18 @@ function BentoCard({
       }}
     >
       {/* Background image */}
-      <img
+      <SmartImage
         src={s.img}
         alt={s.title}
         loading="lazy"
+  decoding="async"
         style={{
           position: "absolute", inset: 0,
           width: "100%", height: "100%",
           objectFit: "cover", display: "block",
           transition: "transform .7s ease",
           transform: hov ? "scale(1.09)" : "scale(1.0)",
+          
         }}
       />
 
@@ -308,13 +317,15 @@ function MobileCard({ s, idx }: { s: typeof FEATURED[0]; idx: number }) {
       }}
     >
       {/* Full bg image */}
-      <img
+      <SmartImage
         src={s.img} alt={s.title} loading="lazy"
+        decoding="async"
         style={{
           position: "absolute", inset: 0,
           width: "100%", height: "100%", objectFit: "cover", display: "block",
           transform: tapped ? "scale(1.07)" : "scale(1)",
           transition: "transform .5s ease",
+          
         }}
       />
 

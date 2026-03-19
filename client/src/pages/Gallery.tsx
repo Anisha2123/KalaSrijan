@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import SmartImage from "../utils/SmartImage";
 
 /* ─────────────────────────────────────
    DATA
@@ -133,7 +134,8 @@ function Lightbox({ image, onClose, onPrev, onNext, idx, total }: {
             onMouseEnter={e => (e.currentTarget.style.background = '#CD2C58')}
             onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,.10)')}>‹</button>
 
-          <img src={image.src} alt={image.title} style={{
+          <SmartImage src={image.src} alt={image.title} loading="lazy"
+  decoding="async" style={{
             width: '100%', maxHeight: '67vh', objectFit: 'contain', display: 'block', borderRadius: 18,
           }} />
 
@@ -200,8 +202,9 @@ function MasonryCard({ img, heightKey, idx, onOpen }: {
         boxShadow: hov ? '0 18px 48px rgba(42,16,24,.18)' : 'none',
       }}
     >
-      <img
+      <SmartImage
         src={img.src} alt={img.title} loading="lazy"
+  decoding="async"
         style={{
           width: '100%', height: '100%', objectFit: 'cover', display: 'block',
           transition: 'transform .65s ease',
@@ -293,7 +296,8 @@ function ScrollStrip({ imgs, reverse, onOpen }: {
                 if (ov) ov.style.opacity = '0';
               }}
             >
-              <img src={img.src} alt={img.title} loading="lazy"
+              <SmartImage src={img.src} alt={img.title} loading="lazy"
+  decoding="async"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform .5s ease' }} />
               <div className="st-ov" style={{
                 position: 'absolute', inset: 0,

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import SmartImage from "../utils/SmartImage";
 
 /* ─────────────────────────────────────────
    DATA
@@ -762,10 +763,16 @@ export default function FeaturedJourney() {
               <div className="fj-img-stage">
                 <div className="fj-img-deco" />
                 <div className="fj-img-box">
-                  <img
+                  <SmartImage
                     key={cur.img}
                     src={cur.img}
                     alt={cur.label}
+                    loading="lazy"
+                    decoding="async"
+                    style={{
+    filter: imgLoaded ? "blur(0px)" : "blur(20px)",
+    transition: "filter 0.5s ease"
+  }}
                     className={`fj-img ${imgLoaded ? "fj-img-loaded" : "fj-img-loading"}`}
                     onLoad={() => setImgLoaded(true)}
                   />
