@@ -13,13 +13,13 @@ const REASONS = [
 ];
 
 const STATS = [
-  { v:"5000+", l:"Happy Students" },
+  { v:"25000+", l:"Happy Students" },
   { v:"15+",   l:"Art Forms Taught" },
   { v:"100%",  l:"Hands-on Learning" },
   { v:"1",     l:"Truly Unique Style" },
 ];
 
-const MARQUEE = ["5000+ Happy Students","15+ Art Forms","Years of Expertise","Personalized Attention","Practical Skills","One-of-a-Kind Creativity","Inspiring Personality","Trusted by Thousands"];
+const MARQUEE = ["25000+ Happy Students","15+ Art Forms","Years of Expertise","Personalized Attention","Practical Skills","One-of-a-Kind Creativity","Inspiring Personality","Trusted by Thousands"];
 
 /* ─────────────────────────────────────────
    HOOK
@@ -414,8 +414,7 @@ export default function WhyChooseKalasrijan() {
             <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize:"0.70rem", letterSpacing:"0.12em", textTransform:"uppercase", color:"rgba(255,198,157,0.32)" }}>— The Kalasrijan Promise</p>
           </div>
 
-          <a
-            href="#"
+          <a href="tel:+918890448242"
             className="wck-cta"
             style={{ display:"inline-flex", alignItems:"center", gap:12, border:"1.5px solid rgba(255,198,157,0.33)", color:"#FFC69D", padding:"15px 34px", borderRadius:100, background:"transparent", cursor:"pointer", fontFamily:"'DM Sans',sans-serif", fontSize:"0.88rem", fontWeight:500, letterSpacing:"0.05em", textDecoration:"none", whiteSpace:"nowrap", transition:"all 0.25s", flexShrink:0 }}
           >

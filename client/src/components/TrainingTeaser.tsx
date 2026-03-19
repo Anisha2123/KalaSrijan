@@ -638,11 +638,11 @@ export default function TrainingTeaserEditorial() {
               {/* Mobile stat pills — shown via CSS */}
               <div className="la-pills" style={{ display: "none" }}>
                 <span className="la-pill"><strong>11</strong>Courses</span>
-                <span className="la-pill"><strong>5000+</strong>Students</span>
+                <span className="la-pill"><strong>25000+</strong>Students</span>
                 <span className="la-pill"><strong>15+</strong>Art Forms</span>
               </div>
 
-              <a href="/training" className="la-cta">
+              <a href="/training-classes" className="la-cta">
                 <span className="la-cta-txt">View all classes</span>
                 <span className="la-cta-ico">→</span>
               </a>
@@ -706,7 +706,7 @@ export default function TrainingTeaserEditorial() {
           <div className="la-stats">
             {[
               { n: "11",    l: "Courses"        },
-              { n: "5000+", l: "Students"       },
+              { n: "25000+", l: "Students"       },
               { n: "15+",   l: "Art Forms"      },
               { n: "Free",  l: "Temple Classes" },
             ].map(({ n, l }) => (

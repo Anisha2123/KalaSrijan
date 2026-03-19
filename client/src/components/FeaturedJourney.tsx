@@ -16,7 +16,7 @@ const MILESTONES = [
   {
     year: "Growing Roots",
     icon: "🌱",
-    label: "A Network of 5000+",
+    label: "A Network of 25000+",
     blurb: "Word spread. Dedication earned trust. A growing family of learners and creators formed.",
     img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=480&auto=format&fit=crop&q=80",
   },
@@ -37,7 +37,7 @@ const MILESTONES = [
 ];
 
 const CHIPS = [
-  { val: "5000+", label: "Happy Learners" },
+  { val: "25000+", label: "Happy Learners" },
   { val: "2019",  label: "IFB Chef" },
   { val: "Free",  label: "First Classes" },
   { val: "M.Sc.", label: "Botany Degree" },
@@ -755,11 +755,6 @@ export default function FeaturedJourney() {
                   </div>
                 ))}
               </div>
-
-              <a href="#" className="fj-cta">
-                Read the Full Journey
-                <span className="fj-cta-arrow">→</span>
-              </a>
             </div>
 
             {/* RIGHT: Image */}

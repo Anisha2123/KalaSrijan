@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const STATS = [
-  { value: "5000+", label: "Happy Students" },
+  { value: "25000+", label: "Happy Students" },
   { value: "15+", label: "Art Forms" },
   { value: "Free", label: "Temple Classes" },
   { value: "2019", label: "IFB Chef Year" },
@@ -10,7 +10,7 @@ const TIMELINE = [
   { year: "Early Days", icon: "🧸", title: "Soft Toy Classes", desc: "Started her journey teaching soft toy-making, conducting free classes in temples to share skills with the community." },
   { year: "Growing", icon: "🌱", title: "Building a Network", desc: "Through dedication and creativity, she built a strong network and earned appreciation from thousands of learners." },
   { year: "2019", icon: "👩‍🍳", title: "Chef at IFB", desc: "A pivotal turning point — working as a chef at IFB opened new opportunities and transformed her creative path." },
-  { year: "Today", icon: "✨", title: "5000+ Happy Customers", desc: "Active, confident, and passionate, inspiring learners through art, craft, and everyday creativity." },
+  { year: "Today", icon: "✨", title: "25000+ Happy Customers", desc: "Active, confident, and passionate, inspiring learners through art, craft, and everyday creativity." },
 ];
 const CREDENTIALS = [
   { icon: "🎓", text: "M.Sc. in Botany" },
@@ -288,7 +288,7 @@ export default function MeetTheMaker() {
                       </div>
                       {/* Badge */}
                       <div className="mtm-badge" style={{position:"absolute",bottom:-16,right:-16,zIndex:2,background:"#fff",borderRadius:18,padding:"13px 18px",boxShadow:"0 10px 40px rgba(205,44,88,0.16)",border:"1px solid rgba(255,255,255,0.90)",display:"flex",alignItems:"center",gap:12,animation:"badgeFloat 6s ease-in-out infinite"}}>
-                        <div className="mtm-badge-num" style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"2rem",fontWeight:600,color:"#CD2C58",lineHeight:1}}><CountUp target="5000+" /></div>
+                        <div className="mtm-badge-num" style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"2rem",fontWeight:600,color:"#CD2C58",lineHeight:1}}><CountUp target="25000+" /></div>
                         <div className="mtm-badge-text" style={{fontSize:"0.70rem",color:"#7a4a55",lineHeight:1.45,maxWidth:70,fontFamily:"'DM Sans',sans-serif"}}>Happy Students & Counting</div>
                       </div>
                     </div>
@@ -362,7 +362,7 @@ export default function MeetTheMaker() {
 
                 {/* CTA */}
                 <div className="mtm-cta-row" style={{display:"flex",alignItems:"center",gap:22,flexWrap:"wrap"}}>
-                  <a href="#" className="mtm-btn-main" style={{display:"inline-flex",alignItems:"center",gap:10,background:"#CD2C58",color:"#fff",padding:"14px 30px",borderRadius:100,border:"none",cursor:"pointer",fontFamily:"'DM Sans',sans-serif",fontSize:"0.875rem",fontWeight:500,letterSpacing:"0.04em",textDecoration:"none",boxShadow:"0 8px 28px rgba(205,44,88,0.28)"}}>
+                  <a href="/about-us/#journey" className="mtm-btn-main" style={{display:"inline-flex",alignItems:"center",gap:10,background:"#CD2C58",color:"#fff",padding:"14px 30px",borderRadius:100,border:"none",cursor:"pointer",fontFamily:"'DM Sans',sans-serif",fontSize:"0.875rem",fontWeight:500,letterSpacing:"0.04em",textDecoration:"none",boxShadow:"0 8px 28px rgba(205,44,88,0.28)"}}>
                     Read Suman's Story <span style={{transition:"transform 0.22s"}}>→</span>
                   </a>
                   <span style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1rem",fontStyle:"italic",color:"#7a4a55"}}>— Inspiring since day one</span>

@@ -11,7 +11,7 @@ const QUICK_LINKS = [
   { label: "Classes",     href: "/training-classes" },
   { label: "Services",    href: "/services" },
   { label: "Gallery",     href: "/gallery" },
-  { label: "Contact",     href: "/contact" },
+  // { label: "Contact",     href: "/contact" },
 ];
 
 const CLASS_LINKS = [
@@ -41,21 +41,21 @@ const SERVICE_LINKS = [
 ];
 
 const SOCIALS = [
-  {
-    label: "Instagram",
-    handle: "@kalasrijan",
-    href: "https://instagram.com/kalasrijan",
-    color: "#E1306C",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-      </svg>
-    ),
-  },
+  // {
+  //   label: "Instagram",
+  //   handle: "@kalasrijan",
+  //   href: "https://instagram.com/kalasrijan",
+  //   color: "#E1306C",
+  //   icon: (
+  //     <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+  //       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  //     </svg>
+  //   ),
+  // },
   {
     label: "WhatsApp",
     handle: "Chat with us",
-    href: "https://wa.me/91XXXXXXXXXX",
+    href: "https://wa.me/918890448242",
     color: "#25D366",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
@@ -119,50 +119,50 @@ function NewsletterForm() {
     );
   }
 
-  return (
-    <form onSubmit={submit} style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-      <div style={{
-        flex: 1, minWidth: 200,
-        display: "flex", alignItems: "center",
-        background: "rgba(255,255,255,0.06)",
-        border: `1px solid ${focused ? "rgba(255,198,157,0.50)" : "rgba(255,198,157,0.18)"}`,
-        borderRadius: 12, padding: "0 14px",
-        transition: "border-color .25s",
-      }}>
-        <input
-          type="email"
-          placeholder="your@email.com"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
-          required
-          style={{
-            flex: 1, background: "transparent", border: "none", outline: "none",
-            fontFamily: "'DM Sans', sans-serif", fontSize: ".84rem",
-            color: "rgba(255,230,212,.90)", padding: "12px 0",
-          }}
-        />
-      </div>
-      <button type="submit" style={{
-        display: "inline-flex", alignItems: "center", gap: 8,
-        background: "#CD2C58", color: "#fff",
-        padding: "12px 22px", borderRadius: 12,
-        border: "none", cursor: "pointer",
-        fontFamily: "'DM Sans', sans-serif",
-        fontSize: ".82rem", fontWeight: 500,
-        letterSpacing: ".03em",
-        boxShadow: "0 4px 18px rgba(205,44,88,.35)",
-        transition: "background .22s, transform .22s",
-        whiteSpace: "nowrap",
-      }}
-        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#b82350"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
-        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#CD2C58"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
-      >
-        Subscribe →
-      </button>
-    </form>
-  );
+  // return (
+  //   <form onSubmit={submit} style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+  //     <div style={{
+  //       flex: 1, minWidth: 200,
+  //       display: "flex", alignItems: "center",
+  //       background: "rgba(255,255,255,0.06)",
+  //       border: `1px solid ${focused ? "rgba(255,198,157,0.50)" : "rgba(255,198,157,0.18)"}`,
+  //       borderRadius: 12, padding: "0 14px",
+  //       transition: "border-color .25s",
+  //     }}>
+  //       <input
+  //         type="email"
+  //         placeholder="your@email.com"
+  //         value={email}
+  //         onChange={e => setEmail(e.target.value)}
+  //         onFocus={() => setFocused(true)}
+  //         onBlur={() => setFocused(false)}
+  //         required
+  //         style={{
+  //           flex: 1, background: "transparent", border: "none", outline: "none",
+  //           fontFamily: "'DM Sans', sans-serif", fontSize: ".84rem",
+  //           color: "rgba(255,230,212,.90)", padding: "12px 0",
+  //         }}
+  //       />
+  //     </div>
+  //     <button type="submit" style={{
+  //       display: "inline-flex", alignItems: "center", gap: 8,
+  //       background: "#CD2C58", color: "#fff",
+  //       padding: "12px 22px", borderRadius: 12,
+  //       border: "none", cursor: "pointer",
+  //       fontFamily: "'DM Sans', sans-serif",
+  //       fontSize: ".82rem", fontWeight: 500,
+  //       letterSpacing: ".03em",
+  //       boxShadow: "0 4px 18px rgba(205,44,88,.35)",
+  //       transition: "background .22s, transform .22s",
+  //       whiteSpace: "nowrap",
+  //     }}
+  //       onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "#b82350"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
+  //       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "#CD2C58"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
+  //     >
+  //       Subscribe →
+  //     </button>
+  //   </form>
+  // );
 }
 
 /* ─────────────────────────────────────
@@ -520,12 +520,12 @@ export default function Footer() {
           <div className="ft-cta-inner">
             <div className="ft-cta-left">
               <p className="ft-cta-eyebrow">Ready to create?</p>
-              <h2 className="ft-cta-heading">
+              <a href="tel:+918890448242" className="ft-cta-heading">
                 Start your journey<br />
                 with <em>Kalasrijan</em>
-              </h2>
+              </a>
             </div>
-            <a href="#contact" className="ft-cta-btn">
+            <a href="tel:+918890448242" className="ft-cta-btn">
               Join a Class Today
               <span className="ft-cta-btn-arr">→</span>
             </a>

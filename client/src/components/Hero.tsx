@@ -512,11 +512,11 @@ export default function KalasrijanHero() {
             <p className="kala-signature">— Guided by Suman Jain</p>
 
             <div className="kala-ctas">
-              <a href="#" className="kala-btn kala-btn--primary">
+              <a a href="tel:+918890448242" className="kala-btn kala-btn--primary">
                 Start Creating
                 <span className="kala-btn-arrow">→</span>
               </a>
-              <a href="#" className="kala-btn kala-btn--ghost">
+              <a href="/training-classes" className="kala-btn kala-btn--ghost">
                 Explore Classes
               </a>
             </div>
@@ -539,8 +539,9 @@ export default function KalasrijanHero() {
               }}
             >
               <div className="kala-frame-inner">
+                {/* <div className="kala-monogram">कलासृजन</div> */}
                 <div className="kala-monogram">कला</div>
-                <div className="kala-frame-label">Kalasrijan</div>
+                <div className="kala-frame-label">KALASRIJAN</div>
               </div>
             </div>
 

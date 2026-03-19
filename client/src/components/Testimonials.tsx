@@ -400,7 +400,7 @@ const TestimonialsSection = () => {
             viewport={{ once: true, margin: '-100px' }}
           >
             {[
-              { icon: '⭐', stat: '5000+', label: 'Happy Students' },
+              { icon: '⭐', stat: '25000+', label: 'Happy Students' },
               { icon: '🎨', stat: '12+', label: 'Art Forms' },
               { icon: '📚', stat: '25+', label: 'Years Experience' },
               { icon: '🏆', stat: '100%', label: 'Satisfaction Rate' },

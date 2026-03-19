@@ -64,11 +64,11 @@ const NAV_LINKS = [
       { label: "Our Journey",     href: "/about-us/#journey", desc: "15+ years of art & craft" },
     ],
   },
-  {
-    label: "Contact",
-    href: "/contact",
-    sub: null,
-  },
+  // {
+  //   label: "Contact",
+  //   href: "/contact",
+  //   sub: null,
+  // },
 ];
 
 /* ─────────────────────────────────────
@@ -565,10 +565,10 @@ export default function Navbar() {
           </ul>
 
           {/* CTA */}
-          <a href="/contact" className="nb-cta">
-            Join a Class
-            <span className="nb-cta-arrow">→</span>
-          </a>
+          <a href="tel:+918890448242" className="nb-cta">
+  Join a Class
+  <span className="nb-cta-arrow">→</span>
+</a>
 
           {/* HAMBURGER */}
           <button

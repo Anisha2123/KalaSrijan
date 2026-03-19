@@ -621,7 +621,7 @@ export default function FeaturedServices() {
                 </div>
                 <div style={{ width:"100%", height:2, background:"linear-gradient(90deg,#CD2C58,#E06B80)", borderRadius:2, marginTop:6 }} />
               </div>
-              <a href="#services" style={{ display:"inline-flex", alignItems:"center", gap:8, fontFamily:"'DM Sans',sans-serif", fontSize:".80rem", fontWeight:500, color:"#CD2C58", textDecoration:"none", letterSpacing:".04em", transition:"gap .22s" }}
+              <a href="/services" style={{ display:"inline-flex", alignItems:"center", gap:8, fontFamily:"'DM Sans',sans-serif", fontSize:".80rem", fontWeight:500, color:"#CD2C58", textDecoration:"none", letterSpacing:".04em", transition:"gap .22s" }}
                 onMouseEnter={e => (e.currentTarget.style.gap = "14px")}
                 onMouseLeave={e => (e.currentTarget.style.gap = "8px")}
               >
@@ -653,7 +653,7 @@ export default function FeaturedServices() {
               }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background="rgba(205,44,88,.05)"; (e.currentTarget as HTMLElement).style.borderColor="rgba(205,44,88,.45)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.50)"; (e.currentTarget as HTMLElement).style.borderColor="rgba(205,44,88,.25)"; }}
-                onClick={() => window.location.href="#services"}
+                onClick={() => window.location.href="/services"}
               >
                 {[0,60,120,180,240,300].map((deg,i)=>(
                   <div key={i} style={{ position:"absolute", width:5, height:5, borderRadius:"50%", background:i%2===0?"#CD2C58":"#E06B80", opacity:.35, top:`calc(50% + ${Math.sin(deg*Math.PI/180)*54}px)`, left:`calc(50% + ${Math.cos(deg*Math.PI/180)*54}px)`, transform:"translate(-50%,-50%)", animation:`fsPulse ${2+i*.3}s ease-in-out ${i*.2}s infinite` }}/>
@@ -683,7 +683,7 @@ export default function FeaturedServices() {
               }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background="rgba(205,44,88,.05)"; (e.currentTarget as HTMLElement).style.borderColor="rgba(205,44,88,.40)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.55)"; (e.currentTarget as HTMLElement).style.borderColor="rgba(205,44,88,.25)"; }}
-                onClick={() => window.location.href="#services"}
+                onClick={() => window.location.href="/services"}
               >
                 <div style={{ width:38, height:38, borderRadius:"50%", background:"linear-gradient(135deg,rgba(205,44,88,.14),rgba(255,198,157,.22))", border:"1px solid rgba(205,44,88,.22)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.1rem", animation:"fsFloat 3s ease-in-out infinite", flexShrink:0 }}>+</div>
                 <div>
@@ -703,7 +703,7 @@ export default function FeaturedServices() {
                 ))}
                 {/* Teaser — spans both columns */}
                 <div
-                  onClick={() => window.location.href="#services"}
+                  onClick={() => window.location.href="/services"}
                   style={{
                     gridColumn: "span 2",
                     borderRadius: 14,
@@ -761,11 +761,11 @@ export default function FeaturedServices() {
 
             {/* Buttons */}
             <div style={{ display:"flex", alignItems:"center", gap:14, flexWrap:"wrap", flex: isMobile ? "1 1 100%" : "unset" }}>
-              <a href="#services" className="fs-cta-btn">
+              <a href="/services" className="fs-cta-btn">
                 <span className="fs-cta-btn-text">Explore All Services</span>
                 <div className="fs-cta-btn-icon">→</div>
               </a>
-              <a href="#contact" className="fs-ghost-btn">
+              <a href="tel:+918890448242" className="fs-ghost-btn">
                 Get a Quote
               </a>
             </div>
