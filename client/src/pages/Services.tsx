@@ -11,7 +11,7 @@ const SERVICES = [
   },
   {
     id: 2, idSlug: "thermacol-art", num: "02", title: "Thermacol Art", subtitle: "Sculptural Event Décor", icon: "🏛️", tag: "Event Decor", tagColor: "#E06B80",
-    img: "https://images.unsplash.com/photo-1519741497674-611481863552?w=700&auto=format&fit=crop",
+    img: "/services/thermocal art services.png",
     desc: "Lightweight yet breathtaking — Suman shapes Thermacol into grand statues, monuments, display props, and wedding packing trays that make every occasion unforgettable.",
     services: [{ name: "Wedding Packing Trays", price: "Custom" }, { name: "Statues & Monuments", price: "Custom" }, { name: "Temporary Displays", price: "Custom" }],
     highlight: "From ₹1,000",
@@ -19,7 +19,7 @@ const SERVICES = [
   },
   {
     id: 3, idSlug: "fancy-dress", num: "03", title: "Fancy Dress", subtitle: "Costume Design End-to-End", icon: "✂️", tag: "Costumes", tagColor: "#CD2C58",
-    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&auto=format&fit=crop",
+    img: "/services/Fancy dress competion.png",
     desc: "From concept to catwalk — complete costume creation with matching props, themed colours, and every last detail handled for you. Every child deserves to shine on stage.",
     services: [{ name: "Theme Costume + Props", price: "₹1,000–₹5,000" }],
     highlight: "₹1,000 – ₹5,000",
@@ -27,7 +27,7 @@ const SERVICES = [
   },
   {
     id: 4, idSlug: "school-projects", num: "04", title: "School Projects", subtitle: "Models, STEM & B.Ed", icon: "🔬", tag: "Education", tagColor: "#E06B80",
-    img: "https://images.unsplash.com/photo-1532094349884-543559822d54?w=700&auto=format&fit=crop",
+    img: "/services/image.png",
     desc: "Working models, robotic projects, B.Ed assignments, STEM exhibition displays, storytelling models — every concept brought to life with clarity and craft.",
     services: [
       { name: "Working / Demo Models", price: "₹300–₹500" },
@@ -41,7 +41,7 @@ const SERVICES = [
   },
   {
     id: 5, idSlug: "wedding-hampers", num: "05", title: "Wedding Hampers", subtitle: "Packing & Platters", icon: "🎁", tag: "Occasions", tagColor: "#CD2C58",
-    img: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=700&auto=format&fit=crop",
+    img: "/services/weeding decorcation and hamper.png",
     desc: "Beautifully curated  platters and hampers for life's most cherished occasions — from Haldi ceremonies to gifting trays that leave every guest in awe.",
     services: [{ name: "Decorative Platters", price: "Custom" }, { name: "Haldi Platter", price: "Custom" }],
     highlight: "Made to order",
@@ -49,7 +49,7 @@ const SERVICES = [
   },
   {
     id: 6, idSlug: "card-decoration", num: "06", title: "Card Decoration", subtitle: "Themed Invitation Art", icon: "💌", tag: "Invitations", tagColor: "#E06B80",
-    img: "https://images.unsplash.com/photo-1510074377623-8cf13fb86c08?w=700&auto=format&fit=crop",
+    img: "/services/Card Decoration.png",
     desc: "Customized card decorations for weddings and special events. Every design is carefully crafted to align with your specific theme and occasion style.",
     services: [
       { name: "Wedding Card Decoration", price: "₹500" },
@@ -61,7 +61,7 @@ const SERVICES = [
   },
   {
     id: 7, idSlug: "custom-event-decor", num: "07", title: "Custom Event Décor", subtitle: "Tailored Theme Elements", icon: "✨", tag: "Customized", tagColor: "#CD2C58",
-    img: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&auto=format&fit=crop",
+    img: "/services/image.png",
     desc: "Bespoke decoration items designed specifically for your event's requirements. Suman creates unique pieces that perfectly fit your chosen theme.",
     services: [{ name: "Theme-based Decor Items", price: "₹1,000" }],
     highlight: "From ₹1,000",
