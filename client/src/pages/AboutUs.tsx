@@ -6,7 +6,7 @@ import FeaturedJourney from '../components/Journey';
 const AboutUs = () => {
   return (
     <div>
-      <AboutUsComponent />
+      <AboutUsComponent/>
       <FeaturedJourney />
       <WhyChooseKalasrijan />
       
