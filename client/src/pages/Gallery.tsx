@@ -20,8 +20,8 @@ const images = [
   title: 'Art Showcase',         category: 'painting' },
   { id: 7,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/1_shjfwn.png",
                             title: 'Culinary Art',         category: 'baking'   },
-  { id: 8,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/1_shjfwn.png",
-                           title: 'Baked Masterpiece',    category: 'baking'   },
+  // { id: 8,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/1_shjfwn.png",
+                          //  title: 'Baked Masterpiece',    category: 'baking'   },
   { id: 9,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/2_ord13a.png",
                           title: 'Sweet Creation',       category: 'baking'   },
   { id: 10, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/4_mvydjp.png"
@@ -32,8 +32,8 @@ const images = [
                   title: 'Workshop Experience',  category: 'activity' },
   { id: 13, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916636/4_menrau.png",
                  title: 'Learning Session',     category: 'activity' },
-  { id: 14, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916636/5_yk4mcd.png",
-                  title: 'Creative Moment',      category: 'activity' },
+  // { id: 14, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916636/5_yk4mcd.png",
+                  // title: 'Creative Moment',      category: 'activity' },
   { id: 15, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916636/6_rjftmg.png",
                   title: 'Community Art',        category: 'activity' },
   { id: 16, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/22_epex0c.png"
