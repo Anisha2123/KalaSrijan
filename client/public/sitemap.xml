@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home -->
+  <url>
+    <loc>https://www.kalasrijan.co.in/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Main Pages -->
+  <url>
+    <loc>https://www.kalasrijan.co.in/training-classes</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kalasrijan.co.in/services</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kalasrijan.co.in/gallery</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.kalasrijan.co.in/about-us</loc>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
