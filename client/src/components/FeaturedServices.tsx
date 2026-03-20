@@ -12,7 +12,7 @@ const FEATURED = [
     id: 1, num: "01", title: "Hand Painting", idSlug: "hand-painting",
     subtitle: "Wearable Canvas Art", icon: "🎨",
     highlight: "₹1,500 / piece",
-        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto,c_fill,g_auto/v1773916625/image_rejikn.png",
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto,c_fill,g_auto/v1773916625/image_rejikn.png",
     tagColor: "#CD2C58",
     size: "tall",
     desc: "Each garment becomes a masterpiece — vivid pigments, signature outlines, pure artistry.",
@@ -21,8 +21,7 @@ const FEATURED = [
     id: 2, num: "02", title: "Thermacol Art", idSlug: "thermacol-art",
     subtitle: "Sculptural Event Décor", icon: "🏛️",
     highlight: "From ₹1,000",
-        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916631/thermacol_art_tgh6et.png",
-
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916631/thermacol_art_tgh6et.png",
     tagColor: "#E06B80",
     size: "short",
     desc: "Grand statues, monuments & wedding trays shaped in lightweight Thermacol.",
@@ -31,9 +30,8 @@ const FEATURED = [
     id: 3, num: "03", title: "Fancy Dress", idSlug: "fancy-dress",
     subtitle: "Costume Design End-to-End", icon: "✂️",
     highlight: "₹1,000 – ₹5,000",
-        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920275/35894ddc-a1f6-4e5b-b706-1098964ed757.png",
-
-    tagColor: "#CD2C58", 
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920275/35894ddc-a1f6-4e5b-b706-1098964ed757.png",
+    tagColor: "#CD2C58",
     size: "short",
     desc: "Complete costume creation with matching props for every little star.",
   },
@@ -41,8 +39,7 @@ const FEATURED = [
     id: 4, num: "04", title: "School Projects", idSlug: "school-projects",
     subtitle: "Models, STEM & B.Ed", icon: "🔬",
     highlight: "From ₹300",
-        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920224/a52e6c62-720d-4a68-9c71-f96e3d44307b.png",
-
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920224/a52e6c62-720d-4a68-9c71-f96e3d44307b.png",
     tagColor: "#E06B80",
     size: "tall",
     desc: "Working models, robotic projects, STEM displays — every concept brought to life.",
@@ -51,8 +48,7 @@ const FEATURED = [
     id: 5, num: "05", title: "Wedding Hampers", idSlug: "wedding-hampers",
     subtitle: "Packing & Platters", icon: "🎁",
     highlight: "Made to order",
-        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916647/weeding_decorcation_and_hamper_orgaqa.png",
-
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916647/weeding_decorcation_and_hamper_orgaqa.png",
     tagColor: "#CD2C58",
     size: "wide",
     desc: "Curated platters and hampers for Haldi, gifting & every cherished occasion.",
@@ -61,8 +57,7 @@ const FEATURED = [
     id: 6, num: "06", title: "Card Decoration", idSlug: "card-decoration",
     subtitle: "Themed Invitation Art", icon: "💌",
     highlight: "₹500 / card",
-        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916647/Card_Decoration_ermpnu.png",
-
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916647/Card_Decoration_ermpnu.png",
     tagColor: "#E06B80",
     size: "small",
     desc: "Customized wedding & event card decorations aligned to your theme.",
@@ -71,8 +66,7 @@ const FEATURED = [
     id: 7, num: "07", title: "Custom Event Décor", idSlug: "custom-event-decor",
     subtitle: "Tailored Theme Elements", icon: "✨",
     highlight: "From ₹1,000",
-        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920841/61a7d48c-f7b5-43e0-b7e4-37cb5fb9a67c.png",
-
+    img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920841/61a7d48c-f7b5-43e0-b7e4-37cb5fb9a67c.png",
     tagColor: "#CD2C58",
     size: "small",
     desc: "Bespoke décor pieces designed specifically for your event's theme.",
@@ -80,7 +74,7 @@ const FEATURED = [
 ];
 
 /* ─────────────────────────────────────
-   HOOK
+   HOOKS
 ───────────────────────────────────── */
 function useInView(threshold = 0.05) {
   const ref = useRef<HTMLDivElement>(null);
@@ -96,9 +90,6 @@ function useInView(threshold = 0.05) {
   return { ref, inView: v };
 }
 
-/* ─────────────────────────────────────
-   RESPONSIVE HOOK
-───────────────────────────────────── */
 function useBreakpoint() {
   const [bp, setBp] = useState<"mobile" | "tablet" | "desktop">("desktop");
   useEffect(() => {
@@ -116,22 +107,16 @@ function useBreakpoint() {
 }
 
 /* ─────────────────────────────────────
-   BENTO CARD
+   BENTO CARD (desktop + tablet)
 ───────────────────────────────────── */
 function BentoCard({
-  s, idx, colSpan = 1, rowSpan = 1, forceExpanded = false,
+  s, idx, colSpan = 1, rowSpan = 1,
 }: {
-  s: typeof FEATURED[0];
-  idx: number;
-  colSpan?: number;
-  rowSpan?: number;
-  forceExpanded?: boolean;
+  s: typeof FEATURED[0]; idx: number; colSpan?: number; rowSpan?: number;
 }) {
   const { ref, inView } = useInView(0.04);
   const [hov, setHov] = useState(false);
-  // On mobile we show desc always (tap UX)
-  const isActive = hov || forceExpanded;
-  const navigate = useNavigate(); // 👈 add this
+  const navigate = useNavigate();
 
   return (
     <div
@@ -140,13 +125,9 @@ function BentoCard({
       onMouseLeave={() => setHov(false)}
       onClick={() => navigate(`/services#${s.idSlug}`)}
       style={{
-        gridColumn: `span ${colSpan}`,
-        gridRow: `span ${rowSpan}`,
-        position: "relative",
-        borderRadius: 22,
-        overflow: "hidden",
-        cursor: "pointer",
-        background: "#2a1018",
+        gridColumn: `span ${colSpan}`, gridRow: `span ${rowSpan}`,
+        position: "relative", borderRadius: 22, overflow: "hidden",
+        cursor: "pointer", background: "#2a1018",
         minHeight: rowSpan === 2 ? 420 : 210,
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0) scale(1)" : "translateY(28px) scale(0.97)",
@@ -156,261 +137,84 @@ function BentoCard({
           : "0 4px 24px rgba(42,16,24,.18)",
       }}
     >
-      {/* Background image */}
-      <SmartImage
-        src={s.img}
-        alt={s.title}
-        style={{
-          position: "absolute", inset: 0,
-          width: "100%", height: "100%",
-          objectFit: "cover", display: "block",
-          transition: "transform .7s ease",
-          transform: hov ? "scale(1.09)" : "scale(1.0)",
-          
-        }}
-      />
-
-      {/* Base gradient */}
-      <div style={{
-        position: "absolute", inset: 0,
-        background: "linear-gradient(to top, rgba(42,16,24,0.90) 0%, rgba(42,16,24,0.32) 55%, rgba(42,16,24,0.08) 100%)",
-        zIndex: 1,
+      <SmartImage src={s.img} alt={s.title} style={{
+        position: "absolute", inset: 0, width: "100%", height: "100%",
+        objectFit: "cover", display: "block",
+        transition: "transform .7s ease",
+        transform: hov ? "scale(1.09)" : "scale(1.0)",
       }} />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(42,16,24,0.90) 0%, rgba(42,16,24,0.32) 55%, rgba(42,16,24,0.08) 100%)", zIndex: 1 }} />
+      <div style={{ position: "absolute", inset: 0, zIndex: 2, background: `linear-gradient(135deg, ${s.tagColor}33 0%, transparent 70%)`, opacity: hov ? 1 : 0, transition: "opacity .35s ease" }} />
 
-      {/* Hover colour wash */}
-      <div style={{
-        position: "absolute", inset: 0, zIndex: 2,
-        background: `linear-gradient(135deg, ${s.tagColor}33 0%, transparent 70%)`,
-        opacity: isActive ? 1 : 0,
-        transition: "opacity .35s ease",
-      }} />
-
-      {/* Top-left badge */}
-      <div style={{
-        position: "absolute", top: 14, left: 14, zIndex: 4,
-        display: "flex", alignItems: "center", gap: 6,
-        background: "rgba(255,255,255,0.10)",
-        backdropFilter: "blur(8px)",
-        border: "1px solid rgba(255,255,255,0.14)",
-        borderRadius: 100,
-        padding: "4px 12px 4px 10px",
-      }}>
+      {/* Top badges */}
+      <div style={{ position: "absolute", top: 14, left: 14, zIndex: 4, display: "flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.10)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 100, padding: "4px 12px 4px 10px" }}>
         <span style={{ fontSize: "1rem" }}>{s.icon}</span>
-        <span style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: ".62rem", letterSpacing: ".12em",
-          textTransform: "uppercase", color: "rgba(255,230,212,.70)",
-          fontWeight: 500,
-        }}>{s.num}</span>
+        <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: ".62rem", letterSpacing: ".12em", textTransform: "uppercase", color: "rgba(255,230,212,.70)", fontWeight: 500 }}>{s.num}</span>
       </div>
-
-      {/* Price badge */}
-      <div style={{
-        position: "absolute", top: 14, right: 14, zIndex: 4,
-        background: s.tagColor,
-        color: "#fff", borderRadius: 100,
-        padding: "5px 13px",
-        fontFamily: "'Cormorant Garamond', serif",
-        fontSize: "0.90rem", fontWeight: 600,
-        boxShadow: `0 4px 16px ${s.tagColor}55`,
-        opacity: isActive ? 1 : 0.80,
-        transition: "opacity .3s, transform .3s",
-        transform: isActive ? "translateY(0) scale(1.04)" : "translateY(4px) scale(1)",
-      }}>
-        {s.highlight}
-      </div>
+      <div style={{ position: "absolute", top: 14, right: 14, zIndex: 4, background: s.tagColor, color: "#fff", borderRadius: 100, padding: "5px 13px", fontFamily: "'Cormorant Garamond',serif", fontSize: "0.90rem", fontWeight: 600, boxShadow: `0 4px 16px ${s.tagColor}55`, opacity: hov ? 1 : 0.80, transition: "opacity .3s, transform .3s", transform: hov ? "translateY(0) scale(1.04)" : "translateY(4px) scale(1)" }}>{s.highlight}</div>
 
       {/* Content */}
-      <div style={{
-        position: "absolute", bottom: 0, left: 0, right: 0,
-        padding: "18px 18px 20px",
-        zIndex: 3,
-        transform: isActive ? "translateY(0)" : "translateY(6px)",
-        transition: "transform .35s ease",
-      }}>
-        <h3 style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: rowSpan === 2 ? "clamp(1.4rem,2.2vw,2.2rem)" : "1.18rem",
-          fontWeight: 400, color: "#fff",
-          lineHeight: 1.1, marginBottom: 4,
-        }}>{s.title}</h3>
-
-        <p style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: ".63rem", letterSpacing: ".13em",
-          textTransform: "uppercase", color: s.tagColor,
-          fontWeight: 500, marginBottom: isActive ? 10 : 0,
-          transition: "margin .3s",
-        }}>{s.subtitle}</p>
-
-        <p style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: ".82rem", color: "rgba(255,230,212,.72)",
-          fontWeight: 300, lineHeight: 1.65,
-          maxHeight: isActive ? "80px" : "0px",
-          overflow: "hidden",
-          opacity: isActive ? 1 : 0,
-          transition: "max-height .38s ease, opacity .32s ease",
-        }}>{s.desc}</p>
-
-        <div style={{
-          display: "flex", alignItems: "center", gap: 6,
-          marginTop: isActive ? 12 : 0,
-          maxHeight: isActive ? "32px" : "0px",
-          overflow: "hidden",
-          opacity: isActive ? 1 : 0,
-          transition: "max-height .38s ease .05s, opacity .32s ease .05s, margin .32s ease",
-        }}>
-          <span style={{
-            width: 24, height: 24,
-            borderRadius: "50%", background: s.tagColor,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: ".72rem", color: "#fff", flexShrink: 0,
-          }}>→</span>
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "18px 18px 20px", zIndex: 3, transform: hov ? "translateY(0)" : "translateY(6px)", transition: "transform .35s ease" }}>
+        <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: rowSpan === 2 ? "clamp(1.4rem,2.2vw,2.2rem)" : "1.18rem", fontWeight: 400, color: "#fff", lineHeight: 1.1, marginBottom: 4 }}>{s.title}</h3>
+        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: ".63rem", letterSpacing: ".13em", textTransform: "uppercase", color: s.tagColor, fontWeight: 500, marginBottom: hov ? 10 : 0, transition: "margin .3s" }}>{s.subtitle}</p>
+        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: ".82rem", color: "rgba(255,230,212,.72)", fontWeight: 300, lineHeight: 1.65, maxHeight: hov ? "80px" : "0px", overflow: "hidden", opacity: hov ? 1 : 0, transition: "max-height .38s ease, opacity .32s ease" }}>{s.desc}</p>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: hov ? 12 : 0, maxHeight: hov ? "32px" : "0px", overflow: "hidden", opacity: hov ? 1 : 0, transition: "max-height .38s ease .05s, opacity .32s ease .05s, margin .32s ease" }}>
+          <span style={{ width: 24, height: 24, borderRadius: "50%", background: s.tagColor, display: "flex", alignItems: "center", justifyContent: "center", fontSize: ".72rem", color: "#fff", flexShrink: 0 }}>→</span>
           <a href="tel:+918890448242" style={{ textDecoration: "none" }}>
-           <span style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: ".72rem", fontWeight: 500,
-            color: "rgba(255,230,212,.70)",
-            letterSpacing: ".06em", textTransform: "uppercase",
-          }}>Enquire Now</span>
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: ".72rem", fontWeight: 500, color: "rgba(255,230,212,.70)", letterSpacing: ".06em", textTransform: "uppercase" }}>Enquire Now</span>
           </a>
-          
         </div>
       </div>
-
-      {/* Corner accent */}
-      <div style={{
-        position: "absolute", bottom: 14, right: 14, zIndex: 4,
-        width: 16, height: 16,
-        borderBottom: `1.5px solid ${s.tagColor}80`,
-        borderRight: `1.5px solid ${s.tagColor}80`,
-        borderRadius: "0 0 5px 0",
-        opacity: isActive ? 1 : 0,
-        transition: "opacity .3s",
-      }} />
+      <div style={{ position: "absolute", bottom: 14, right: 14, zIndex: 4, width: 16, height: 16, borderBottom: `1.5px solid ${s.tagColor}80`, borderRight: `1.5px solid ${s.tagColor}80`, borderRadius: "0 0 5px 0", opacity: hov ? 1 : 0, transition: "opacity .3s" }} />
     </div>
   );
 }
 
 /* ─────────────────────────────────────
-   MOBILE CARD — compact square, text over image, 2-per-row
+   MOBILE SCROLL CARD
+   Full-width swipeable card in a
+   horizontal scroll strip — always
+   readable, image always visible
 ───────────────────────────────────── */
-function MobileCard({ s, idx }: { s: typeof FEATURED[0]; idx: number }) {
-  const { ref, inView } = useInView(0.04);
-  const [tapped, setTapped] = useState(false);
-   const navigate = useNavigate(); // 👈 add
+function MobileScrollCard({ s, idx }: { s: typeof FEATURED[0]; idx: number }) {
+  const navigate = useNavigate();
   return (
     <div
-      ref={ref}
+      className="fst-card"
       onClick={() => navigate(`/services#${s.idSlug}`)}
-      // onClick={() => setTapped(t => !t)}
-      
-      style={{
-        position: "relative",
-        borderRadius: 16,
-        overflow: "hidden",
-        cursor: "pointer",
-        background: "#2a1018",
-        aspectRatio: "3 / 4",
-        opacity: inView ? 1 : 0,
-        transform: inView ? "translateY(0) scale(1)" : "translateY(20px) scale(0.96)",
-        transition: `opacity .55s ease ${idx * 0.05}s, transform .55s ease ${idx * 0.05}s`,
-        boxShadow: tapped
-          ? "0 12px 36px rgba(42,16,24,.30)"
-          : "0 3px 14px rgba(42,16,24,.18)",
-        WebkitTapHighlightColor: "transparent",
-      }}
     >
-      {/* Full bg image */}
-      <SmartImage
-        src={s.img} alt={s.title}
-        style={{
-          position: "absolute", inset: 0,
-          width: "100%", height: "100%", objectFit: "cover", display: "block",
-          transform: tapped ? "scale(1.07)" : "scale(1)",
-          transition: "transform .5s ease",
-          
-        }}
+      {/* Full image background */}
+      <img
+        src={s.img}
+        alt={s.title}
+        className="fst-card-img"
       />
 
-      {/* Base dark gradient from bottom */}
-      <div style={{
-        position: "absolute", inset: 0,
-        background: "linear-gradient(to top, rgba(42,16,24,0.92) 0%, rgba(42,16,24,0.38) 55%, rgba(42,16,24,0.10) 100%)",
-        zIndex: 1,
-      }} />
+      {/* Always-on dark scrim — strong enough to read text without hover */}
+      <div className="fst-card-scrim" />
 
-      {/* Colour wash on tap */}
-      <div style={{
-        position: "absolute", inset: 0, zIndex: 2,
-        background: `linear-gradient(160deg, ${s.tagColor}44 0%, transparent 65%)`,
-        opacity: tapped ? 1 : 0,
-        transition: "opacity .3s",
-      }} />
+      {/* Colour tint top-left */}
+      <div className="fst-card-tint" style={{ background: `linear-gradient(140deg, ${s.tagColor}55 0%, transparent 60%)` }} />
 
-      {/* Top-left icon + number */}
-      <div style={{
-        position: "absolute", top: 10, left: 10, zIndex: 4,
-        display: "flex", alignItems: "center", gap: 4,
-        background: "rgba(255,255,255,0.10)", backdropFilter: "blur(6px)",
-        border: "1px solid rgba(255,255,255,0.14)",
-        borderRadius: 100, padding: "3px 8px 3px 7px",
-      }}>
-        <span style={{ fontSize: ".80rem" }}>{s.icon}</span>
-        <span style={{
-          fontFamily: "'DM Sans',sans-serif", fontSize: ".50rem",
-          letterSpacing: ".10em", textTransform: "uppercase",
-          color: "rgba(255,230,212,.65)", fontWeight: 500,
-        }}>{s.num}</span>
+      {/* Top row */}
+      <div className="fst-card-top">
+        <div className="fst-card-badge">
+          <span className="fst-card-icon">{s.icon}</span>
+          <span className="fst-card-num">{s.num}</span>
+        </div>
+        <div className="fst-card-price" style={{ background: s.tagColor }}>
+          {s.highlight}
+        </div>
       </div>
 
-      {/* Price pill — top right */}
-      <div style={{
-        position: "absolute", top: 10, right: 10, zIndex: 4,
-        background: s.tagColor, color: "#fff",
-        borderRadius: 100, padding: "3px 9px",
-        fontFamily: "'Cormorant Garamond',serif",
-        fontSize: ".72rem", fontWeight: 600,
-        opacity: tapped ? 1 : 0.82,
-        transition: "opacity .3s",
-      }}>{s.highlight}</div>
-
-      {/* Bottom content */}
-      <div style={{
-        position: "absolute", bottom: 0, left: 0, right: 0,
-        padding: "10px 11px 12px",
-        zIndex: 3,
-      }}>
-        <p style={{
-          fontFamily: "'DM Sans',sans-serif",
-          fontSize: ".52rem", letterSpacing: ".11em",
-          textTransform: "uppercase", color: s.tagColor,
-          fontWeight: 500, marginBottom: 3, lineHeight: 1,
-        }}>{s.subtitle}</p>
-
-        <h3 style={{
-          fontFamily: "'Cormorant Garamond',serif",
-          fontSize: "1.05rem", fontWeight: 400,
-          color: "#fff", lineHeight: 1.15, marginBottom: 0,
-        }}>{s.title}</h3>
-
-        {/* Enquire nudge on tap */}
-        <div style={{
-          maxHeight: tapped ? "28px" : "0",
-          overflow: "hidden", opacity: tapped ? 1 : 0,
-          transition: "max-height .3s ease, opacity .25s ease",
-          marginTop: tapped ? 6 : 0,
-        }}>
-          <a href="tel:+918890448242" style={{ textDecoration: "none" }}>
-           <span style={{
-            fontFamily: "'DM Sans',sans-serif",
-            fontSize: ".60rem", fontWeight: 500,
-            color: "rgba(255,230,212,.75)",
-            letterSpacing: ".07em", textTransform: "uppercase",
-          }}>Enquire →</span>
-          </a>
-          
+      {/* Bottom content — always visible */}
+      <div className="fst-card-content">
+        <p className="fst-card-sub" style={{ color: s.tagColor }}>{s.subtitle}</p>
+        <h3 className="fst-card-title">{s.title}</h3>
+        <p className="fst-card-desc">{s.desc}</p>
+        <div className="fst-card-cta">
+          <span className="fst-cta-dot" style={{ background: s.tagColor }}>→</span>
+          <span className="fst-cta-label">Enquire Now</span>
         </div>
       </div>
     </div>
@@ -418,15 +222,15 @@ function MobileCard({ s, idx }: { s: typeof FEATURED[0]; idx: number }) {
 }
 
 /* ─────────────────────────────────────
-   MAIN COMPONENT
+   MAIN
 ───────────────────────────────────── */
 export default function FeaturedServices() {
   const { ref: headRef, inView: headIn } = useInView(0.05);
   const { ref: ctaRef,  inView: ctaIn  } = useInView(0.06);
   const bp = useBreakpoint();
 
-  const isMobile = bp === "mobile";
-  const isTablet = bp === "tablet";
+  const isMobile  = bp === "mobile";
+  const isTablet  = bp === "tablet";
   const isDesktop = bp === "desktop";
 
   return (
@@ -438,154 +242,272 @@ export default function FeaturedServices() {
         @keyframes fsBlob    { from{transform:translate(0,0) scale(1)} to{transform:translate(20px,16px) scale(1.04)} }
         @keyframes fsFloat   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
         @keyframes fsFadeUp  { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes fsPulse   { 0%,100%{opacity:0.5;transform:scale(1)} 50%{opacity:1;transform:scale(1.06)} }
+        @keyframes fsPulse   { 0%,100%{opacity:.5;transform:scale(1)} 50%{opacity:1;transform:scale(1.06)} }
         @keyframes fsRotate  { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
         @keyframes fsMarquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
         .fs-section {
-          background: #fff8f4;
-          font-family: 'DM Sans', sans-serif;
-          position: relative; overflow: hidden;
-          padding: 104px 0 96px;
+          background: #fff8f4; font-family: 'DM Sans', sans-serif;
+          position: relative; overflow: hidden; padding: 104px 0 96px;
         }
         .fs-blob { position:absolute; border-radius:50%; pointer-events:none; z-index:0; }
 
-        /* ══ DESKTOP BENTO (≥1100px) — UNTOUCHED ══ */
+        /* ── Desktop bento ── */
         .fs-bento-desktop {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          grid-auto-rows: 210px;
-          gap: 14px;
+          display: grid; grid-template-columns: repeat(4, 1fr);
+          grid-auto-rows: 210px; gap: 14px;
         }
 
-        /* ══ TABLET BENTO (768–1099px) ══ */
+        /* ── Tablet bento ── */
         .fs-bento-tablet {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          grid-auto-rows: 200px;
-          gap: 12px;
+          display: grid; grid-template-columns: repeat(2, 1fr);
+          grid-auto-rows: 200px; gap: 12px;
         }
-        /* Force all tablet cards to span 1×1 */
-        .fs-bento-tablet > * {
-          grid-column: span 1 !important;
-          grid-row: span 1 !important;
-          min-height: 200px !important;
+        .fs-bento-tablet > * { grid-column: span 1 !important; grid-row: span 1 !important; min-height: 200px !important; }
+
+        /* ── Mobile: horizontal scroll strip ── */
+        .fst-strip-outer {
+          /* Negative margin to break out of padding and go edge-to-edge */
+          margin: 0 -16px;
+          overflow-x: auto;
+          overflow-y: visible;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          /* Fade edges */
+          -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+        }
+        .fst-strip-outer::-webkit-scrollbar { display: none; }
+
+        .fst-strip-inner {
+          display: flex;
+          gap: 12px;
+          padding: 4px 16px 16px;
+          width: max-content;
         }
 
-        /* ══ MOBILE STACK ══ */
-        .fs-mobile-stack {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 9px;
+        /* Each card: 78vw wide so next card peeks — signals scrollability */
+        .fst-card {
+          position: relative;
+          width: 78vw;
+          max-width: 300px;
+          border-radius: 20px;
+          overflow: hidden;
+          flex-shrink: 0;
+          scroll-snap-align: start;
+          cursor: pointer;
+          background: #2a1018;
+          /* Fixed height — tall enough for content */
+          height: 380px;
+          box-shadow: 0 6px 28px rgba(42,16,24,.20);
+          -webkit-tap-highlight-color: transparent;
+          transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .fst-card:active {
+          transform: scale(0.97);
+          box-shadow: 0 2px 12px rgba(42,16,24,.18);
+        }
+
+        /* Image fills entire card */
+        .fst-card-img {
+          position: absolute; inset: 0;
+          width: 100%; height: 100%;
+          object-fit: cover; display: block;
+        }
+
+        /* Strong bottom-up scrim — always readable */
+        .fst-card-scrim {
+          position: absolute; inset: 0;
+          background: linear-gradient(
+            to top,
+            rgba(42,16,24,0.96) 0%,
+            rgba(42,16,24,0.60) 40%,
+            rgba(42,16,24,0.15) 70%,
+            transparent 100%
+          );
+          z-index: 1;
+        }
+
+        .fst-card-tint {
+          position: absolute; inset: 0; z-index: 2;
+          pointer-events: none;
+        }
+
+        /* Top row: badge + price */
+        .fst-card-top {
+          position: absolute; top: 14px; left: 14px; right: 14px;
+          z-index: 4;
+          display: flex; align-items: center; justify-content: space-between;
+        }
+        .fst-card-badge {
+          display: flex; align-items: center; gap: 5px;
+          background: rgba(255,255,255,0.12);
+          backdrop-filter: blur(8px);
+          border: 1px solid rgba(255,255,255,0.16);
+          border-radius: 100px; padding: 4px 10px 4px 8px;
+        }
+        .fst-card-icon { font-size: .95rem; }
+        .fst-card-num {
+          font-family: 'DM Sans', sans-serif;
+          font-size: .55rem; letter-spacing: .12em;
+          text-transform: uppercase; color: rgba(255,230,212,.75); font-weight: 500;
+        }
+        .fst-card-price {
+          color: #fff; border-radius: 100px; padding: 4px 11px;
+          font-family: 'Cormorant Garamond', serif;
+          font-size: .82rem; font-weight: 600;
+        }
+
+        /* Bottom content — always visible, never hidden */
+        .fst-card-content {
+          position: absolute; bottom: 0; left: 0; right: 0;
+          padding: 16px 16px 18px;
+          z-index: 3;
+        }
+        .fst-card-sub {
+          font-family: 'DM Sans', sans-serif;
+          font-size: .60rem; letter-spacing: .13em;
+          text-transform: uppercase; font-weight: 500;
+          margin-bottom: 5px; line-height: 1;
+        }
+        .fst-card-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.55rem; font-weight: 400;
+          color: #fff; line-height: 1.08; margin-bottom: 8px;
+        }
+        .fst-card-desc {
+          font-family: 'DM Sans', sans-serif;
+          font-size: .78rem; color: rgba(255,230,212,.68);
+          font-weight: 300; line-height: 1.65;
+          margin-bottom: 12px;
+          /* 2-line clamp */
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .fst-card-cta {
+          display: flex; align-items: center; gap: 8px;
+        }
+        .fst-cta-dot {
+          width: 24px; height: 24px; border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          font-size: .70rem; color: #fff; flex-shrink: 0;
+        }
+        .fst-cta-label {
+          font-family: 'DM Sans', sans-serif;
+          font-size: .70rem; font-weight: 500;
+          color: rgba(255,230,212,.75);
+          letter-spacing: .07em; text-transform: uppercase;
+        }
+
+        /* Scroll dots indicator below strip */
+        .fst-dots {
+          display: flex; justify-content: center; gap: 6px;
+          padding-top: 14px;
+        }
+        .fst-dot {
+          width: 5px; height: 5px; border-radius: 50%;
+          background: rgba(205,44,88,.22);
+          transition: background .3s, transform .3s;
+        }
+        .fst-dot.active {
+          background: #CD2C58;
+          transform: scale(1.5);
         }
 
         /* ── Ticker ── */
-        .fs-ticker {
-          overflow: hidden; margin-top: 14px;
-          padding: 10px 0;
-          border-top: 1px solid rgba(205,44,88,.12);
-          border-bottom: 1px solid rgba(205,44,88,.12);
-        }
-        .fs-ticker-track {
-          display: flex; width: max-content;
-          animation: fsMarquee 18s linear infinite;
-        }
-        .fs-ticker-track:hover { animation-play-state: paused; }
-        .fs-ticker-item {
-          display: inline-flex; align-items: center; gap: 12px;
-          padding: 0 22px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: .68rem; letter-spacing: .16em;
-          text-transform: uppercase;
-          color: rgba(205,44,88,.45); font-weight: 500;
-          white-space: nowrap;
-        }
+        .fs-ticker { overflow:hidden; margin-top:14px; padding:10px 0; border-top:1px solid rgba(205,44,88,.12); border-bottom:1px solid rgba(205,44,88,.12); }
+        .fs-ticker-track { display:flex; width:max-content; animation:fsMarquee 18s linear infinite; }
+        .fs-ticker-track:hover { animation-play-state:paused; }
+        .fs-ticker-item { display:inline-flex; align-items:center; gap:12px; padding:0 22px; font-family:'DM Sans',sans-serif; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(205,44,88,.45); font-weight:500; white-space:nowrap; }
         .fs-ticker-dot { width:4px; height:4px; border-radius:50%; background:#E06B80; flex-shrink:0; }
 
         /* ── CTA buttons ── */
         .fs-cta-btn {
-          display: inline-flex; align-items: center; gap: 14px;
-          background: #2a1018; color: #fff;
-          padding: 18px 40px; border-radius: 100px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: .92rem; font-weight: 500;
-          letter-spacing: .04em; text-decoration: none;
-          box-shadow: 0 10px 36px rgba(42,16,24,.28);
-          transition: background .25s, transform .25s, box-shadow .25s;
-          position: relative; overflow: hidden;
-          white-space: nowrap;
+          display:inline-flex; align-items:center; gap:14px;
+          background:#2a1018; color:#fff; padding:18px 40px; border-radius:100px;
+          font-family:'DM Sans',sans-serif; font-size:.92rem; font-weight:500;
+          letter-spacing:.04em; text-decoration:none;
+          box-shadow:0 10px 36px rgba(42,16,24,.28);
+          transition:background .25s,transform .25s,box-shadow .25s;
+          position:relative; overflow:hidden; white-space:nowrap;
         }
-        .fs-cta-btn::before {
-          content: ''; position: absolute; inset: 0;
-          background: linear-gradient(135deg, #CD2C58, #E06B80);
-          opacity: 0; transition: opacity .3s;
-        }
-        .fs-cta-btn:hover::before { opacity: 1; }
-        .fs-cta-btn:hover { transform: translateY(-3px); box-shadow: 0 18px 48px rgba(42,16,24,.32); }
-        .fs-cta-btn-text { position: relative; z-index: 1; }
-        .fs-cta-btn-icon {
-          position: relative; z-index: 1;
-          width: 32px; height: 32px; border-radius: 50%;
-          background: rgba(255,255,255,.12);
-          display: flex; align-items: center; justify-content: center;
-          font-size: .88rem; transition: transform .25s;
-        }
-        .fs-cta-btn:hover .fs-cta-btn-icon { transform: translateX(5px); }
+        .fs-cta-btn::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,#CD2C58,#E06B80); opacity:0; transition:opacity .3s; }
+        .fs-cta-btn:hover::before { opacity:1; }
+        .fs-cta-btn:hover { transform:translateY(-3px); box-shadow:0 18px 48px rgba(42,16,24,.32); }
+        .fs-cta-btn-text { position:relative; z-index:1; }
+        .fs-cta-btn-icon { position:relative; z-index:1; width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; font-size:.88rem; transition:transform .25s; }
+        .fs-cta-btn:hover .fs-cta-btn-icon { transform:translateX(5px); }
 
         .fs-ghost-btn {
-          display: inline-flex; align-items: center; gap: 10px;
-          border: 1.5px solid rgba(205,44,88,.28);
-          color: #CD2C58; padding: 18px 32px; border-radius: 100px;
-          background: transparent; cursor: pointer;
-          font-family: 'DM Sans', sans-serif;
-          font-size: .88rem; font-weight: 500;
-          letter-spacing: .04em; text-decoration: none;
-          transition: all .25s; white-space: nowrap;
+          display:inline-flex; align-items:center; gap:10px;
+          border:1.5px solid rgba(205,44,88,.28); color:#CD2C58; padding:18px 32px; border-radius:100px;
+          background:transparent; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:.88rem; font-weight:500;
+          letter-spacing:.04em; text-decoration:none; transition:all .25s; white-space:nowrap;
         }
-        .fs-ghost-btn:hover { background: rgba(205,44,88,.06); border-color: #CD2C58; transform: translateY(-2px); }
+        .fs-ghost-btn:hover { background:rgba(205,44,88,.06); border-color:#CD2C58; transform:translateY(-2px); }
 
-        .fs-ring {
-          position: absolute; border-radius: 50%;
-          border: 1px dashed rgba(205,44,88,.15);
-          pointer-events: none;
-        }
+        .fs-ring { position:absolute; border-radius:50%; border:1px dashed rgba(205,44,88,.15); pointer-events:none; }
 
-        /* ══ TABLET OVERRIDES ══ */
+        /* ══ TABLET ══ */
         @media (max-width: 1099px) {
-          .fs-section { padding: 72px 0 72px }
-          .fs-inner   { padding: 0 28px !important }
-
-          /* Header: stack vertically */
-          .fs-header  { flex-direction: column !important; align-items: flex-start !important; gap: 24px !important }
-          .fs-header-right { align-items: flex-start !important }
-
-          /* CTA: allow wrapping neatly */
-          .fs-cta-row { justify-content: flex-start !important }
-
-          /* Rings: smaller so they don't bleed */
-          .fs-ring-lg { width: 180px !important; height: 180px !important }
-          .fs-ring-sm { width: 110px !important; height: 110px !important }
+          .fs-section { padding:72px 0 72px }
+          .fs-inner   { padding:0 28px !important }
+          .fs-header  { flex-direction:column !important; align-items:flex-start !important; gap:24px !important }
+          .fs-header-right { align-items:flex-start !important }
+          .fs-cta-row { justify-content:flex-start !important }
+          .fs-ring-lg { width:180px !important; height:180px !important }
+          .fs-ring-sm { width:110px !important; height:110px !important }
         }
 
-        /* ══ MOBILE OVERRIDES ══ */
+        /* ══ MOBILE ══ */
         @media (max-width: 767px) {
-          .fs-section { padding: 52px 0 56px }
-          .fs-inner   { padding: 0 16px !important }
+          .fs-section  { padding:52px 0 56px }
+          .fs-inner    { padding:0 16px !important }
 
-          .fs-cta-btn  { padding: 15px 28px; font-size: .85rem; width: 100%; justify-content: center }
-          .fs-ghost-btn{ padding: 15px 24px; font-size: .82rem; width: 100%; justify-content: center }
+          .fs-cta-btn  { padding:15px 28px; font-size:.85rem; width:100%; justify-content:center }
+          .fs-ghost-btn{ padding:15px 24px; font-size:.82rem; width:100%; justify-content:center }
+          .fs-cta-row  { flex-direction:column !important; gap:10px !important; align-items:stretch !important }
+          .fs-cta-quote{ max-width:100% !important }
+          .fs-ring     { display:none }
+          .fs-count-num{ font-size:clamp(2.2rem,10vw,3.5rem) !important }
+          .fs-ticker-track { animation-duration:24s }
 
-          .fs-cta-row  { flex-direction: column !important; gap: 10px !important; align-items: stretch !important }
-          .fs-cta-quote{ max-width: 100% !important }
-
-          /* hide decorative rings on mobile */
-          .fs-ring { display: none }
-
-          /* header count: left-align, smaller  */
-          .fs-count-num { font-size: clamp(2.2rem,10vw,3.5rem) !important }
-
-          /* ticker: slower on mobile */
-          .fs-ticker-track { animation-duration: 24s }
+          /* Mobile "View all" teaser card */
+          .fst-teaser {
+            width: 78vw; max-width: 300px;
+            height: 380px; flex-shrink: 0;
+            scroll-snap-align: start;
+            border-radius: 20px;
+            border: 1.5px dashed rgba(205,44,88,.30);
+            background: rgba(255,255,255,.65);
+            backdrop-filter: blur(10px);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 12px;
+            cursor: pointer; padding: 24px;
+            -webkit-tap-highlight-color: transparent;
+            transition: background .25s;
+          }
+          .fst-teaser:active { background: rgba(205,44,88,.06); }
+          .fst-teaser-icon {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: linear-gradient(135deg, rgba(205,44,88,.12), rgba(255,198,157,.22));
+            border: 1px solid rgba(205,44,88,.22);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; animation: fsFloat 3s ease-in-out infinite;
+          }
+          .fst-teaser-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; font-weight: 400; color: #2a1018;
+            text-align: center; line-height: 1.25;
+          }
+          .fst-teaser-sub {
+            font-family: 'DM Sans', sans-serif;
+            font-size: .72rem; color: #CD2C58; font-weight: 500;
+            letter-spacing: .06em;
+          }
         }
       `}</style>
 
@@ -595,7 +517,6 @@ export default function FeaturedServices() {
         <div className="fs-blob" style={{ width:620, height:620, background:"radial-gradient(circle,rgba(255,198,157,.16) 0%,transparent 65%)", top:-180, right:-200, animation:"fsBlob 16s ease-in-out infinite alternate" }} />
         <div className="fs-blob" style={{ width:460, height:460, background:"radial-gradient(circle,rgba(205,44,88,.07) 0%,transparent 65%)", bottom:-100, left:-140, animation:"fsBlob 13s ease-in-out infinite alternate" }} />
 
-        {/* Decorative rings — hidden on mobile via CSS */}
         <div className="fs-ring fs-ring-lg" style={{ width:300, height:300, top:"5%", right:"3%", animation:"fsRotate 40s linear infinite" }} />
         <div className="fs-ring fs-ring-sm" style={{ width:180, height:180, bottom:"10%", left:"2%", animation:"fsRotate 28s linear infinite reverse" }} />
 
@@ -606,32 +527,28 @@ export default function FeaturedServices() {
             ref={headRef}
             className="fs-header"
             style={{
-              display: "flex", alignItems: "flex-end", justifyContent: "space-between",
-              gap: 32, flexWrap: "wrap", marginBottom: isMobile ? 32 : 52,
+              display:"flex", alignItems:"flex-end", justifyContent:"space-between",
+              gap:32, flexWrap:"wrap", marginBottom: isMobile ? 28 : 52,
               opacity: headIn ? 1 : 0,
               transform: headIn ? "translateY(0)" : "translateY(22px)",
               transition: "opacity .9s ease, transform .9s ease",
             }}
           >
-            {/* Left text */}
-            <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ flex:1, minWidth:0 }}>
               <div style={{ display:"inline-flex", alignItems:"center", gap:12, fontSize:11, letterSpacing:".20em", textTransform:"uppercase", color:"#CD2C58", fontWeight:500, marginBottom:18 }}>
                 <div style={{ width:40, height:1, background:"linear-gradient(90deg,#CD2C58,transparent)" }} />
                 What We Offer
                 <div style={{ width:40, height:1, background:"linear-gradient(270deg,#CD2C58,transparent)" }} />
               </div>
-
               <h2 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"clamp(2.2rem,4.8vw,4.8rem)", fontWeight:300, lineHeight:1.06, color:"#2a1018", marginBottom:14 }}>
                 Services crafted<br />
                 with <em style={{ fontStyle:"italic", color:"#CD2C58" }}>love & skill</em>
               </h2>
-
               <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize: isMobile ? ".92rem" : "1rem", color:"#7a4a55", fontWeight:300, lineHeight:1.75, maxWidth:440 }}>
                 From hand-painted garments to sculptural décor — Suman Jain's artistry transforms every occasion into something unforgettable.
               </p>
             </div>
 
-            {/* Right — count */}
             <div className="fs-header-right" style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:16, flexShrink:0 }}>
               <div style={{ position:"relative", paddingRight: isDesktop ? 28 : 0 }}>
                 <div style={{ display:"flex", alignItems:"baseline", gap:6 }}>
@@ -649,11 +566,9 @@ export default function FeaturedServices() {
             </div>
           </div>
 
-          {/* ── GRID / LIST ── */}
-
-          {/* DESKTOP: original bento with full colspan/rowspan */}
+          {/* ── DESKTOP bento ── */}
           {isDesktop && (
-            <div className="fs-bento-desktop" style={{ position:"relative" }}>
+            <div className="fs-bento-desktop">
               <BentoCard s={FEATURED[0]} idx={0} colSpan={1} rowSpan={2} />
               <BentoCard s={FEATURED[1]} idx={1} colSpan={1} rowSpan={1} />
               <BentoCard s={FEATURED[2]} idx={2} colSpan={1} rowSpan={1} />
@@ -661,15 +576,7 @@ export default function FeaturedServices() {
               <BentoCard s={FEATURED[4]} idx={4} colSpan={2} rowSpan={1} />
               <BentoCard s={FEATURED[5]} idx={5} colSpan={1} rowSpan={1} />
               <BentoCard s={FEATURED[6]} idx={6} colSpan={1} rowSpan={1} />
-
-              {/* "And more" teaser */}
-              <div style={{
-                gridColumn: "span 2", borderRadius:22,
-                border:"1.5px dashed rgba(205,44,88,.25)",
-                display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:10,
-                background:"rgba(255,255,255,.50)", backdropFilter:"blur(8px)",
-                cursor:"pointer", transition:"background .3s, border-color .3s",
-              }}
+              <div style={{ gridColumn:"span 2", borderRadius:22, border:"1.5px dashed rgba(205,44,88,.25)", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:10, background:"rgba(255,255,255,.50)", backdropFilter:"blur(8px)", cursor:"pointer", position:"relative", overflow:"hidden", transition:"background .3s,border-color .3s" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background="rgba(205,44,88,.05)"; (e.currentTarget as HTMLElement).style.borderColor="rgba(205,44,88,.45)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.50)"; (e.currentTarget as HTMLElement).style.borderColor="rgba(205,44,88,.25)"; }}
                 onClick={() => window.location.href="/services"}
@@ -684,22 +591,13 @@ export default function FeaturedServices() {
             </div>
           )}
 
-          {/* TABLET: 2-col bento, all cards 1×1 */}
+          {/* ── TABLET bento ── */}
           {isTablet && (
             <div className="fs-bento-tablet">
               {FEATURED.map((s, i) => (
                 <BentoCard key={s.id} s={s} idx={i} colSpan={1} rowSpan={1} />
               ))}
-              {/* Teaser tile spanning 2 cols on tablet */}
-              <div style={{
-                gridColumn:"span 2", borderRadius:18,
-                border:"1.5px dashed rgba(205,44,88,.25)",
-                minHeight: 90,
-                display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"center", gap:20,
-                background:"rgba(255,255,255,.55)", backdropFilter:"blur(8px)",
-                cursor:"pointer", padding:"0 28px",
-                transition:"background .3s, border-color .3s",
-              }}
+              <div style={{ gridColumn:"span 2", borderRadius:18, border:"1.5px dashed rgba(205,44,88,.25)", minHeight:90, display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"center", gap:20, background:"rgba(255,255,255,.55)", backdropFilter:"blur(8px)", cursor:"pointer", padding:"0 28px", transition:"background .3s,border-color .3s" }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background="rgba(205,44,88,.05)"; (e.currentTarget as HTMLElement).style.borderColor="rgba(205,44,88,.40)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.55)"; (e.currentTarget as HTMLElement).style.borderColor="rgba(205,44,88,.25)"; }}
                 onClick={() => window.location.href="/services"}
@@ -713,34 +611,9 @@ export default function FeaturedServices() {
             </div>
           )}
 
-          {/* MOBILE: horizontal card list */}
+          {/* ── MOBILE: horizontal scroll strip ── */}
           {isMobile && (
-            <>
-              <div className="fs-mobile-stack">
-                {FEATURED.map((s, i) => (
-                  <MobileCard key={s.id} s={s} idx={i} />
-                ))}
-                {/* Teaser — spans both columns */}
-                <div
-                  onClick={() => window.location.href="/services"}
-                  style={{
-                    gridColumn: "span 2",
-                    borderRadius: 14,
-                    border: "1.5px dashed rgba(205,44,88,.28)",
-                    padding: "14px 16px",
-                    display: "flex", alignItems: "center", gap: 12,
-                    background: "rgba(255,255,255,.60)", backdropFilter: "blur(8px)",
-                    cursor: "pointer",
-                  }}
-                >
-                  <div style={{ width:32, height:32, borderRadius:"50%", background:"linear-gradient(135deg,rgba(205,44,88,.14),rgba(255,198,157,.20))", border:"1px solid rgba(205,44,88,.22)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem", animation:"fsFloat 3s ease-in-out infinite", flexShrink:0 }}>+</div>
-                  <div>
-                    <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:".95rem", fontWeight:400, color:"#2a1018", marginBottom:1 }}>& more services available</p>
-                    <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize:".62rem", color:"#CD2C58", fontWeight:500, letterSpacing:".06em" }}>View all 7 offerings →</p>
-                  </div>
-                </div>
-              </div>
-            </>
+            <MobileServiceStrip services={FEATURED} />
           )}
 
           {/* ── TICKER ── */}
@@ -761,15 +634,14 @@ export default function FeaturedServices() {
             className="fs-cta-row"
             style={{
               marginTop: isMobile ? 36 : 52,
-              display: "flex", alignItems: "center", justifyContent: "space-between",
-              gap: 28, flexWrap: "wrap",
+              display:"flex", alignItems:"center", justifyContent:"space-between",
+              gap:28, flexWrap:"wrap",
               opacity: ctaIn ? 1 : 0,
               transform: ctaIn ? "translateY(0)" : "translateY(22px)",
               transition: "opacity .9s ease, transform .9s ease",
             }}
           >
-            {/* Quote */}
-            <div className="fs-cta-quote" style={{ maxWidth: 460 }}>
+            <div className="fs-cta-quote" style={{ maxWidth:460 }}>
               <p style={{ fontFamily:"'Cormorant Garamond',serif", fontStyle:"italic", fontSize:"clamp(.95rem,1.6vw,1.4rem)", fontWeight:300, color:"#7a4a55", lineHeight:1.65, marginBottom:8 }}>
                 "From a single hand-painted saree to a full wedding hamper — every service is delivered with the same signature care."
               </p>
@@ -777,21 +649,70 @@ export default function FeaturedServices() {
                 — Suman Jain, Kalasrijan
               </span>
             </div>
-
-            {/* Buttons */}
             <div style={{ display:"flex", alignItems:"center", gap:14, flexWrap:"wrap", flex: isMobile ? "1 1 100%" : "unset" }}>
               <a href="/services" className="fs-cta-btn">
                 <span className="fs-cta-btn-text">Explore All Services</span>
                 <div className="fs-cta-btn-icon">→</div>
               </a>
-              <a href="tel:+918890448242" className="fs-ghost-btn">
-                Get a Quote
-              </a>
+              <a href="tel:+918890448242" className="fs-ghost-btn">Get a Quote</a>
             </div>
           </div>
 
         </div>
       </section>
     </>
+  );
+}
+
+/* ─────────────────────────────────────
+   MOBILE STRIP — separate component
+   so scroll tracking stays isolated
+───────────────────────────────────── */
+function MobileServiceStrip({ services }: { services: typeof FEATURED }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIdx, setActiveIdx] = useState(0);
+  const navigate = useNavigate();
+  const total = services.length + 1; // +1 for teaser
+
+  // Track scroll position → update active dot
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const cardW = el.scrollWidth / total;
+      setActiveIdx(Math.round(el.scrollLeft / cardW));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [total]);
+
+  return (
+    <div style={{ marginBottom: 8 }}>
+      {/* Hint label */}
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: ".62rem", letterSpacing: ".14em", textTransform: "uppercase", color: "rgba(205,44,88,.50)", fontWeight: 500, marginBottom: 12 }}>
+        Swipe to explore →
+      </p>
+
+      <div className="fst-strip-outer" ref={scrollRef}>
+        <div className="fst-strip-inner">
+          {services.map((s, i) => (
+            <MobileScrollCard key={s.id} s={s} idx={i} />
+          ))}
+          {/* Teaser card — view all */}
+          <div className="fst-teaser" onClick={() => navigate("/services")}>
+            <div className="fst-teaser-icon">+</div>
+            <p className="fst-teaser-title">View all<br />7 services</p>
+            <p className="fst-teaser-sub">Full catalogue →</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll dots */}
+      <div className="fst-dots">
+        {Array.from({ length: total }).map((_, i) => (
+          <div key={i} className={`fst-dot ${i === activeIdx ? "active" : ""}`} />
+        ))}
+      </div>
+    </div>
   );
 }
