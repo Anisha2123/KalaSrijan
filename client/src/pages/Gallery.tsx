@@ -7,73 +7,37 @@ import SmartImage from "../utils/SmartImage";
    DATA
 ───────────────────────────────────── */
 const images = [
-  { id: 1,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916631/1_zlkloo.jpg"
-,                            title: 'Artistic Masterpiece', category: 'painting' },
-  { id: 2,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916632/2_pik48p.jpg",
-                             title: 'Creative Vision',      category: 'painting' },
-  // { id: 3,  src: 'Gallery/art/2.png',                             title: 'Modern Expression',    category: 'painting' },
-  { id: 4,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916634/3_y9dzvu.png",
-                            title: 'Artistic Design',      category: 'painting' },
-  { id: 5,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916634/4_tjyxpy.png",
-                             title: 'Creative Journey',     category: 'painting' },
-  { id: 6,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916634/Screenshot_2026-03-10_154252_ykefyq.png",
-  title: 'Art Showcase',         category: 'painting' },
-  { id: 7,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/1_shjfwn.png",
-                            title: 'Culinary Art',         category: 'baking'   },
-  // { id: 8,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/1_shjfwn.png",
-                          //  title: 'Baked Masterpiece',    category: 'baking'   },
-  { id: 9,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/2_ord13a.png",
-                          title: 'Sweet Creation',       category: 'baking'   },
-  { id: 10, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/4_mvydjp.png"
-,                           title: 'Culinary Excellence',  category: 'baking'   },
-  { id: 11, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/1_jox1sa.png",
-                 title: 'Creative Activity',    category: 'activity' },
-  { id: 12, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916636/3_zfnbse.png",
-                  title: 'Workshop Experience',  category: 'activity' },
-  { id: 13, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916636/4_menrau.png",
-                 title: 'Learning Session',     category: 'activity' },
-  // { id: 14, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916636/5_yk4mcd.png",
-                  // title: 'Creative Moment',      category: 'activity' },
-  { id: 15, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916636/6_rjftmg.png",
-                  title: 'Community Art',        category: 'activity' },
-  { id: 16, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/22_epex0c.png"
-,                 title: 'Group Creation',       category: 'activity' },
-  { id: 17, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916637/1_i4q4nk.png"
-,                       title: 'Package Design',       category: 'craft'    },
-  { id: 18, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916637/2_kvlk8b.png",
-                       title: 'Creative Packaging',   category: 'craft'    },
-  { id: 19, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916638/3_pzt3ds.png",
-                       title: 'Gift Wrapping Art',    category: 'craft'    },
-  { id: 20, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916638/4_y0zqis.png",
-                       title: 'Packaging Excellence', category: 'craft'    },
-  { id: 21, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916640/2_mh9irm.png",
-                      title: 'Artistic Expression',  category: 'painting' },
-  { id: 22, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916639/3_kx5ife.png"
-,                      title: 'Contemporary Art',     category: 'painting' },
-  { id: 23, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916639/paiinting_not_dlt_izx7yj.png",
-      title: 'Timeless Masterpiece', category: 'painting' },
-  { id: 24, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916642/1_c6uewx.png"
-,                   title: 'Fine Art',             category: 'painting' },
-  { id: 25, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916642/2_b0blcb.jpg",
-                   title: 'Artistic Vision',      category: 'painting' },
-  { id: 26, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916642/3_mrdten.png",
-                   title: 'Color Study',          category: 'painting' },
-  { id: 27, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916642/1_aetfxf.png"
-,                         title: 'Project Showcase',     category: 'project'  },
-  { id: 28, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916643/2_j4t6qu.png",
-                        title: 'Collaborative Work',   category: 'project'  },
-  { id: 29, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916643/3_fcv2tx.png",
-                         title: 'Creative Project',     category: 'project'  },
-  { id: 30, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916643/4_myg0xr.png",
-                         title: 'Group Project',        category: 'project'  },
-  { id: 31, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916644/1_erxxxe.png"
-,                          title: 'Resin Art',            category: 'resin'    },
-  { id: 32, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916646/2_hrykta.png",
-                           title: 'Resin Masterpiece',    category: 'resin'    },
-  { id: 33, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916646/3_yd645t.png",
-                           title: 'Liquid Art',           category: 'resin'    },
-  { id: 34, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916647/4_xfpmry.png",
-                           title: 'Resin Creation',       category: 'resin'    },
+  { id: 1,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916631/1_zlkloo.jpg",                           title: 'Artistic Masterpiece', category: 'painting' },
+  { id: 2,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916632/2_pik48p.jpg",                            title: 'Creative Vision',      category: 'painting' },
+  { id: 4,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916634/3_y9dzvu.png",                           title: 'Artistic Design',      category: 'painting' },
+  { id: 5,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916634/4_tjyxpy.png",                            title: 'Creative Journey',     category: 'painting' },
+  { id: 6,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916634/Screenshot_2026-03-10_154252_ykefyq.png", title: 'Art Showcase',         category: 'painting' },
+  { id: 7,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/1_shjfwn.png",                           title: 'Culinary Art',         category: 'baking'   },
+  { id: 9,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/2_ord13a.png",                           title: 'Sweet Creation',       category: 'baking'   },
+  { id: 10, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/4_mvydjp.png",                           title: 'Culinary Excellence',  category: 'baking'   },
+  { id: 11, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/1_jox1sa.png",                           title: 'Creative Activity',    category: 'activity' },
+  { id: 12, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916636/3_zfnbse.png",                           title: 'Workshop Experience',  category: 'activity' },
+  { id: 13, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916636/4_menrau.png",                           title: 'Learning Session',     category: 'activity' },
+  { id: 15, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916636/6_rjftmg.png",                           title: 'Community Art',        category: 'activity' },
+  { id: 16, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916635/22_epex0c.png",                          title: 'Group Creation',       category: 'activity' },
+  { id: 17, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916637/1_i4q4nk.png",                           title: 'Package Design',       category: 'craft'    },
+  { id: 18, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916637/2_kvlk8b.png",                           title: 'Creative Packaging',   category: 'craft'    },
+  { id: 19, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916638/3_pzt3ds.png",                           title: 'Gift Wrapping Art',    category: 'craft'    },
+  { id: 20, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916638/4_y0zqis.png",                           title: 'Packaging Excellence', category: 'craft'    },
+  { id: 21, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916640/2_mh9irm.png",                           title: 'Artistic Expression',  category: 'painting' },
+  { id: 22, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916639/3_kx5ife.png",                           title: 'Contemporary Art',     category: 'painting' },
+  { id: 23, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916639/paiinting_not_dlt_izx7yj.png",           title: 'Timeless Masterpiece', category: 'painting' },
+  { id: 24, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916642/1_c6uewx.png",                           title: 'Fine Art',             category: 'painting' },
+  { id: 25, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916642/2_b0blcb.jpg",                           title: 'Artistic Vision',      category: 'painting' },
+  { id: 26, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916642/3_mrdten.png",                           title: 'Color Study',          category: 'painting' },
+  { id: 27, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916642/1_aetfxf.png",                           title: 'Project Showcase',     category: 'project'  },
+  { id: 28, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916643/2_j4t6qu.png",                           title: 'Collaborative Work',   category: 'project'  },
+  { id: 29, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916643/3_fcv2tx.png",                           title: 'Creative Project',     category: 'project'  },
+  { id: 30, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916643/4_myg0xr.png",                           title: 'Group Project',        category: 'project'  },
+  { id: 31, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916644/1_erxxxe.png",                           title: 'Resin Art',            category: 'resin'    },
+  { id: 32, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916646/2_hrykta.png",                           title: 'Resin Masterpiece',    category: 'resin'    },
+  { id: 33, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916646/3_yd645t.png",                           title: 'Liquid Art',           category: 'resin'    },
+  { id: 34, src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916647/4_xfpmry.png",                           title: 'Resin Creation',       category: 'resin'    },
 ];
 
 const CAT_META: Record<string, { label: string; icon: string; color: string }> = {
@@ -155,8 +119,14 @@ function Lightbox({ image, onClose, onPrev, onNext, idx, total }: {
             onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,.09)')}>✕</button>
         </div>
 
-        {/* Image */}
-        <div style={{ position: 'relative', borderRadius: 18, overflow: 'hidden', maxHeight: '67vh', display: 'flex', alignItems: 'center' }}>
+        {/* Image — use a fixed-height container so the image always has space to render */}
+        <div style={{
+          position: 'relative', borderRadius: 18, overflow: 'hidden',
+          /* explicit height — not just maxHeight — so children can fill it */
+          height: 'min(67vh, 560px)',
+          background: 'rgba(255,255,255,0.04)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
           <button onClick={onPrev} style={{
             position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', zIndex: 2,
             width: 44, height: 44, borderRadius: '50%',
@@ -167,9 +137,20 @@ function Lightbox({ image, onClose, onPrev, onNext, idx, total }: {
             onMouseEnter={e => (e.currentTarget.style.background = '#CD2C58')}
             onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,.10)')}>‹</button>
 
-          <SmartImage src={image.src} alt={image.title} style={{
-            width: '100%', maxHeight: '67vh', objectFit: 'contain', display: 'block', borderRadius: 18,
-          }} />
+          {/* Plain <img> — completely isolated from .pg-card-img class styles */}
+          <img
+            src={image.src}
+            alt={image.title}
+            style={{
+              display: 'block',
+              maxWidth: '100%',
+              maxHeight: '100%',
+              width: 'auto',
+              height: 'auto',
+              objectFit: 'contain',
+              borderRadius: 14,
+            }}
+          />
 
           <button onClick={onNext} style={{
             position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', zIndex: 2,
@@ -213,7 +194,10 @@ function MasonryCard({ img, heightKey, idx, onOpen }: {
   const { ref, inView } = useInView(0.04);
   const [hov, setHov] = useState(false);
   const meta = CAT_META[img.category];
-  const heights: Record<string, string> = { tall: '355px', medium: '268px', short: '188px' };
+
+  // Desktop fixed heights; on mobile we use aspect-ratio instead (see CSS)
+  const desktopHeights: Record<string, string> = { tall: '355px', medium: '268px', short: '188px' };
+  const desktopHeight = desktopHeights[heightKey] || '260px';
 
   return (
     <div
@@ -221,12 +205,16 @@ function MasonryCard({ img, heightKey, idx, onOpen }: {
       onClick={onOpen}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
-      className="pg-card"
+      className={`pg-card pg-card-${heightKey}`}
       style={{
-        breakInside: 'avoid', marginBottom: 14,
-        borderRadius: 18, overflow: 'hidden',
-        position: 'relative', cursor: 'pointer',
-        height: heights[heightKey] || '260px',
+        breakInside: 'avoid',
+        marginBottom: 14,
+        borderRadius: 18,
+        overflow: 'hidden',
+        position: 'relative',
+        cursor: 'pointer',
+        // Desktop: fixed height. Mobile override via CSS class below.
+        height: desktopHeight,
         background: 'rgba(42,16,24,.08)',
         opacity: inView ? 1 : 0,
         transform: inView ? 'translateY(0) scale(1)' : 'translateY(26px) scale(0.97)',
@@ -234,11 +222,20 @@ function MasonryCard({ img, heightKey, idx, onOpen }: {
         boxShadow: hov ? '0 18px 48px rgba(42,16,24,.18)' : 'none',
       }}
     >
+      {/*
+        THE FIX:
+        Desktop: image fills the fixed-height container with height:100%.
+        Mobile: the card has height:auto + aspect-ratio (set via CSS),
+                so the image must use width:100% + height:100% on a
+                position:absolute fill — achieved via .pg-card-img CSS class.
+      */}
       <SmartImage
-        src={img.src} alt={img.title} loading="lazy"
-  decoding="async"
+        src={img.src}
+        alt={img.title}
+        loading="lazy"
+        decoding="async"
+        className="pg-card-img"
         style={{
-          width: '100%', height: '100%', objectFit: 'cover', display: 'block',
           transition: 'transform .65s ease',
           transform: hov ? 'scale(1.08)' : 'scale(1)',
         }}
@@ -291,63 +288,6 @@ function MasonryCard({ img, heightKey, idx, onOpen }: {
 }
 
 /* ─────────────────────────────────────
-   SCROLL STRIP
-───────────────────────────────────── */
-function ScrollStrip({ imgs, reverse, onOpen }: {
-  imgs: typeof images; reverse: boolean; onOpen: (id: number) => void;
-}) {
-  const doubled = [...imgs, ...imgs];
-  return (
-    <div style={{
-      overflow: 'hidden',
-      WebkitMaskImage: 'linear-gradient(90deg,transparent 0%,black 7%,black 93%,transparent 100%)',
-      maskImage: 'linear-gradient(90deg,transparent 0%,black 7%,black 93%,transparent 100%)',
-    }}>
-      <div style={{
-        display: 'flex', gap: 14, width: 'max-content',
-        animation: `${reverse ? 'stripRev' : 'stripFwd'} ${reverse ? 28 : 32}s linear infinite`,
-      }}
-        onMouseEnter={e => (e.currentTarget.style.animationPlayState = 'paused')}
-        onMouseLeave={e => (e.currentTarget.style.animationPlayState = 'running')}
-      >
-        {doubled.map((img, i) => {
-          const meta = CAT_META[img.category];
-          return (
-            <div key={`${img.id}-${i}`} onClick={() => onOpen(img.id)}
-              style={{ flexShrink: 0, width: 200, height: 148, borderRadius: 14, overflow: 'hidden', position: 'relative', cursor: 'pointer' }}
-              onMouseEnter={e => {
-                const el = e.currentTarget.querySelector('img') as HTMLImageElement;
-                if (el) el.style.transform = 'scale(1.1)';
-                const ov = e.currentTarget.querySelector('.st-ov') as HTMLElement;
-                if (ov) ov.style.opacity = '1';
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget.querySelector('img') as HTMLImageElement;
-                if (el) el.style.transform = 'scale(1)';
-                const ov = e.currentTarget.querySelector('.st-ov') as HTMLElement;
-                if (ov) ov.style.opacity = '0';
-              }}
-            >
-              <SmartImage src={img.src} alt={img.title} loading="lazy"
-  decoding="async"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform .5s ease' }} />
-              <div className="st-ov" style={{
-                position: 'absolute', inset: 0,
-                background: 'linear-gradient(to top,rgba(42,16,24,.58) 0%,transparent 55%)',
-                opacity: 0, transition: 'opacity .3s',
-                display: 'flex', alignItems: 'flex-end', padding: '10px 12px',
-              }}>
-                <span style={{ background: meta.color, color: '#fff', fontSize: '.60rem', fontWeight: 700, letterSpacing: '.09em', padding: '3px 9px', borderRadius: 100 }}>{meta.icon}</span>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────
    MAIN
 ───────────────────────────────────── */
 export default function PhotoGallery() {
@@ -365,9 +305,6 @@ export default function PhotoGallery() {
     setLbIdx(filtered.findIndex(i => i.id === imgId));
   }, [filtered]);
 
-  const strip1 = images.slice(0, 17);
-  const strip2 = images.slice(17, 34);
-
   return (
     <>
       <style>{`
@@ -375,17 +312,38 @@ export default function PhotoGallery() {
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         @keyframes petalFlt  { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-14px) rotate(180deg)} }
-        @keyframes stripFwd  { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-        @keyframes stripRev  { from{transform:translateX(-50%)} to{transform:translateX(0)} }
         @keyframes lbFadeIn  { from{opacity:0} to{opacity:1} }
         @keyframes lbSlideUp { from{transform:translateY(18px);opacity:0} to{transform:translateY(0);opacity:1} }
         @keyframes pgFadeUp  { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
         @keyframes ambBlob   { from{transform:translate(0,0)} to{transform:translate(20px,14px)} }
 
-        /* ── Masonry columns responsive ── */
+        /* ─────────────────────────────────────
+           CARD IMAGE — THE CORE FIX
+           Desktop: position:absolute fill so
+             height:100% on the container works.
+           Mobile: card has height:auto +
+             aspect-ratio, image still fills via
+             absolute positioning.
+        ───────────────────────────────────── */
+        .pg-card {
+          /* Ensure absolute children are contained */
+          position: relative;
+        }
+        .pg-card-img {
+          /* Always fill the card absolutely — works for both
+             fixed-height (desktop) and aspect-ratio (mobile) */
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        /* ── Masonry columns ── */
         .pg-masonry { columns: 4; column-gap: 14px; }
 
-        /* ── Filter pills scroll on mobile ── */
+        /* ── Filters ── */
         .pg-filters {
           display: flex; flex-wrap: wrap; gap: 9px;
           justify-content: center;
@@ -395,23 +353,13 @@ export default function PhotoGallery() {
            TABLET  768 – 1023px
         ══════════════════════════════ */
         @media (min-width: 768px) and (max-width: 1023px) {
-          /* Hero tighter */
           .pg-hero       { padding: 72px 32px 64px !important; }
           .pg-hero-inner { max-width: 560px !important; }
           .pg-hero-h1    { font-size: clamp(2.4rem, 5.5vw, 4rem) !important; }
-
-          /* Strips: single strip, slightly smaller cards */
-          .pg-strip-wrap { gap: 10px !important; padding: 36px 0 !important; }
-
-          /* Divider + filters */
-          .pg-divider  { padding: 0 24px 36px !important; }
-          .pg-filters  { padding: 0 24px 32px !important; }
-
-          /* 3-col masonry on tablet */
-          .pg-masonry  { columns: 3 !important; padding: 0 24px 40px !important; }
-
-          /* Load more */
-          .pg-load-more { padding-bottom: 60px !important; }
+          .pg-divider    { padding: 0 24px 36px !important; }
+          .pg-filters    { padding: 0 24px 32px !important; }
+          .pg-masonry    { columns: 3 !important; padding: 0 24px 40px !important; }
+          .pg-load-more  { padding-bottom: 60px !important; }
         }
 
         /* ══════════════════════════════
@@ -419,22 +367,18 @@ export default function PhotoGallery() {
         ══════════════════════════════ */
         @media (max-width: 767px) {
 
-          /* ── Hero ── */
-          .pg-hero       { padding: 60px 20px 52px !important; text-align: left !important; }
-          .pg-hero-eyebrow { justify-content: flex-start !important; }
-          .pg-hero-inner { max-width: 100% !important; }
-          .pg-hero-h1    { font-size: clamp(2.2rem, 9vw, 3rem) !important; text-align: left !important; }
-          .pg-hero-sub   { text-align: left !important; margin: 0 !important; max-width: 100% !important; font-size: .9rem !important; }
+          /* Hero */
+          .pg-hero        { padding: 60px 20px 52px !important; text-align: left !important; }
+          .pg-hero-eyebrow{ justify-content: flex-start !important; }
+          .pg-hero-inner  { max-width: 100% !important; }
+          .pg-hero-h1     { font-size: clamp(2.2rem, 9vw, 3rem) !important; text-align: left !important; }
+          .pg-hero-sub    { text-align: left !important; margin: 0 !important; max-width: 100% !important; font-size: .9rem !important; }
 
-          /* ── Strips: show only 1, smaller cards ── */
-          .pg-strip-wrap { padding: 28px 0 !important; gap: 10px !important; }
-          .pg-strip-hide { display: none !important; }
-
-          /* ── Divider ── */
-          .pg-divider { padding: 0 18px 28px !important; }
+          /* Divider */
+          .pg-divider      { padding: 0 18px 28px !important; }
           .pg-divider-text { font-size: .62rem !important; }
 
-          /* ── Filters: horizontal scroll pill row ── */
+          /* Filters: horizontal scroll row */
           .pg-filters {
             flex-wrap: nowrap !important;
             overflow-x: auto !important;
@@ -451,21 +395,32 @@ export default function PhotoGallery() {
             font-size: .75rem !important;
           }
 
-          /* ── Masonry: 2-col on mobile ── */
+          /* Masonry: 2-col */
           .pg-masonry {
             columns: 2 !important;
             column-gap: 10px !important;
             padding: 0 18px 36px !important;
           }
-          /* Flatten heights on mobile — let aspect ratio drive */
-          .pg-card { height: auto !important; min-height: 130px; }
 
-          /* ── Load more ── */
+          /*
+            THE KEY FIX FOR MOBILE IMAGES:
+            Remove the fixed height so the card can size naturally.
+            Use aspect-ratio to give the card a real height so
+            the absolutely-positioned image has something to fill.
+            Different aspect ratios mimic the tall/medium/short rhythm.
+          */
+          .pg-card {
+            height: auto !important;
+          }
+          .pg-card-tall   { aspect-ratio: 3 / 4; }
+          .pg-card-medium { aspect-ratio: 4 / 3.6; }
+          .pg-card-short  { aspect-ratio: 4 / 3; }
+
+          /* Load more */
           .pg-load-more { padding-bottom: 52px !important; }
           .pg-load-btn  { width: calc(100% - 36px) !important; justify-content: center !important; border-radius: 14px !important; padding: 15px 20px !important; }
         }
 
-        /* Hover guard — no hover jank on touch */
         @media (hover: none) {
           .pg-card:active { opacity: .88; }
         }
@@ -512,14 +467,6 @@ export default function PhotoGallery() {
             </p>
           </div>
         </div>
-
-        {/* ── MOVING STRIPS ── */}
-        {/* <div className="pg-strip-wrap" style={{ padding: '48px 0', background: '#fff8f4', display: 'flex', flexDirection: 'column', gap: 14, position: 'relative', zIndex: 1 }}>
-          <ScrollStrip imgs={strip1} reverse={false} onOpen={openLb} />
-          <div className="pg-strip-hide">
-            <ScrollStrip imgs={strip2} reverse={true} onOpen={openLb} />
-          </div>
-        </div> */}
 
         {/* ── DIVIDER ── */}
         <div className="pg-divider" style={{ display: 'flex', alignItems: 'center', gap: 20, maxWidth: 1260, margin: '0 auto', padding: '0 36px 44px', position: 'relative', zIndex: 1 }}>
