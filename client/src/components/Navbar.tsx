@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useLocation } from "react-router-dom";
 
 /* ─────────────────────────────────────
    NAV LINKS DATA
@@ -102,7 +103,7 @@ function ScrollProgress() {
 ───────────────────────────────────── */
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("Home");
+  // const [activeLink, setActiveLink] = useState("Home");
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
@@ -111,11 +112,25 @@ export default function Navbar() {
   const navRef = useRef<HTMLElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const location = useLocation();
+
   // Mount animation
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 60);
     return () => clearTimeout(t);
   }, []);
+
+  const getActiveLink = () => {
+  const path = location.pathname;
+
+  if (path.startsWith("/training-classes")) return "Classes";
+  if (path.startsWith("/services")) return "Services";
+  if (path.startsWith("/gallery")) return "Gallery";
+  if (path.startsWith("/about-us")) return "About";
+  if (path === "/") return "Home";
+
+  return "";
+};
 
   // Scroll detection
   useEffect(() => {
@@ -527,8 +542,8 @@ export default function Navbar() {
               >
                 <a
                   href={link.href}
-                  className={`nb-link ${activeLink === link.label ? "nb-active" : ""}`}
-                  onClick={() => setActiveLink(link.label)}
+                  className={`nb-link ${getActiveLink() === link.label ? "nb-active" : ""}`}
+                  // onClick={() => setActiveLink(link.label)}
                   aria-haspopup={link.sub ? "true" : undefined}
                   aria-expanded={link.sub ? openMenu === link.label : undefined}
                 >
@@ -549,7 +564,7 @@ export default function Navbar() {
                         href={sub.href}
                         className="nb-dd-item"
                         role="menuitem"
-                        onClick={() => { setActiveLink(link.label); setOpenMenu(null); }}
+                        onClick={() => { setOpenMenu(null); }}
                       >
                         <div className="nb-dd-dot" />
                         <div>
@@ -600,7 +615,7 @@ export default function Navbar() {
               {link.sub ? (
                 <>
                   <button
-                    className={`nb-mob-link ${activeLink === link.label ? "nb-mob-active" : ""}`}
+                    className={`nb-mob-link ${getActiveLink() === link.label ? "nb-mob-active" : ""}`}
                     onClick={() => setMobileExpanded(mobileExpanded === link.label ? null : link.label)}
                     aria-expanded={mobileExpanded === link.label}
                   >
@@ -613,7 +628,7 @@ export default function Navbar() {
                         key={sub.label}
                         href={sub.href}
                         className="nb-mob-sub-item"
-                        onClick={() => { setActiveLink(link.label); setMobileOpen(false); }}
+                        onClick={() => { setMobileOpen(false); }}
                       >
                         <div className="nb-mob-sub-dot" />
                         <div>
@@ -627,8 +642,8 @@ export default function Navbar() {
               ) : (
                 <a
                   href={link.href}
-                  className={`nb-mob-link ${activeLink === link.label ? "nb-mob-active" : ""}`}
-                  onClick={() => { setActiveLink(link.label); setMobileOpen(false); }}
+                  className={`nb-mob-link ${getActiveLink() === link.label ? "nb-mob-active" : ""}`}
+                  onClick={() => { setMobileOpen(false); }}
                 >
                   <span>{link.label}</span>
                 </a>
