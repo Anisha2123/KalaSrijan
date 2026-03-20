@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import SmartImage from "../utils/SmartImage";
+import { useNavigate } from "react-router-dom";
 
 /* ─────────────────────────────────────────────────────────
    DATA
@@ -9,6 +10,7 @@ import SmartImage from "../utils/SmartImage";
 const COURSES = [
   {
     id: 11,
+    idSlug: "drawing",
     num: "01",
     title: "Let's Draw & Paint",
     subtitle: "Designer Package · 12 Levels",
@@ -24,6 +26,7 @@ const COURSES = [
 
   {
     id: 1,
+    idSlug: "painting",
     num: "02",
     title: "Painting Classes",
     subtitle: "8 styles from Oil to Freehand",
@@ -40,6 +43,7 @@ const COURSES = [
   {
     id: 2,
     num: "03",
+    idSlug: "stitching",
     title: "Stitching Courses",
     subtitle: "Diploma in Garment Making",
     category: "Stitching",
@@ -54,6 +58,7 @@ const COURSES = [
 
   {
     id: 7,
+    idSlug: "resin",
     num: "04",
     title: "Resin Art",
     subtitle: "Epoxy art · Coasters & Wall Art",
@@ -69,6 +74,7 @@ const COURSES = [
 
   {
     id: 10,
+    idSlug: "lippan",
     num: "05",
     title: "Lippan Art Workshop",
     subtitle: "Mud & Mirror · Gujarat Heritage",
@@ -84,6 +90,7 @@ const COURSES = [
 
   {
     id: 5,
+    idSlug: "calligraphy",
     num: "06",
     title: "Calligraphy Courses",
     subtitle: "Hindi & English · 30 fonts",
@@ -120,8 +127,9 @@ function useInView(threshold = 0.08) {
    DesktopCard  (used in desktop + tablet marquee)
 ───────────────────────────────────────────────────────── */
 function DesktopCard({ c }: { c: typeof COURSES[0] }) {
+    const navigate = useNavigate();
   return (
-    <div className="la-card">
+    <div className="la-card" onClick={() => navigate(`/training-classes#${c.idSlug}`)}>
       <div className="la-card-img-zone">
         <SmartImage src={c.img} alt={c.title} className="la-card-img"
   />
@@ -148,11 +156,11 @@ function DesktopCard({ c }: { c: typeof COURSES[0] }) {
    MobileCard  (compact portrait, used in 2-row mobile)
 ───────────────────────────────────────────────────────── */
 function MobileCard({ c }: { c: typeof COURSES[0] }) {
+    const navigate =useNavigate();
   return (
-    <div className="lam-card">
+    <div className="lam-card" onClick={() => navigate(`/training-classes#${c.idSlug}`)}>
       <div className="lam-thumb">
-        <SmartImage src={c.img} alt={c.title} className="lam-img" loading="lazy"
-  decoding="async"/>
+        <SmartImage src={c.img} alt={c.title} className="lam-img" />
         <div className="lam-grad" />
         <div className="lam-tag" style={{ background: c.tagColor }}>{c.tag}</div>
         <span className="lam-icon">{c.icon}</span>

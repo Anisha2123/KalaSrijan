@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import SmartImage from "../utils/SmartImage";
+import { useLocation } from "react-router-dom";
 
 const SERVICES = [
   {
@@ -85,6 +86,27 @@ function Card({ s, idx }) {
   const { ref, inView } = useInView(0.08);
   const [hov, setHov] = useState(false);
   const even = idx % 2 === 0;
+  const location = useLocation();
+
+  useEffect(() => {
+  if (location.hash) {
+    const el = document.querySelector(location.hash);
+    if (el) {
+      setTimeout(() => {
+        const yOffset = -85; // navbar height (72px) + spacing
+        const y =
+          el.getBoundingClientRect().top +
+          window.pageYOffset +
+          yOffset;
+
+        window.scrollTo({
+          top: y,
+          behavior: "smooth",
+        });
+      }, 100);
+    }
+  }
+}, [location]);
 
   return (
     <div id={s.idSlug} ref={ref} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
@@ -99,8 +121,7 @@ function Card({ s, idx }) {
       <div style={{ position:"relative", order: even ? 1 : 2, zIndex:1 }}>
         <div style={{ position:"absolute", top:14, left:14, width:"100%", height:"100%", border:"1.5px solid rgba(205,44,88,0.18)", borderRadius: even ? "24px 6px 24px 6px" : "6px 24px 6px 24px", transition:"transform 0.4s", transform: hov ? "translate(5px,5px)" : "none", zIndex:0 }}/>
         <div style={{ position:"relative", zIndex:1, width:"100%", aspectRatio:"4/3", borderRadius: even ? "6px 24px 6px 24px" : "24px 6px 24px 6px", overflow:"hidden", boxShadow:"0 28px 72px rgba(205,44,88,0.18),0 6px 20px rgba(224,107,128,0.12)" }}>
-          <SmartImage src={s.img} alt={s.title} loading="lazy"
-  decoding="async" style={{ width:"100%", height:"100%", objectFit:"cover", transition:"transform 0.7s ease", transform: hov ? "scale(1.06)" : "scale(1)", display:"block" }} />
+          <SmartImage src={s.img} alt={s.title} style={{ width:"100%", height:"100%", objectFit:"cover", transition:"transform 0.7s ease", transform: hov ? "scale(1.06)" : "scale(1)", display:"block" }} />
           <div style={{ position:"absolute", inset:0, background:s.accent, opacity: hov ? 0.12 : 0.28, mixBlendMode:"multiply", transition:"opacity 0.4s" }}/>
           <div style={{ position:"absolute", bottom:14, left:14, width:44, height:44, background:"rgba(255,255,255,0.90)", backdropFilter:"blur(8px)", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.25rem", boxShadow:"0 4px 16px rgba(205,44,88,0.14)" }}>{s.icon}</div>
         </div>
@@ -137,11 +158,12 @@ function Card({ s, idx }) {
             <div style={{ fontFamily:"'DM Sans',sans-serif", fontSize:"0.60rem", letterSpacing:"0.14em", textTransform:"uppercase", color:"#E06B80", fontWeight:500 }}>Starting</div>
             <div style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:"1.2rem", fontWeight:600, color:"#CD2C58", lineHeight:1.2 }}>{s.highlight}</div>
           </div>
-          <button style={{ display:"inline-flex", alignItems:"center", gap:10, background:"#CD2C58", color:"#fff", padding:"13px 28px", borderRadius:100, border:"none", cursor:"pointer", fontFamily:"'DM Sans',sans-serif", fontSize:"0.875rem", fontWeight:500, letterSpacing:"0.04em", boxShadow:"0 8px 26px rgba(205,44,88,0.28)", transition:"all 0.22s ease" }}
+          <a
+  href="tel:+918890448242" style={{ display:"inline-flex", alignItems:"center", gap:10, background:"#CD2C58", color:"#fff", padding:"13px 28px", borderRadius:100, border:"none", cursor:"pointer", fontFamily:"'DM Sans',sans-serif", fontSize:"0.875rem", fontWeight:500, letterSpacing:"0.04em", boxShadow:"0 8px 26px rgba(205,44,88,0.28)", transition:"all 0.22s ease" }}
             onMouseEnter={e => { e.currentTarget.style.background="#b82350"; e.currentTarget.style.transform="translateY(-2px)"; }}
             onMouseLeave={e => { e.currentTarget.style.background="#CD2C58"; e.currentTarget.style.transform=""; }}>
             Enquire Now <span>→</span>
-          </button>
+          </a>
         </div>
       </div>
     </div>

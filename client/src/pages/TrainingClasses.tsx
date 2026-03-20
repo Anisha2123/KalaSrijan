@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import SmartImage from "../utils/SmartImage";
+import { useLocation } from "react-router-dom";
 
 /* ─────────────────────────────────────
    DATA
@@ -301,7 +302,27 @@ function Accordion({ items }: { items: { step: string; detail: string }[] }) {
 function CourseCard({ c, idx }: { c: typeof COURSES[0]; idx: number }) {
   const { ref, inView } = useInView(0.06);
   const [flipped, setFlipped] = useState(false);
+  const location = useLocation();
 
+  useEffect(() => {
+  if (location.hash) {
+    const el = document.querySelector(location.hash);
+    if (el) {
+      setTimeout(() => {
+        const yOffset = -85; // navbar height (72px) + spacing
+        const y =
+          el.getBoundingClientRect().top +
+          window.pageYOffset +
+          yOffset;
+
+        window.scrollTo({
+          top: y,
+          behavior: "smooth",
+        });
+      }, 100);
+    }
+  }
+}, [location]);
   return (
     <div
       ref={ref}
@@ -311,8 +332,7 @@ function CourseCard({ c, idx }: { c: typeof COURSES[0]; idx: number }) {
     >
       {/* Image area */}
       <div className="tc-card-img-wrap">
-        <SmartImage src={c.img} loading="lazy"
-  decoding="async" alt={c.title} className="tc-card-img" loading="lazy" />
+        <SmartImage src={c.img} alt={c.title} className="tc-card-img" />
         <div className="tc-card-img-overlay" />
         {/* Tag */}
         <div className="tc-card-tag" style={{ background: c.tagColor }}>
@@ -353,9 +373,10 @@ function CourseCard({ c, idx }: { c: typeof COURSES[0]; idx: number }) {
             <span className="tc-price-label">Course Fee</span>
             <span className="tc-price-val">{c.feeShort}</span>
           </div>
-          <button className="tc-join-btn">
+          <a
+  href="tel:+918890448242" className="tc-join-btn">
             Join Class →
-          </button>
+          </a>
         </div>
       </div>
     </div>

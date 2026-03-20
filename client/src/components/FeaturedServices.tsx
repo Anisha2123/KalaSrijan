@@ -2,13 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import SmartImage from "../utils/SmartImage";
+import { useNavigate } from "react-router-dom";
 
 /* ─────────────────────────────────────
    DATA
 ───────────────────────────────────── */
 const FEATURED = [
   {
-    id: 1, num: "01", title: "Hand Painting",
+    id: 1, num: "01", title: "Hand Painting", idSlug: "hand-painting",
     subtitle: "Wearable Canvas Art", icon: "🎨",
     highlight: "₹1,500 / piece",
         img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto,c_fill,g_auto/v1773916625/image_rejikn.png",
@@ -17,7 +18,7 @@ const FEATURED = [
     desc: "Each garment becomes a masterpiece — vivid pigments, signature outlines, pure artistry.",
   },
   {
-    id: 2, num: "02", title: "Thermacol Art",
+    id: 2, num: "02", title: "Thermacol Art", idSlug: "thermacol-art",
     subtitle: "Sculptural Event Décor", icon: "🏛️",
     highlight: "From ₹1,000",
         img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916631/thermacol_art_tgh6et.png",
@@ -27,17 +28,17 @@ const FEATURED = [
     desc: "Grand statues, monuments & wedding trays shaped in lightweight Thermacol.",
   },
   {
-    id: 3, num: "03", title: "Fancy Dress",
+    id: 3, num: "03", title: "Fancy Dress", idSlug: "fancy-dress",
     subtitle: "Costume Design End-to-End", icon: "✂️",
     highlight: "₹1,000 – ₹5,000",
         img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920275/35894ddc-a1f6-4e5b-b706-1098964ed757.png",
 
-    tagColor: "#CD2C58",
+    tagColor: "#CD2C58", 
     size: "short",
     desc: "Complete costume creation with matching props for every little star.",
   },
   {
-    id: 4, num: "04", title: "School Projects",
+    id: 4, num: "04", title: "School Projects", idSlug: "school-projects",
     subtitle: "Models, STEM & B.Ed", icon: "🔬",
     highlight: "From ₹300",
         img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920224/a52e6c62-720d-4a68-9c71-f96e3d44307b.png",
@@ -47,7 +48,7 @@ const FEATURED = [
     desc: "Working models, robotic projects, STEM displays — every concept brought to life.",
   },
   {
-    id: 5, num: "05", title: "Wedding Hampers",
+    id: 5, num: "05", title: "Wedding Hampers", idSlug: "wedding-hampers",
     subtitle: "Packing & Platters", icon: "🎁",
     highlight: "Made to order",
         img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916647/weeding_decorcation_and_hamper_orgaqa.png",
@@ -57,7 +58,7 @@ const FEATURED = [
     desc: "Curated platters and hampers for Haldi, gifting & every cherished occasion.",
   },
   {
-    id: 6, num: "06", title: "Card Decoration",
+    id: 6, num: "06", title: "Card Decoration", idSlug: "card-decoration",
     subtitle: "Themed Invitation Art", icon: "💌",
     highlight: "₹500 / card",
         img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916647/Card_Decoration_ermpnu.png",
@@ -67,7 +68,7 @@ const FEATURED = [
     desc: "Customized wedding & event card decorations aligned to your theme.",
   },
   {
-    id: 7, num: "07", title: "Custom Event Décor",
+    id: 7, num: "07", title: "Custom Event Décor", idSlug: "custom-event-decor",
     subtitle: "Tailored Theme Elements", icon: "✨",
     highlight: "From ₹1,000",
         img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773920841/61a7d48c-f7b5-43e0-b7e4-37cb5fb9a67c.png",
@@ -130,12 +131,14 @@ function BentoCard({
   const [hov, setHov] = useState(false);
   // On mobile we show desc always (tap UX)
   const isActive = hov || forceExpanded;
+  const navigate = useNavigate(); // 👈 add this
 
   return (
     <div
       ref={ref}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
+      onClick={() => navigate(`/services#${s.idSlug}`)}
       style={{
         gridColumn: `span ${colSpan}`,
         gridRow: `span ${rowSpan}`,
@@ -264,12 +267,15 @@ function BentoCard({
             display: "flex", alignItems: "center", justifyContent: "center",
             fontSize: ".72rem", color: "#fff", flexShrink: 0,
           }}>→</span>
-          <span style={{
+          <a href="tel:+918890448242" style={{ textDecoration: "none" }}>
+           <span style={{
             fontFamily: "'DM Sans', sans-serif",
             fontSize: ".72rem", fontWeight: 500,
             color: "rgba(255,230,212,.70)",
             letterSpacing: ".06em", textTransform: "uppercase",
           }}>Enquire Now</span>
+          </a>
+          
         </div>
       </div>
 
@@ -293,11 +299,13 @@ function BentoCard({
 function MobileCard({ s, idx }: { s: typeof FEATURED[0]; idx: number }) {
   const { ref, inView } = useInView(0.04);
   const [tapped, setTapped] = useState(false);
-
+   const navigate = useNavigate(); // 👈 add
   return (
     <div
       ref={ref}
-      onClick={() => setTapped(t => !t)}
+      onClick={() => navigate(`/services#${s.idSlug}`)}
+      // onClick={() => setTapped(t => !t)}
+      
       style={{
         position: "relative",
         borderRadius: 16,
@@ -316,8 +324,7 @@ function MobileCard({ s, idx }: { s: typeof FEATURED[0]; idx: number }) {
     >
       {/* Full bg image */}
       <SmartImage
-        src={s.img} alt={s.title} loading="lazy"
-        decoding="async"
+        src={s.img} alt={s.title}
         style={{
           position: "absolute", inset: 0,
           width: "100%", height: "100%", objectFit: "cover", display: "block",
@@ -395,12 +402,15 @@ function MobileCard({ s, idx }: { s: typeof FEATURED[0]; idx: number }) {
           transition: "max-height .3s ease, opacity .25s ease",
           marginTop: tapped ? 6 : 0,
         }}>
-          <span style={{
+          <a href="tel:+918890448242" style={{ textDecoration: "none" }}>
+           <span style={{
             fontFamily: "'DM Sans',sans-serif",
             fontSize: ".60rem", fontWeight: 500,
             color: "rgba(255,230,212,.75)",
             letterSpacing: ".07em", textTransform: "uppercase",
           }}>Enquire →</span>
+          </a>
+          
         </div>
       </div>
     </div>
