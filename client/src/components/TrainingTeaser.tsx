@@ -661,7 +661,7 @@ export default function TrainingTeaserEditorial() {
               <div className="la-pills" style={{ display: "none" }}>
                 <span className="la-pill"><strong>11</strong>Courses</span>
                 <span className="la-pill"><strong>25000+</strong>Students</span>
-                <span className="la-pill"><strong>15+</strong>Art Forms</span>
+                <span className="la-pill"><strong>200+</strong>Art Forms</span>
               </div>
 
               <a href="/training-classes" className="la-cta">
@@ -729,7 +729,7 @@ export default function TrainingTeaserEditorial() {
             {[
               { n: "11",    l: "Courses"        },
               { n: "25000+", l: "Students"       },
-              { n: "15+",   l: "Art Forms"      },
+              { n: "200+",   l: "Art Forms"      },
               { n: "Free",  l: "Temple Classes" },
             ].map(({ n, l }) => (
               <div key={l} className="la-stat">

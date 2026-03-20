@@ -552,7 +552,7 @@ export default function KalasrijanHero() {
             <div className="kala-card kala-card--top">
               <div className="kala-card-icon">🎨</div>
               <div className="kala-card-text">Creative Learning</div>
-              <div className="kala-card-sub">15+ Art Forms</div>
+              <div className="kala-card-sub">200+ Art Forms</div>
             </div>
 
             <div className="kala-card kala-card--bottom">

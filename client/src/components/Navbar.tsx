@@ -62,7 +62,7 @@ const NAV_LINKS = [
     sub: [
       { label: "Meet Suman Jain", href: "/about-us/#meet-the-maker", desc: "The story behind Kalasrijan" },
       { label: "Why Choose Us",   href: "/about-us/#why-choose",   desc: "Experience · Trust · Creativity" },
-      { label: "Our Journey",     href: "/about-us/#journey", desc: "15+ years of art & craft" },
+      { label: "Our Journey",     href: "/about-us/#journey", desc: "30+ years of art & craft" },
     ],
   },
   // {
@@ -113,12 +113,6 @@ export default function Navbar() {
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const location = useLocation();
-
-  // Mount animation
-  useEffect(() => {
-    const t = setTimeout(() => setMounted(true), 60);
-    return () => clearTimeout(t);
-  }, []);
 
   const getActiveLink = () => {
   const path = location.pathname;

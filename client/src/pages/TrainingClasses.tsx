@@ -277,7 +277,7 @@ function useInView(threshold = 0.1) {
    ACCORDION
 ───────────────────────────────────── */
 function Accordion({ items }: { items: { step: string; detail: string }[] }) {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
   return (
     <div className="tc-acc">
       {items.map((item, i) => (
@@ -546,6 +546,7 @@ export default function TrainingClasses() {
         .tc-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
+          align-items: start;
           gap: 28px;
         }
 

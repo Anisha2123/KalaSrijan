@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
    DATA
 ───────────────────────────────────────── */
 const REASONS = [
-  { num:"01", icon:"✦", title:"Years of Expertise",        sub:"Mastery earned through decades",    body:"Suman Jain has spent years mastering diverse art forms — from painting and stitching to clay, resin, and cultural crafts. Her depth of knowledge is unmatched and always growing.",                                                                         stat:"15+",  statLabel:"Art Forms Taught",    accent:"#CD2C58" },
+  { num:"01", icon:"✦", title:"Years of Expertise",        sub:"Mastery earned through decades",    body:"Suman Jain has spent years mastering diverse art forms — from painting and stitching to clay, resin, and cultural crafts. Her depth of knowledge is unmatched and always growing.",                                                                         stat:"200+",  statLabel:"Art Forms Taught",    accent:"#CD2C58" },
   { num:"02", icon:"◈", title:"Personalized Attention",    sub:"Every student, every style",        body:"No two learners are alike. Suman tailors her guidance to each individual — adapting pace, technique, and encouragement so every student finds their own creative voice.",                                                                                    stat:"25",   statLabel:"Sessions Per Course", accent:"#E06B80" },
-  { num:"03", icon:"❋", title:"5000+ Happy Students",      sub:"Trust built one class at a time",   body:"Over 5,000 happy customers reflect the trust and love people place in Kalasrijan. Her unique, hard-to-copy designs and warm teaching style have made her truly one of a kind.",                                                                             stat:"5K+",  statLabel:"Happy Learners",      accent:"#CD2C58" },
+  { num:"03", icon:"❋", title:"25000+ Happy Students",      sub:"Trust built one class at a time",   body:"Over 5,000 happy customers reflect the trust and love people place in Kalasrijan. Her unique, hard-to-copy designs and warm teaching style have made her truly one of a kind.",                                                                             stat:"5K+",  statLabel:"Happy Learners",      accent:"#CD2C58" },
   { num:"04", icon:"⬡", title:"Practical Real-World Skills",sub:"Art you can use every day",        body:"From decorating your home to making gifts, cooking, card decoration, and fabric painting — Kalasrijan teaches skills that enrich real everyday life.",                                                                                                      stat:"100%", statLabel:"Hands-on Learning",   accent:"#E06B80" },
   { num:"05", icon:"✿", title:"Inspiring Personality",     sub:"Confidence that is contagious",     body:"Even after years of experience, Suman remains active, passionate, and confident. Her positive energy transforms the act of learning into a genuine joy.",                                                                                                   stat:"∞",    statLabel:"Passion & Energy",    accent:"#CD2C58" },
   { num:"06", icon:"◉", title:"One-of-a-Kind Creativity",  sub:"Designs that can't be copied",      body:"Suman's creative instinct produces work that is utterly original. She is appreciated for ideas and a special way of being creative — her designs are genuinely unique.",                                                                                    stat:"①",    statLabel:"Unique Style",         accent:"#E06B80" },
@@ -14,12 +14,12 @@ const REASONS = [
 
 const STATS = [
   { v:"25000+", l:"Happy Students" },
-  { v:"15+",   l:"Art Forms Taught" },
+  { v:"200+",   l:"Art Forms Taught" },
   { v:"100%",  l:"Hands-on Learning" },
   { v:"1",     l:"Truly Unique Style" },
 ];
 
-const MARQUEE = ["25000+ Happy Students","15+ Art Forms","Years of Expertise","Personalized Attention","Practical Skills","One-of-a-Kind Creativity","Inspiring Personality","Trusted by Thousands"];
+const MARQUEE = ["25000+ Happy Students","200+ Art Forms","Years of Expertise","Personalized Attention","Practical Skills","One-of-a-Kind Creativity","Inspiring Personality","Trusted by Thousands"];
 
 /* ─────────────────────────────────────────
    HOOK
