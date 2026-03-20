@@ -7,7 +7,8 @@ import SmartImage from "../utils/SmartImage";
    DATA
 ───────────────────────────────────── */
 const images = [
-  { id: 1,  src: 'Gallery/art/1.jpg',                             title: 'Artistic Masterpiece', category: 'painting' },
+  { id: 1,  src: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto/v1773916631/1_zlkloo.jpg"
+,                            title: 'Artistic Masterpiece', category: 'painting' },
   { id: 2,  src: 'Gallery/art/2.jpg',                             title: 'Creative Vision',      category: 'painting' },
   { id: 3,  src: 'Gallery/art/2.png',                             title: 'Modern Expression',    category: 'painting' },
   { id: 4,  src: 'Gallery/art/3.png',                             title: 'Artistic Design',      category: 'painting' },

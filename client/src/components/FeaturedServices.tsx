@@ -11,7 +11,7 @@ const FEATURED = [
     id: 1, num: "01", title: "Hand Painting",
     subtitle: "Wearable Canvas Art", icon: "🎨",
     highlight: "₹1,500 / piece",
-        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_500,c_fill,g_auto/v1773916625/image_rejikn.png",
+        img: "https://res.cloudinary.com/dpb3z1mfk/image/upload/f_auto,q_auto,dpr_auto,w_auto,c_fill,g_auto/v1773916625/image_rejikn.png",
     tagColor: "#CD2C58",
     size: "tall",
     desc: "Each garment becomes a masterpiece — vivid pigments, signature outlines, pure artistry.",
@@ -157,8 +157,6 @@ function BentoCard({
       <SmartImage
         src={s.img}
         alt={s.title}
-        loading="lazy"
-  decoding="async"
         style={{
           position: "absolute", inset: 0,
           width: "100%", height: "100%",
